@@ -6,11 +6,12 @@ interface VTLinkProps {
   to: string;
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   title?: string;
   onClick?: () => void;
 }
 
-const VTLink: React.FC<VTLinkProps> = ({ to, children, className = '', title, onClick }) => {
+const VTLink: React.FC<VTLinkProps> = ({ to, children, className = '', style, title, onClick }) => {
   const navigate = useNavigate();
 
   const handleClick = (e: React.MouseEvent) => {
@@ -25,14 +26,27 @@ const VTLink: React.FC<VTLinkProps> = ({ to, children, className = '', title, on
 
   if (to.startsWith('http')) {
     return (
-      <a href={to} className={className} title={title} target="_blank" rel="noopener noreferrer">
+      <a 
+        href={to} 
+        className={className} 
+        style={style}
+        title={title} 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
         {children}
       </a>
     );
   }
 
   return (
-    <Link to={to} className={className} title={title} onClick={handleClick}>
+    <Link 
+      to={to} 
+      className={className} 
+      style={style}
+      title={title} 
+      onClick={handleClick}
+    >
       {children}
     </Link>
   );

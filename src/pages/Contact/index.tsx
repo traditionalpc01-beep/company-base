@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-cyber-dark">
+    <div className="min-h-screen bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
       
@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
               <span className="text-sm text-muted/80">联系我们</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-white">期待与您</span>
+              <span className="text-ink">期待与您</span>
               <span className="eco-gradient-text">携手合作</span>
             </h1>
             <p className="text-lg md:text-xl text-muted/75 max-w-3xl mx-auto leading-relaxed">
@@ -86,7 +86,7 @@ const Contact: React.FC = () => {
                 <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4 text-brand-primary group-hover:shadow-glow transition-shadow">
                   {method.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-1">{method.title}</h3>
+                <h3 className="text-lg font-semibold text-ink mb-1">{method.title}</h3>
                 <p className="text-brand-primary font-medium mb-1">{method.value}</p>
                 <p className="text-sm text-muted/60">{method.description}</p>
               </div>
@@ -95,13 +95,13 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
                 在线留言
               </h2>
               <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full mb-8" />
@@ -111,7 +111,7 @@ const Contact: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-brand-primary/20 flex items-center justify-center mx-auto mb-4">
                     <CheckCircle size={32} className="text-brand-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">提交成功</h3>
+                  <h3 className="text-xl font-semibold text-ink mb-2">提交成功</h3>
                   <p className="text-muted/75 mb-6">
                     感谢您的留言，我们会尽快与您联系！
                   </p>
@@ -143,7 +143,7 @@ const Contact: React.FC = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
                         placeholder="您的姓名"
                       />
                     </div>
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
                         placeholder="您的公司或单位"
                       />
                     </div>
@@ -169,7 +169,7 @@ const Contact: React.FC = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
                         placeholder="您的联系电话"
                       />
                     </div>
@@ -180,7 +180,7 @@ const Contact: React.FC = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
                         placeholder="您的邮箱地址"
                       />
                     </div>
@@ -193,11 +193,11 @@ const Contact: React.FC = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all appearance-none cursor-pointer"
+                      className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all appearance-none cursor-pointer"
                     >
-                      <option value="" className="bg-cyber-dark">请选择咨询主题</option>
+                      <option value="" className="bg-surface">请选择咨询主题</option>
                       {subjects.map((subject) => (
-                        <option key={subject} value={subject} className="bg-cyber-dark">
+                        <option key={subject} value={subject} className="bg-surface">
                           {subject}
                         </option>
                       ))}
@@ -212,7 +212,7 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all resize-none"
                       placeholder="请详细描述您的需求或问题..."
                     />
                   </div>
@@ -226,7 +226,7 @@ const Contact: React.FC = () => {
             </div>
             
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
                 办公地址
               </h2>
               <div className="w-24 h-px bg-gradient-to-r from-brand-accent via-warm to-transparent rounded-full mb-8" />
@@ -242,7 +242,7 @@ const Contact: React.FC = () => {
                         <MapPin size={24} />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white mb-1">{address.label}</h3>
+                        <h3 className="text-lg font-semibold text-ink mb-1">{address.label}</h3>
                         <p className="text-muted/75 text-sm leading-relaxed">{address.value}</p>
                       </div>
                     </div>
@@ -253,7 +253,7 @@ const Contact: React.FC = () => {
               <div className="mt-8 glass-card p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <Clock size={20} className="text-warm" />
-                  <h3 className="text-lg font-semibold text-white">工作时间</h3>
+                  <h3 className="text-lg font-semibold text-ink">工作时间</h3>
                 </div>
                 <div className="space-y-2 text-sm text-muted/75">
                   <p>周一至周五：9:00 - 18:00</p>
@@ -264,7 +264,7 @@ const Contact: React.FC = () => {
               
               <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-brand-primary/10 to-brand-accent/10 border border-brand-primary/20">
                 <p className="text-muted/80 text-sm leading-relaxed">
-                  <span className="text-white font-medium">温馨提示：</span>
+                  <span className="text-ink font-medium">温馨提示：</span>
                   如需无人机飞行服务或现场技术支持，请提前预约，我们将安排专业人员为您提供上门服务。
                 </p>
               </div>
@@ -276,7 +276,7 @@ const Contact: React.FC = () => {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <MessageSquare size={48} className="text-brand-primary mx-auto mb-6 opacity-60" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             让自然保护成为最酷的工作
           </h2>
           <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">

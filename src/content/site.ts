@@ -34,7 +34,7 @@ export const siteContent: SiteContent = {
     },
   ],
   contact: {
-    phone: '17677132233',
+    phone: '17677138300',
     email: 'office@ejdrone.com',
     addresses: [
       { label: '南宁办', value: '广西南宁市青秀区金浦路16号汇东国际F座6楼' },

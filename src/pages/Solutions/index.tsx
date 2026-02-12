@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plane, BookOpen, Database, ArrowRight, CheckCircle, Leaf, Cpu, MapPin, Users } from 'lucide-react';
+import { Plane, BookOpen, Database, ArrowRight, CheckCircle, Cpu, MapPin, Users, Sprout, Bird, TreePine } from 'lucide-react';
 import VTLink from '../../components/VTLink';
 
 const Solutions: React.FC = () => {
@@ -51,21 +51,34 @@ const Solutions: React.FC = () => {
     },
   ];
 
-  const cases = [
+  // 动保植保专用配色方案 - 使用自然绿色系
+  const wildlifeCases = [
     {
       quote: '保护区信息化管理系统构建保护地生物多样性、空间数据和社区数据等多源数据中心，有效利用红外相机、无人机等监测设备，支撑保护地开展各项业务工作。',
       title: '保护区信息化管理系统',
       icon: <Database size={24} />,
+      color: 'from-wildlife to-nature-green',
+      bgColor: 'bg-wildlife/10',
+      textColor: 'text-wildlife',
+      borderColor: 'border-wildlife/30',
     },
     {
-      quote: '翼查记和翼地巡满足野外快速巡护调查，智能统计分析保护地的实际巡护成效和覆盖范围。',
-      title: '翼查记和翼地巡',
-      icon: <MapPin size={24} />,
+      quote: '翼查记和翼地巡满足野外快速巡护调查，智能统计分析保护地的实际巡护成效和覆盖范围，实现野生动物栖息地精准监测。',
+      title: '野生动物巡护监测',
+      icon: <Bird size={24} />,
+      color: 'from-nature-green to-forest-green',
+      bgColor: 'bg-nature-green/10',
+      textColor: 'text-nature-green',
+      borderColor: 'border-nature-green/30',
     },
     {
       quote: '自然脉搏以小程序平台为载体，建成自然保护地自然教育导赏、公众参与式监测、自然教育导赏员管理等功能于一体的管理和解说体系。',
-      title: '自然脉搏',
-      icon: <Leaf size={24} />,
+      title: '自然教育导赏体系',
+      icon: <TreePine size={24} />,
+      color: 'from-forest-green to-leaf-green',
+      bgColor: 'bg-forest-green/10',
+      textColor: 'text-forest-green',
+      borderColor: 'border-forest-green/30',
     },
   ];
 
@@ -77,7 +90,7 @@ const Solutions: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-cyber-dark">
+    <div className="min-h-screen bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
       
@@ -89,7 +102,7 @@ const Solutions: React.FC = () => {
               <span className="text-sm text-muted/80">解决方案</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-white">科技赋能</span>
+              <span className="text-ink">科技赋能</span>
               <span className="eco-gradient-text">自然保护</span>
             </h1>
             <p className="text-lg md:text-xl text-muted/75 max-w-3xl mx-auto leading-relaxed">
@@ -120,59 +133,53 @@ const Solutions: React.FC = () => {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心解决方案
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full" />
           </div>
 
-          <div className="space-y-8">
-            {solutions.map((solution, index) => (
+          <div className="grid md:grid-cols-3 gap-6">
+            {solutions.map((solution) => (
               <div
                 key={solution.id}
-                className={`relative glass-card-hover p-8 md:p-10 overflow-hidden ${
-                  index % 2 === 1 ? 'md:ml-12' : ''
-                }`}
+                className="relative glass-card-hover p-6 md:p-8 overflow-hidden h-full flex flex-col"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${solution.gradient}`} />
                 <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${solution.bgGradient} rounded-full blur-3xl`} />
                 
-                <div className="relative z-10 grid md:grid-cols-12 gap-8 items-start">
-                  <div className="md:col-span-8">
-                    <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${solution.gradient} mb-6 shadow-glow`}>
-                      <span className="text-white">{solution.icon}</span>
-                    </div>
-                    
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                      {solution.title}
-                    </h3>
-                    <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">
-                      {solution.subtitle}
-                    </p>
-                    
-                    <p className="text-muted/75 leading-relaxed mb-6">
-                      {solution.description}
-                    </p>
-                    
-                    <ul className="space-y-3">
-                      {solution.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle size={18} className="text-brand-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-ink/85 text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${solution.gradient} mb-6 shadow-glow w-fit`}>
+                    <span className="text-ink">{solution.icon}</span>
                   </div>
                   
-                  <div className="md:col-span-4 flex flex-col items-start md:items-end justify-center">
-                    <VTLink
-                      to="/contact"
-                      className="btn-primary inline-flex items-center gap-2 group/btn"
-                    >
-                      <span>咨询方案</span>
-                      <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </VTLink>
-                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-ink mb-2">
+                    {solution.title}
+                  </h3>
+                  <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">
+                    {solution.subtitle}
+                  </p>
+                  
+                  <p className="text-muted/75 leading-relaxed mb-6 flex-grow">
+                    {solution.description}
+                  </p>
+                  
+                  <ul className="space-y-3 mb-6">
+                    {solution.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <CheckCircle size={18} className="text-brand-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-ink/85 text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <VTLink
+                    to="/contact"
+                    className="btn-primary inline-flex items-center justify-center gap-2 group/btn w-full md:w-auto mt-auto"
+                  >
+                    <span>咨询方案</span>
+                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </VTLink>
                 </div>
               </div>
             ))}
@@ -180,38 +187,47 @@ const Solutions: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      {/* 动保植保案例 - 使用自然绿色系配色 */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              客户案例
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-wildlife/25 mb-6">
+              <Sprout size={16} className="text-wildlife" />
+              <span className="text-sm text-muted/80">动保植保</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              生态守护案例
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto" />
+            <div className="w-24 h-px bg-gradient-to-r from-wildlife via-nature-green to-forest-green mx-auto" />
+            <p className="text-muted/75 mt-4 max-w-2xl mx-auto">
+              以自然绿色为基调，用科技守护野生动植物，构建人与自然和谐共生的生态文明
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {cases.map((caseItem, index) => (
+            {wildlifeCases.map((caseItem, index) => (
               <div
                 key={index}
-                className="glass-card p-6 md:p-8 relative group hover:border-brand-accent/30 transition-all duration-300"
+                className={`glass-card p-6 md:p-8 relative group hover:${caseItem.borderColor} transition-all duration-300 h-full flex flex-col`}
               >
-                <div className="absolute top-6 left-6 text-brand-primary/20">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                </div>
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${caseItem.color}" 
+                  style={{background: `linear-gradient(to right, var(--tw-gradient-stops))`}} 
+                />
+                <div className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${caseItem.color} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity`} />
                 
-                <div className="pt-12">
-                  <p className="text-muted/80 text-sm leading-relaxed mb-6">
+                <div className="pt-4 flex flex-col h-full">
+                  <div className={`w-12 h-12 rounded-xl ${caseItem.bgColor} flex items-center justify-center ${caseItem.textColor} mb-4`}>
+                    {caseItem.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-ink mb-3">{caseItem.title}</h3>
+                  <p className="text-muted/80 text-sm leading-relaxed mb-6 flex-grow">
                     {caseItem.quote}
                   </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent">
-                      {caseItem.icon}
-                    </div>
-                    <span className="text-ink font-medium">{caseItem.title}</span>
+                  <div className={`inline-flex items-center gap-2 text-sm ${caseItem.textColor} font-medium mt-auto`}>
+                    <span>了解详情</span>
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </div>
@@ -222,7 +238,7 @@ const Solutions: React.FC = () => {
 
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             让自然保护成为最酷的工作
           </h2>
           <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">

@@ -34,7 +34,6 @@ const StatItem: React.FC<StatItemProps> = ({ value, label, suffix = '', icon, de
   useEffect(() => {
     if (!isVisible) return;
     
-    let start = 0;
     const end = value;
     const duration = 2000;
     const startTime = Date.now();
@@ -120,9 +119,9 @@ const Statistics: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="mb-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">
-            <h2 className="section-title text-white">
+            <h2 className="section-title text-ink">
               <span className="eco-gradient-text">数据驱动</span>
-              <span className="text-white/80">，科技赋能</span>
+              <span className="text-ink/80">，科技赋能</span>
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-warm to-transparent rounded-full mb-4"></div>
           </div>
@@ -133,27 +132,10 @@ const Statistics: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, index) => (
-            <div
-              key={stat.label}
-              className={`${
-                index === 0
-                  ? 'md:col-span-4'
-                  : index === 1
-                    ? 'md:col-span-3 md:col-start-6 md:translate-y-6'
-                    : index === 2
-                      ? 'md:col-span-3 md:col-start-1 md:translate-y-10'
-                      : 'md:col-span-4 md:col-start-9'
-              }`}
-            >
-              <StatItem
-                value={stat.value}
-                label={stat.label}
-                suffix={stat.suffix}
-                icon={stat.icon}
-                delay={index * 100}
-              />
+            <div key={stat.label}>
+              <StatItem value={stat.value} label={stat.label} suffix={stat.suffix} icon={stat.icon} delay={index * 100} />
             </div>
           ))}
         </div>

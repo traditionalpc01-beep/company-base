@@ -256,7 +256,7 @@ npx lighthouse http://localhost:4173 --output=json --output-path=./lighthouse-re
 
 ### 翼界科技
 
-- **电话**：17677132233
+- **电话**：17677138300
 - **邮箱**：office@ejdrone.com
 
 ### 办公地址

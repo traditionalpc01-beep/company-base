@@ -1,10 +1,16 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { ArrowLeft, Menu, X } from 'lucide-react';
+import { ArrowLeft, Menu, X, Settings } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { siteContent } from '../../content';
 import VTLink from '../VTLink';
+import { ThemeToggle } from '../Theme';
+import logo from '../../resource/翼界LOGO（透明）-24.png';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onOpenThemePanel?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onOpenThemePanel }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -37,17 +43,15 @@ const Header: React.FC = () => {
   const currentArchiveMeta = isArchiveDetailPage ? archiveDetailMeta[location.pathname] : undefined;
 
   const isHomePage = location.pathname === '/';
+  
+  // 根据主题模式调整header样式
   const headerClass = isHomePage && !isScrolled 
     ? 'bg-transparent py-4' 
-    : 'bg-cyber-dark/95 backdrop-blur-xl border-b border-white/5 py-3 shadow-lg';
+    : 'bg-surface/95 backdrop-blur-xl border-b border-border py-3 shadow-lg theme-transition';
   
-  const logoClass = isHomePage && !isScrolled 
-    ? 'text-white' 
-    : 'text-white';
-  const linkClass = isHomePage && !isScrolled 
-    ? 'text-ink/85 hover:text-ink' 
-    : 'text-muted/80 hover:text-ink';
-  const mobileIconClass = isHomePage && !isScrolled ? 'text-white' : 'text-white';
+  const logoClass = 'text-ink';
+  const linkClass = 'text-muted hover:text-ink theme-transition';
+  const mobileIconClass = 'text-ink';
 
   const navLinks = siteContent.nav
     .filter((x) => x.to !== '/contact')
@@ -66,51 +70,48 @@ const Header: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}
     >
-      <div className="container mx-auto px-4 flex items-center gap-3">
-        <div className="flex items-center gap-3">
+      <div className="container mx-auto px-4 flex items-center justify-between gap-3">
+        {/* 左侧：返回按钮 + Logo */}
+        <div className="flex items-center gap-3 flex-shrink-0">
           {isArchiveDetailPage && (
             <button
               type="button"
               onClick={handleBackClick}
-              className="group inline-flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 select-none bg-cyber-dark/60 backdrop-blur border border-white/10 text-muted/80 hover:text-ink hover:border-brand-accent/30 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-darker active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 px-3 py-2 rounded-full transition-colors duration-200 select-none bg-surface-2/80 backdrop-blur border border-border text-muted hover:text-ink hover:border-brand-primary/30 hover:shadow-glow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
               aria-label="返回"
             >
-              <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-0.5" />
-              <span className="text-sm font-medium">返回</span>
+              <ArrowLeft size={18} className="transition-transform duration-200 group-hover:-translate-x-0.5" />
+              <span className="text-sm font-medium hidden sm:inline">返回</span>
             </button>
           )}
 
-          <VTLink to="/" className={`text-2xl font-bold flex items-center gap-2 ${logoClass}`}>
-            <div className="w-10 h-10 rounded-xl bg-brand-surface/60 border border-white/10 flex items-center justify-center overflow-hidden shadow-glow-sm">
-              <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.5 2L25 8.5V18.5L13.5 25L2 18.5V8.5L13.5 2Z" stroke="currentColor" strokeWidth="2" fill="none" className="text-brand-primary"/>
-                <path d="M13.5 7L20 11V17L13.5 21L7 17V11L13.5 7Z" fill="currentColor" className="text-brand-primary"/>
-              </svg>
-            </div>
+          <VTLink to="/" className={`text-xl sm:text-2xl font-bold flex items-center gap-2 ${logoClass}`}>
+            <img src={logo} alt="翼界科技" className="h-8 sm:h-10 w-auto" />
             <span className="hidden sm:inline">
               EJ<span className="text-brand-primary">DRONE</span>
             </span>
           </VTLink>
         </div>
 
+        {/* 中间：导航或档案详情标题 */}
         {isArchiveDetailPage ? (
           <div className="flex-1 min-w-0 px-2 hidden md:flex items-center justify-center">
             <div className="min-w-0 text-center">
-              <div className="text-sm font-semibold text-white truncate">
+              <div className="text-sm font-semibold text-ink truncate">
                 {currentArchiveMeta?.title ?? '档案详情'}
               </div>
               {currentArchiveMeta?.subtitle && (
-                <div className="text-xs text-muted/70 truncate">{currentArchiveMeta.subtitle}</div>
+                <div className="text-xs text-muted truncate">{currentArchiveMeta.subtitle}</div>
               )}
             </div>
           </div>
         ) : (
-          <nav className="hidden md:flex items-center space-x-1 ml-auto">
+          <nav className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => (
               <VTLink
                 key={link.name}
                 to={link.href}
-                className={`nav-link px-4 py-2 rounded-lg transition-all duration-300 ${
+                className={`nav-link px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 text-sm xl:text-base whitespace-nowrap ${
                   location.pathname === link.href 
                     ? 'text-brand-primary bg-brand-primary/10' 
                     : linkClass
@@ -121,22 +122,47 @@ const Header: React.FC = () => {
             ))}
             <VTLink
               to="/contact"
-              className="ml-4 btn-primary text-sm py-2 px-5"
+              className="ml-2 xl:ml-4 btn-primary text-sm py-2 px-4 xl:px-5 whitespace-nowrap"
             >
               联系我们
             </VTLink>
           </nav>
         )}
 
-        <div className="ml-auto flex items-center gap-3">
+        {/* 右侧：主题控制 + 移动端菜单按钮 */}
+        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+          {/* 主题切换按钮 */}
+          <ThemeToggle variant="icon" size="md" />
+          
+          {/* 主题设置按钮 */}
+          {onOpenThemePanel && (
+            <button
+              type="button"
+              onClick={onOpenThemePanel}
+              className="
+                w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center
+                transition-all duration-300 ease-out
+                bg-surface-2 hover:bg-surface-3
+                border border-border hover:border-brand-primary/50
+                text-muted hover:text-brand-primary
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50
+                hidden sm:flex
+              "
+              aria-label="主题设置"
+              title="主题设置"
+            >
+              <Settings size={16} className="sm:w-[18px] sm:h-[18px]" />
+            </button>
+          )}
+
           {isArchiveDetailPage && (
-            <VTLink to="/contact" className="hidden md:inline-flex btn-primary text-sm py-2 px-5">
+            <VTLink to="/contact" className="hidden md:inline-flex btn-primary text-sm py-2 px-4">
               联系我们
             </VTLink>
           )}
 
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-surface-2 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? '关闭菜单' : '打开菜单'}
           >
@@ -148,13 +174,14 @@ const Header: React.FC = () => {
           </button>
         </div>
 
+        {/* 移动端菜单 */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-cyber-dark/98 backdrop-blur-xl border-b border-white/5 md:hidden">
+          <div className="absolute top-full left-0 right-0 bg-surface/98 backdrop-blur-xl border-b border-border lg:hidden theme-transition">
             <div className="flex flex-col py-4 px-4">
               {isArchiveDetailPage && (
                 <button
                   type="button"
-                  className="mb-3 px-4 py-3 rounded-lg font-medium transition-all text-left text-muted/80 hover:text-ink hover:bg-white/5"
+                  className="mb-3 px-4 py-3 rounded-lg font-medium transition-all text-left text-muted hover:text-ink hover:bg-surface-2"
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     handleBackClick();
@@ -170,13 +197,35 @@ const Header: React.FC = () => {
                   className={`px-4 py-3 rounded-lg font-medium transition-all ${
                     location.pathname === link.href 
                       ? 'text-brand-primary bg-brand-primary/10' 
-                      : 'text-muted/80 hover:text-ink hover:bg-white/5'
+                      : 'text-muted hover:text-ink hover:bg-surface-2'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </VTLink>
               ))}
+              
+              {/* 移动端主题控制 */}
+              <div className="mt-3 pt-3 border-t border-border">
+                <div className="px-4 py-2 text-sm text-muted">主题设置</div>
+                <div className="flex items-center gap-2 px-4 py-2">
+                  <ThemeToggle variant="segmented" size="sm" />
+                </div>
+                {onOpenThemePanel && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      onOpenThemePanel();
+                    }}
+                    className="w-full mt-2 px-4 py-3 rounded-lg font-medium text-left text-muted hover:text-ink hover:bg-surface-2 transition-all flex items-center gap-2"
+                  >
+                    <Settings size={18} />
+                    更多主题选项
+                  </button>
+                )}
+              </div>
+              
               <VTLink
                 to="/contact"
                 className="mx-4 mt-4 btn-primary text-center text-sm py-3"

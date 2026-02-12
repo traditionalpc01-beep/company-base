@@ -44,7 +44,9 @@ const Archives: React.FC = () => {
       subtitle: 'YiChaJi',
       description: '服务于科研监测、综合考察的专业平台，地图类型丰富、定制性强，助力保护地科学管理。',
       features: ['科研监测', '综合考察', '地图定制', '数据分析'],
-      color: 'brand-primary',
+      toneBg: 'bg-brand-primary/15',
+      toneText: 'text-brand-primary',
+      dotBg: 'bg-brand-primary',
       link: '/archives/sheng-wu-quan',
     },
     {
@@ -54,7 +56,9 @@ const Archives: React.FC = () => {
       subtitle: 'YiDiXun',
       description: '服务于巡护监测的网格管理系统，自动分析巡护成效和覆盖范围，提升巡护效率。',
       features: ['巡护监测', '网格管理', '自动分析', '事件回报'],
-      color: 'brand-accent',
+      toneBg: 'bg-brand-accent/15',
+      toneText: 'text-brand-accent',
+      dotBg: 'bg-brand-accent',
       link: '/archives/grid',
     },
     {
@@ -64,7 +68,9 @@ const Archives: React.FC = () => {
       subtitle: 'Nature Pulse',
       description: '服务于线上导览、自然教育的小程序平台，串联社区与公众，提升保护地影响力。',
       features: ['线上导览', '自然教育', '社区联动', '公众参与'],
-      color: 'warm',
+      toneBg: 'bg-warm/15',
+      toneText: 'text-warm',
+      dotBg: 'bg-warm',
       link: '/archives/sheng-wu-quan',
     },
   ];
@@ -91,7 +97,7 @@ const Archives: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-cyber-dark">
+    <div className="min-h-screen bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-accent/5 to-transparent pointer-events-none" />
       
@@ -103,7 +109,7 @@ const Archives: React.FC = () => {
               <span className="text-sm text-muted/80">档案中心</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-white">产品与</span>
+              <span className="text-ink">产品与</span>
               <span className="tech-gradient-text">技术档案</span>
             </h1>
             <p className="text-lg md:text-xl text-muted/75 max-w-3xl mx-auto leading-relaxed">
@@ -116,7 +122,7 @@ const Archives: React.FC = () => {
       <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center gap-3">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
               <Plane size={28} className="text-brand-primary" />
               产品档案
             </h2>
@@ -135,10 +141,10 @@ const Archives: React.FC = () => {
                 
                 <div className="relative z-10">
                   <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${product.gradient} mb-5 shadow-glow-sm`}>
-                    <span className="text-white">{product.icon}</span>
+                    <span className="text-ink">{product.icon}</span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-ink transition-colors">
+                  <h3 className="text-xl font-bold text-ink mb-1">
                     {product.title}
                   </h3>
                   <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">{product.subtitle}</p>
@@ -151,7 +157,7 @@ const Archives: React.FC = () => {
                     {product.features.map((feature, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 text-xs rounded-full bg-white/5 text-muted/80 border border-white/10"
+                        className="px-3 py-1 text-xs rounded-full bg-surface-2 text-muted/80 border border-border"
                       >
                         {feature}
                       </span>
@@ -169,12 +175,12 @@ const Archives: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center gap-3">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
               <Database size={28} className="text-brand-accent" />
               软件产品
             </h2>
@@ -186,13 +192,13 @@ const Archives: React.FC = () => {
               <VTLink
                 key={sw.id}
                 to={sw.link}
-                className="glass-card p-6 md:p-8 relative group hover:border-white/20 transition-all duration-300 block"
+                className="glass-card p-6 md:p-8 relative group hover:border-brand-primary/30 transition-all duration-300 block"
               >
-                <div className={`inline-flex p-3 rounded-xl bg-${sw.color}/15 text-${sw.color} mb-5`}>
+                <div className={`inline-flex p-3 rounded-xl ${sw.toneBg} ${sw.toneText} mb-5`}>
                   {sw.icon}
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-ink transition-colors">
+                <h3 className="text-xl font-bold text-ink mb-1">
                   {sw.title}
                 </h3>
                 <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">{sw.subtitle}</p>
@@ -204,7 +210,7 @@ const Archives: React.FC = () => {
                 <div className="space-y-2">
                   {sw.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-sm text-muted/80">
-                      <div className={`w-1.5 h-1.5 rounded-full bg-${sw.color}`} />
+                      <div className={`w-1.5 h-1.5 rounded-full ${sw.dotBg}`} />
                       {feature}
                     </div>
                   ))}
@@ -218,7 +224,7 @@ const Archives: React.FC = () => {
       <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center gap-3">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
               <Award size={28} className="text-warm" />
               荣誉资质
             </h2>
@@ -227,7 +233,7 @@ const Archives: React.FC = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-ink mb-6 flex items-center gap-2">
                 <Award size={20} className="text-brand-primary" />
                 企业荣誉
               </h3>
@@ -237,30 +243,26 @@ const Archives: React.FC = () => {
                     key={index}
                     className="glass-card p-4 flex items-center justify-between group hover:border-brand-primary/30 transition-all"
                   >
-                    <span className="text-ink/85 font-medium">{honor.title}</span>
-                    <span className="text-sm text-muted/60 px-3 py-1 rounded-full bg-white/5">
-                      {honor.year}
-                    </span>
+                    <span className="text-ink/90 font-medium">{honor.title}</span>
+                    <span className="text-sm text-muted/60">{honor.year}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-ink mb-6 flex items-center gap-2">
                 <FileCheck size={20} className="text-brand-accent" />
-                企业认证
+                资质认证
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
                 {certifications.map((cert, index) => (
                   <div
                     key={index}
                     className="glass-card p-4 flex items-center gap-3 group hover:border-brand-accent/30 transition-all"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent">
-                      {cert.icon}
-                    </div>
-                    <span className="text-sm text-ink/85">{cert.title}</span>
+                    <div className="text-brand-accent">{cert.icon}</div>
+                    <span className="text-ink/90 font-medium">{cert.title}</span>
                   </div>
                 ))}
               </div>
@@ -269,58 +271,53 @@ const Archives: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <div className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
+              <Leaf size={28} className="text-brand-primary" />
               知识产权
             </h2>
-            <p className="text-muted/75">持续创新，技术沉淀</p>
+            <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {ipStats.map((stat, index) => (
               <div
                 key={index}
-                className="glass-card p-6 text-center group hover:border-warm/30 transition-all"
+                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all"
               >
-                <div className="text-4xl md:text-5xl font-bold tech-gradient-text mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-brand-primary mb-2">
                   {stat.value}
-                  <span className="text-xl text-warm ml-1">{stat.suffix}</span>
+                  <span className="text-lg">{stat.suffix}</span>
                 </div>
                 <div className="text-sm text-muted/70">{stat.label}</div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-8 text-center">
-            <VTLink
-              to="/archives/honor"
-              className="btn-secondary inline-flex items-center gap-2"
-            >
-              <Award size={18} />
-              <span>查看完整资质</span>
-              <ArrowRight size={16} />
-            </VTLink>
           </div>
         </div>
       </section>
 
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <Leaf size={48} className="text-brand-primary mx-auto mb-6 opacity-60" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            科技守护自然
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
+            探索更多
           </h2>
           <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">
-            我们持续投入研发，为自然保护地提供更智能、更高效的解决方案。
+            了解翼界科技的完整产品体系与技术能力，发现适合您保护地的解决方案。
           </p>
-          <VTLink to="/contact" className="btn-primary inline-flex items-center gap-2">
-            <span>合作咨询</span>
-            <ArrowRight size={18} />
-          </VTLink>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <VTLink to="/solutions" className="btn-primary inline-flex items-center gap-2">
+              <span>解决方案</span>
+              <ArrowRight size={18} />
+            </VTLink>
+            <VTLink to="/drone_service" className="btn-secondary inline-flex items-center gap-2">
+              <Plane size={18} />
+              <span>无人机服务</span>
+            </VTLink>
+          </div>
         </div>
       </section>
     </div>

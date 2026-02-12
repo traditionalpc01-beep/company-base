@@ -85,7 +85,7 @@ const Partners: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-cyber-dark">
+    <div className="min-h-screen bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-warm/5 to-transparent pointer-events-none" />
       
@@ -97,7 +97,7 @@ const Partners: React.FC = () => {
               <span className="text-sm text-muted/80">合作伙伴</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-white">携手</span>
+              <span className="text-ink">携手</span>
               <span className="text-gradient">共创未来</span>
             </h1>
             <p className="text-lg md:text-xl text-muted/75 max-w-3xl mx-auto leading-relaxed">
@@ -114,7 +114,7 @@ const Partners: React.FC = () => {
                 <div className="w-14 h-14 rounded-2xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow">
                   {type.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{type.title}</h3>
+                <h3 className="text-lg font-semibold text-ink mb-2">{type.title}</h3>
                 <p className="text-sm text-muted/70">{type.description}</p>
               </div>
             ))}
@@ -122,12 +122,12 @@ const Partners: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               合作伙伴
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto mb-4" />
@@ -147,7 +147,7 @@ const Partners: React.FC = () => {
                     {category.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white mb-1">{category.title}</h3>
+                    <h3 className="text-xl font-bold text-ink mb-1">{category.title}</h3>
                     <p className="text-sm text-muted/70">{category.description}</p>
                   </div>
                 </div>
@@ -156,7 +156,7 @@ const Partners: React.FC = () => {
                   {category.partners.map((partner, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1.5 text-sm rounded-lg bg-white/5 text-muted/80 border border-white/10 hover:border-brand-primary/30 transition-colors"
+                      className="px-3 py-1.5 text-sm rounded-lg bg-surface-2 text-muted/80 border border-border hover:border-brand-primary/30 transition-colors"
                     >
                       {partner}
                     </span>
@@ -171,7 +171,7 @@ const Partners: React.FC = () => {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               客户评价
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto" />
@@ -203,12 +203,12 @@ const Partners: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <Handshake size={48} className="text-warm mx-auto mb-6 opacity-60" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             期待与您合作
           </h2>
           <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">

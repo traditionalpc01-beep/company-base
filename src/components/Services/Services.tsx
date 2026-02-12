@@ -60,10 +60,10 @@ const Services: React.FC = () => {
               <span className="text-sm text-muted/80">核心服务</span>
             </div>
             
-            <h2 className="section-title text-white">
-              <span className="text-white/80">科技</span>
+            <h2 className="section-title text-ink">
+              <span className="text-ink/80">科技</span>
               <span className="tech-gradient-text">赋能</span>
-              <span className="text-white/80">自然保护</span>
+              <span className="text-ink/80">自然保护</span>
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full mb-4"></div>
           </div>
@@ -74,17 +74,11 @@ const Services: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className={`group relative ${
-                index === 0
-                  ? 'md:col-span-5'
-                  : index === 1
-                    ? 'md:col-span-4 md:col-start-7'
-                    : 'md:col-span-5 md:col-start-3'
-              }`}
+              className="group relative"
             >
               <div className="feature-card h-full relative overflow-hidden">
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${service.gradient}`}></div>
@@ -93,10 +87,10 @@ const Services: React.FC = () => {
 
                 <div className="relative z-10">
                   <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} mb-6 group-hover:shadow-glow transition-shadow duration-300`}>
-                    <span className="text-white">{service.icon}</span>
+                    <span className="text-ink">{service.icon}</span>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-ink transition-colors">
+                  <h3 className="text-2xl font-bold text-ink mb-1 transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">{service.subtitle}</p>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Leaf, Target, Eye, Heart, Users, Award, MapPin, ArrowRight, Plane, Cpu, Shield, Sprout, Bird, Globe } from 'lucide-react';
+import { Leaf, Target, Eye, Heart, Users, Award, MapPin, ArrowRight, Plane, Cpu, Shield, BookOpen, Database } from 'lucide-react';
 import VTLink from '../../components/VTLink';
 import { siteContent } from '../../content';
 
@@ -67,71 +67,93 @@ const About: React.FC = () => {
   ];
 
   const stats = [
-    { value: '100+', label: '服务保护地', icon: <Globe size={20} /> },
-    { value: '14', label: '覆盖省份', icon: <MapPin size={20} /> },
-    { value: '61', label: '知识产权', icon: <Award size={20} /> },
-    { value: '110+', label: '专业团队', icon: <Users size={20} /> },
+    { value: '80+', label: '服务保护地', icon: <Shield size={20} />, toneText: 'text-brand-primary' },
+    { value: '12', label: '足迹遍布', icon: <MapPin size={20} />, toneText: 'text-brand-accent' },
+    { value: '60+', label: '研发团队', icon: <Cpu size={20} />, toneText: 'text-warm' },
+    { value: '100+', label: '知识产权', icon: <Award size={20} />, toneText: 'text-brand-primary' },
   ];
 
-  const businessAreas = [
+  const solutionAreas = [
     {
-      icon: <Bird size={32} />,
-      title: '动物保护',
-      subtitle: 'Wildlife Conservation',
-      description: '运用无人机技术开展野生动物监测、栖息地调查、迁徙路线追踪，为珍稀濒危物种保护提供科学数据支撑',
-      color: 'wildlife',
-      features: ['野生动物监测', '栖息地评估', '迁徙路线追踪', '种群数量调查'],
+      icon: <Plane size={32} />,
+      title: '基于空地协同的自然保护地无人机巡检解决方案',
+      subtitle: 'Air-Ground Coordination',
+      description: '构建自然保护地空天地一体化监测网络体系，无人机数据收集回收与云端物联网联动，让保护地管理更智慧。',
+      tone: 'brand',
+      bullets: ['视频巡检', '遥感监测', '数据中继', '无人机数据处理与成果产出'],
     },
     {
-      icon: <Sprout size={32} />,
-      title: '植物保护',
-      subtitle: 'Plant Protection',
-      description: '通过遥感监测和AI识别技术，开展植被覆盖监测、珍稀植物调查、生态系统健康评估',
-      color: 'plant',
-      features: ['植被覆盖监测', '珍稀植物调查', '生态系统评估', '林业资源调查'],
+      icon: <BookOpen size={32} />,
+      title: '自然保护地宣教体系建设解决方案',
+      subtitle: 'Nature Education',
+      description: '以在地服务为目标，以当地自然资源为依托，以开展实地调查为支撑，推动保护地自然教育基地建设，提升保护地影响力。',
+      tone: 'warm',
+      bullets: ['场域打造（标识标牌系统等）', '活动策划与解说体系', '平台支撑与多元参与'],
     },
     {
-      icon: <Cpu size={32} />,
-      title: '智慧保护地',
-      subtitle: 'Smart Protected Area',
-      description: '构建空天地一体化监测网络，实现保护地数字化、智能化管理，提升保护效能',
-      color: 'tech',
-      features: ['空天地监测', '智能巡护', '数据分析', '指挥调度'],
+      icon: <Database size={32} />,
+      title: '自然保护地信息化系统建设解决方案',
+      subtitle: 'Information System',
+      description: '综合管理系统实现保护地管理智慧化，支持科研监测、巡护监测与线上导览，并可面向自然保护从业者提供定制软件开发。',
+      tone: 'accent',
+      bullets: ['翼查记（科研监测/综合考察）', '翼地巡（网格管理/自动分析/事件回报）', '自然脉搏（线上导览/自然教育）', '定制开发'],
     },
   ];
 
-  const getColorClasses = (color: string) => {
-    const classes: Record<string, { bg: string; text: string; border: string; shadow: string }> = {
-      brand: {
-        bg: 'bg-brand-primary/10',
-        text: 'text-brand-primary',
-        border: 'border-brand-primary/30',
-        shadow: 'shadow-glow',
-      },
-      wildlife: {
-        bg: 'bg-wildlife/10',
-        text: 'text-wildlife',
-        border: 'border-wildlife/30',
-        shadow: 'shadow-glow-wildlife',
-      },
-      plant: {
-        bg: 'bg-plant/10',
-        text: 'text-plant',
-        border: 'border-plant/30',
-        shadow: 'shadow-glow-plant',
-      },
-      tech: {
-        bg: 'bg-brand-accent/10',
-        text: 'text-brand-accent',
-        border: 'border-brand-accent/30',
-        shadow: 'shadow-glow-accent',
-      },
-    };
-    return classes[color] || classes.brand;
-  };
+  const toneStyles = {
+    brand: {
+      badgeBg: 'bg-brand-primary/10',
+      badgeText: 'text-brand-primary',
+      hoverBorder: 'hover:border-brand-primary/30',
+      dot: 'bg-brand-primary',
+    },
+    warm: {
+      badgeBg: 'bg-warm/10',
+      badgeText: 'text-warm',
+      hoverBorder: 'hover:border-warm/30',
+      dot: 'bg-warm',
+    },
+    accent: {
+      badgeBg: 'bg-brand-accent/10',
+      badgeText: 'text-brand-accent',
+      hoverBorder: 'hover:border-brand-accent/30',
+      dot: 'bg-brand-accent',
+    },
+  } as const;
+
+  const colorStyles = {
+    brand: {
+      bg: 'bg-brand-primary/10',
+      text: 'text-brand-primary',
+      hoverBorder: 'hover:border-brand-primary/30',
+      hoverShadow: 'group-hover:shadow-glow',
+      dot: 'bg-brand-primary',
+    },
+    wildlife: {
+      bg: 'bg-wildlife/10',
+      text: 'text-wildlife',
+      hoverBorder: 'hover:border-wildlife/30',
+      hoverShadow: 'group-hover:shadow-glow-wildlife',
+      dot: 'bg-wildlife',
+    },
+    plant: {
+      bg: 'bg-plant/10',
+      text: 'text-plant',
+      hoverBorder: 'hover:border-plant/30',
+      hoverShadow: 'group-hover:shadow-glow-plant',
+      dot: 'bg-plant',
+    },
+    tech: {
+      bg: 'bg-brand-accent/10',
+      text: 'text-brand-accent',
+      hoverBorder: 'hover:border-brand-accent/30',
+      hoverShadow: 'group-hover:shadow-glow-accent',
+      dot: 'bg-brand-accent',
+    },
+  } as const;
 
   return (
-    <div className="min-h-screen bg-cyber-dark">
+    <div className="min-h-screen bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
       
@@ -145,7 +167,7 @@ const About: React.FC = () => {
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 <span className="eco-gradient-text">心有翼</span>
-                <span className="text-white">，</span>
+                <span className="text-ink">，</span>
                 <span className="tech-gradient-text">境无界</span>
               </h1>
               <p className="text-lg md:text-xl text-muted/75 max-w-2xl leading-relaxed mb-8">
@@ -164,8 +186,8 @@ const About: React.FC = () => {
                   <div className="text-sm text-muted/70 mb-4">公司数据</div>
                   <div className="grid grid-cols-2 gap-4">
                     {stats.map((stat, index) => (
-                      <div key={index} className="text-center p-3 rounded-xl bg-white/5">
-                        <div className={`${getColorClasses(['brand', 'wildlife', 'plant', 'tech'][index]).text} mb-2 flex justify-center`}>
+                      <div key={index} className="text-center p-3 rounded-xl bg-surface-2">
+                        <div className={`${stat.toneText} mb-2 flex justify-center`}>
                           {stat.icon}
                         </div>
                         <div className="text-2xl md:text-3xl font-bold text-gradient">
@@ -182,41 +204,38 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              业务领域
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              解决方案
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto mb-4" />
             <p className="text-muted/75 max-w-2xl mx-auto">
-              覆盖动保、植保、智慧保护地三大核心业务领域
+              基于科技创新与跨领域合作，提供自然保护地创新性和精细化管理解决方案
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {businessAreas.map((area, index) => {
-              const colors = getColorClasses(area.color);
+            {solutionAreas.map((area) => {
+              const tone = toneStyles[area.tone];
               return (
-                <div
-                  key={index}
-                  className={`glass-card p-6 md:p-8 group hover:${colors.border} transition-all`}
-                >
-                  <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center mb-6 ${colors.text} group-hover:${colors.shadow} transition-shadow`}>
+                <div key={area.title} className={`glass-card p-6 md:p-8 group ${tone.hoverBorder} transition-all`}>
+                  <div className={`w-16 h-16 rounded-2xl ${tone.badgeBg} flex items-center justify-center mb-6 ${tone.badgeText}`}>
                     {area.icon}
                   </div>
                   <div className="text-xs text-muted/60 mb-1">{area.subtitle}</div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{area.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-ink mb-4">{area.title}</h3>
                   <p className="text-sm text-muted/75 leading-relaxed mb-6">
                     {area.description}
                   </p>
                   <ul className="space-y-2">
-                    {area.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-center gap-2 text-sm text-muted/70">
-                        <span className={`w-1.5 h-1.5 rounded-full ${colors.text.replace('text-', 'bg-')}`} />
-                        {feature}
+                    {area.bullets.map((b) => (
+                      <li key={b} className="flex items-center gap-2 text-sm text-muted/70">
+                        <span className={`w-1.5 h-1.5 rounded-full ${tone.dot}`} />
+                        {b}
                       </li>
                     ))}
                   </ul>
@@ -231,7 +250,7 @@ const About: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
                 企业愿景
               </h2>
               <div className="space-y-6">
@@ -240,7 +259,7 @@ const About: React.FC = () => {
                     <Eye size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">愿景</h3>
+                    <h3 className="text-lg font-semibold text-ink mb-2">愿景</h3>
                     <p className="text-muted/75 leading-relaxed">
                       让自然生态更美好，做客户最值得信赖的保护地精细化管理服务提供商。
                     </p>
@@ -252,7 +271,7 @@ const About: React.FC = () => {
                     <Target size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">使命</h3>
+                    <h3 className="text-lg font-semibold text-ink mb-2">使命</h3>
                     <p className="text-muted/75 leading-relaxed">
                       依托科技创新与跨领域合作，提供自然保护地创新性和精细化管理解决方案。
                     </p>
@@ -264,7 +283,7 @@ const About: React.FC = () => {
                     <Shield size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">价值观</h3>
+                    <h3 className="text-lg font-semibold text-ink mb-2">价值观</h3>
                     <p className="text-muted/75 leading-relaxed">
                       科技创新、生态优先、合作共赢、专业服务。
                     </p>
@@ -278,7 +297,7 @@ const About: React.FC = () => {
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-accent/10 rounded-full blur-2xl" />
                 <div className="relative z-10">
                   <Leaf size={48} className="text-brand-primary mb-6 opacity-60" />
-                  <blockquote className="text-xl md:text-2xl text-white font-light leading-relaxed mb-4">
+                  <blockquote className="text-xl md:text-2xl text-ink font-light leading-relaxed mb-4">
                     "心有翼，境无界"
                   </blockquote>
                   <p className="text-muted/70">
@@ -291,12 +310,12 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心价值观
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto" />
@@ -304,16 +323,16 @@ const About: React.FC = () => {
 
           <div className="grid md:grid-cols-4 gap-6">
             {values.map((value, index) => {
-              const colors = getColorClasses(value.color);
+              const colors = colorStyles[value.color as keyof typeof colorStyles] ?? colorStyles.brand;
               return (
                 <div
                   key={index}
-                  className={`glass-card p-6 text-center group hover:${colors.border} transition-all`}
+                  className={`glass-card p-6 text-center group ${colors.hoverBorder} transition-all`}
                 >
-                  <div className={`w-14 h-14 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4 ${colors.text} group-hover:${colors.shadow} transition-shadow`}>
+                  <div className={`w-14 h-14 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4 ${colors.text} ${colors.hoverShadow} transition-shadow`}>
                     {value.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{value.title}</h3>
+                  <h3 className="text-lg font-semibold text-ink mb-2">{value.title}</h3>
                   <p className="text-sm text-muted/70">{value.description}</p>
                 </div>
               );
@@ -325,7 +344,7 @@ const About: React.FC = () => {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心团队
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto mb-4" />
@@ -336,17 +355,17 @@ const About: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {team.map((item, index) => {
-              const colors = getColorClasses(item.color);
+              const colors = colorStyles[item.color as keyof typeof colorStyles] ?? colorStyles.brand;
               return (
                 <div
                   key={index}
-                  className={`glass-card p-6 md:p-8 text-center group hover:${colors.border} transition-all`}
+                  className={`glass-card p-6 md:p-8 text-center group ${colors.hoverBorder} transition-all`}
                 >
-                  <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4 ${colors.text} group-hover:${colors.shadow} transition-shadow`}>
+                  <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4 ${colors.text} ${colors.hoverShadow} transition-shadow`}>
                     {item.icon}
                   </div>
                   <div className={`text-4xl font-bold ${colors.text} mb-2`}>{item.count}</div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <h3 className="text-lg font-semibold text-ink mb-2">{item.title}</h3>
                   <p className="text-sm text-muted/70">{item.description}</p>
                 </div>
               );
@@ -355,12 +374,12 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               发展历程
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-warm to-transparent mx-auto" />
@@ -374,7 +393,7 @@ const About: React.FC = () => {
                 <div key={index} className="relative">
                   <div className="glass-card p-4 md:p-6 text-center relative z-10 group hover:border-warm/30 transition-all h-full">
                     <div className="text-2xl font-bold text-warm mb-2">{milestone.year}</div>
-                    <h3 className="text-sm font-semibold text-white mb-1">{milestone.title}</h3>
+                    <h3 className="text-sm font-semibold text-ink mb-1">{milestone.title}</h3>
                     <p className="text-xs text-muted/60 hidden md:block">{milestone.description}</p>
                   </div>
                 </div>
@@ -387,7 +406,7 @@ const About: React.FC = () => {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               办公地点
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto" />
@@ -403,7 +422,7 @@ const About: React.FC = () => {
                   <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
                     <MapPin size={20} />
                   </div>
-                  <span className="text-lg font-semibold text-white">{address.label}</span>
+                  <span className="text-lg font-semibold text-ink">{address.label}</span>
                 </div>
                 <p className="text-sm text-muted/75">{address.value}</p>
               </div>
@@ -412,10 +431,10 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="max-w-4xl mx-auto text-center">
           <Award size={48} className="text-warm mx-auto mb-6 opacity-60" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             加入我们
           </h2>
           <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">

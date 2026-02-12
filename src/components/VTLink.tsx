@@ -7,17 +7,20 @@ interface VTLinkProps {
   children: React.ReactNode;
   className?: string;
   title?: string;
+  onClick?: () => void;
 }
 
-const VTLink: React.FC<VTLinkProps> = ({ to, children, className = '', title }) => {
+const VTLink: React.FC<VTLinkProps> = ({ to, children, className = '', title, onClick }) => {
   const navigate = useNavigate();
 
   const handleClick = (e: React.MouseEvent) => {
     if (to.startsWith('http')) {
+      onClick?.();
       return;
     }
     e.preventDefault();
     viewTransitionNavigate(to, navigate);
+    onClick?.();
   };
 
   if (to.startsWith('http')) {

@@ -1,0 +1,247 @@
+import React from 'react';
+import { Plane, BookOpen, Database, ArrowRight, CheckCircle, Leaf, Cpu, MapPin, Users } from 'lucide-react';
+import VTLink from '../../components/VTLink';
+
+const Solutions: React.FC = () => {
+  const solutions = [
+    {
+      id: 'air-ground',
+      icon: <Plane size={40} />,
+      title: '空地协同无人机巡检解决方案',
+      subtitle: 'Air-Ground Coordination',
+      description: '基于空地协同的自然保护地无人机巡检解决方案，打造空天地一体化监测网络体系，实现无人机数据收集回收与云端物联网融合。',
+      features: [
+        '无人机自动起降，免维护智能网关',
+        '实时数据传输与智能分析',
+        '标准化作业流程，外业队伍专业可靠',
+        '多类成果产出，报告制作规范完整',
+      ],
+      gradient: 'from-brand-primary to-brand-accent',
+      bgGradient: 'from-brand-primary/10 to-brand-accent/5',
+    },
+    {
+      id: 'education',
+      icon: <BookOpen size={40} />,
+      title: '自然保护地宣教体系建设解决方案',
+      subtitle: 'Nature Education System',
+      description: '以在地服务为目标，以当地自然资源为依托，以开展实地调查为支撑，推动保护地自然教育基地建设，提升保护地影响力。',
+      features: [
+        '标识标牌系统设计与建设',
+        '解说体系构建与内容策划',
+        '活动策划与公众参与',
+        '平台支撑与社区联动',
+      ],
+      gradient: 'from-warm to-brand-primary',
+      bgGradient: 'from-warm/10 to-brand-primary/5',
+    },
+    {
+      id: 'information',
+      icon: <Database size={40} />,
+      title: '信息化建设解决方案',
+      subtitle: 'Digital Infrastructure',
+      description: '自然保护地信息化系统建设解决方案，综合管理系统实现保护地管理智慧化，支撑保护地开展各项业务工作。',
+      features: [
+        '翼查记：科研监测、综合考察平台',
+        '翼地巡：巡护监测、网格管理系统',
+        '自然脉搏：线上导览、自然教育平台',
+        '定制开发：面向自然保护从业者',
+      ],
+      gradient: 'from-brand-accent to-tech-blue',
+      bgGradient: 'from-brand-accent/10 to-tech-blue/5',
+    },
+  ];
+
+  const cases = [
+    {
+      quote: '保护区信息化管理系统构建保护地生物多样性、空间数据和社区数据等多源数据中心，有效利用红外相机、无人机等监测设备，支撑保护地开展各项业务工作。',
+      title: '保护区信息化管理系统',
+      icon: <Database size={24} />,
+    },
+    {
+      quote: '翼查记和翼地巡满足野外快速巡护调查，智能统计分析保护地的实际巡护成效和覆盖范围。',
+      title: '翼查记和翼地巡',
+      icon: <MapPin size={24} />,
+    },
+    {
+      quote: '自然脉搏以小程序平台为载体，建成自然保护地自然教育导赏、公众参与式监测、自然教育导赏员管理等功能于一体的管理和解说体系。',
+      title: '自然脉搏',
+      icon: <Leaf size={24} />,
+    },
+  ];
+
+  const stats = [
+    { value: '80+', label: '服务保护地', icon: <MapPin size={20} /> },
+    { value: '12', label: '覆盖省份', icon: <Users size={20} /> },
+    { value: '100+', label: '知识产权', icon: <CheckCircle size={20} /> },
+    { value: '60+', label: '研发团队', icon: <Cpu size={20} /> },
+  ];
+
+  return (
+    <div className="min-h-screen bg-cyber-dark">
+      <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
+      
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
+              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+              <span className="text-sm text-muted/80">解决方案</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              <span className="text-white">科技赋能</span>
+              <span className="eco-gradient-text">自然保护</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted/75 max-w-3xl mx-auto leading-relaxed">
+              依托科技创新与跨领域合作，提供自然保护地创新性和精细化管理解决方案，
+              让自然生态更美好，做客户最值得信赖的保护地精细化管理服务提供商。
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-20">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all duration-300"
+              >
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-primary/10 text-brand-primary mb-3 group-hover:shadow-glow transition-shadow">
+                  {stat.icon}
+                </div>
+                <div className="text-3xl md:text-4xl font-bold tech-gradient-text mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-muted/70">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              核心解决方案
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full" />
+          </div>
+
+          <div className="space-y-8">
+            {solutions.map((solution, index) => (
+              <div
+                key={solution.id}
+                className={`relative glass-card-hover p-8 md:p-10 overflow-hidden ${
+                  index % 2 === 1 ? 'md:ml-12' : ''
+                }`}
+              >
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${solution.gradient}`} />
+                <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${solution.bgGradient} rounded-full blur-3xl`} />
+                
+                <div className="relative z-10 grid md:grid-cols-12 gap-8 items-start">
+                  <div className="md:col-span-8">
+                    <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${solution.gradient} mb-6 shadow-glow`}>
+                      <span className="text-white">{solution.icon}</span>
+                    </div>
+                    
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                      {solution.title}
+                    </h3>
+                    <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">
+                      {solution.subtitle}
+                    </p>
+                    
+                    <p className="text-muted/75 leading-relaxed mb-6">
+                      {solution.description}
+                    </p>
+                    
+                    <ul className="space-y-3">
+                      {solution.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <CheckCircle size={18} className="text-brand-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-ink/85 text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="md:col-span-4 flex flex-col items-start md:items-end justify-center">
+                    <VTLink
+                      to="/contact"
+                      className="btn-primary inline-flex items-center gap-2 group/btn"
+                    >
+                      <span>咨询方案</span>
+                      <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </VTLink>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-cyber-darker">
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              客户案例
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto" />
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {cases.map((caseItem, index) => (
+              <div
+                key={index}
+                className="glass-card p-6 md:p-8 relative group hover:border-brand-accent/30 transition-all duration-300"
+              >
+                <div className="absolute top-6 left-6 text-brand-primary/20">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+                
+                <div className="pt-12">
+                  <p className="text-muted/80 text-sm leading-relaxed mb-6">
+                    {caseItem.quote}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+                      {caseItem.icon}
+                    </div>
+                    <span className="text-ink font-medium">{caseItem.title}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            让自然保护成为最酷的工作
+          </h2>
+          <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">
+            我们致力于将无人机技术与自然生态保护深度融合，打造智慧保护地，让科技守护绿水青山。
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <VTLink to="/contact" className="btn-primary inline-flex items-center gap-2">
+              <span>联系我们</span>
+              <ArrowRight size={18} />
+            </VTLink>
+            <VTLink to="/drone_service" className="btn-secondary inline-flex items-center gap-2">
+              <Plane size={18} />
+              <span>探索服务</span>
+            </VTLink>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Solutions;

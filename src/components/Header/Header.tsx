@@ -3,7 +3,6 @@ import { ArrowLeft, Menu, X } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { siteContent } from '../../content';
 import VTLink from '../VTLink';
-import logoMark from '../../assets/brand/logo_27.png';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -83,14 +82,10 @@ const Header: React.FC = () => {
 
           <VTLink to="/" className={`text-2xl font-bold flex items-center gap-2 ${logoClass}`}>
             <div className="w-10 h-10 rounded-xl bg-brand-surface/60 border border-white/10 flex items-center justify-center overflow-hidden shadow-glow-sm">
-              <img
-                src={logoMark}
-                alt="翼界科技"
-                width={27}
-                height={27}
-                decoding="async"
-                className="w-[27px] h-[27px] object-contain"
-              />
+              <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.5 2L25 8.5V18.5L13.5 25L2 18.5V8.5L13.5 2Z" stroke="currentColor" strokeWidth="2" fill="none" className="text-brand-primary"/>
+                <path d="M13.5 7L20 11V17L13.5 21L7 17V11L13.5 7Z" fill="currentColor" className="text-brand-primary"/>
+              </svg>
             </div>
             <span className="hidden sm:inline">
               EJ<span className="text-brand-primary">DRONE</span>

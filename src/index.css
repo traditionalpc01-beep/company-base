@@ -3,11 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --c-brand: 45 134 89;
-  --c-brand-deep: 26 77 51;
-  --c-accent: 34 211 238;
-  --c-accent-deep: 14 165 233;
-
+  /* 主色调 - 与Logo一致的自然青绿 */
+  --c-brand: 13 138 106;
+  --c-brand-deep: 6 95 70;
+  --c-brand-light: 52 211 153;
+  
+  /* 动保色系 */
+  --c-wildlife: 245 158 11;
+  --c-wildlife-deep: 146 64 14;
+  --c-wildlife-light: 251 191 36;
+  --c-conservation: 220 38 38;
+  
+  /* 植保色系 */
+  --c-plant: 16 185 129;
+  --c-plant-deep: 5 150 105;
+  --c-plant-light: 132 204 22;
+  --c-soil: 120 53 15;
+  
+  /* 科技色系 */
+  --c-tech: 14 165 233;
+  --c-tech-deep: 2 132 199;
+  --c-tech-light: 34 211 238;
+  
+  /* 背景与文字 */
   --c-bg: 5 8 16;
   --c-surface: 10 15 26;
   --c-surface-2: 15 22 36;
@@ -16,10 +34,14 @@
   --c-warm: 227 200 154;
   --c-border: 255 255 255;
 
+  /* 品牌变量映射 */
   --brand-primary: var(--c-brand);
   --brand-primary-dark: var(--c-brand-deep);
-  --brand-accent: var(--c-accent);
-  --brand-accent-dark: var(--c-accent-deep);
+  --brand-primary-light: var(--c-brand-light);
+  --brand-accent: var(--c-tech);
+  --brand-accent-dark: var(--c-tech-deep);
+  --brand-wildlife: var(--c-wildlife);
+  --brand-plant: var(--c-plant);
   --brand-surface: var(--c-surface);
   --brand-surface2: var(--c-bg);
 
@@ -110,6 +132,14 @@
     @apply bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent;
   }
   
+  .text-gradient-wildlife {
+    @apply bg-gradient-to-r from-wildlife to-wildlife-light bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-plant {
+    @apply bg-gradient-to-r from-plant to-plant-light bg-clip-text text-transparent;
+  }
+  
   .btn-primary {
     @apply px-6 py-3 bg-gradient-to-r from-brand-primary to-brand-primaryDark text-white font-medium rounded-full
            transition-all duration-300 hover:shadow-glow hover:scale-105 active:scale-95;
@@ -118,6 +148,32 @@
   .btn-secondary {
     @apply px-6 py-3 border border-white/20 text-white font-medium rounded-full
            transition-all duration-300 hover:bg-white/10 hover:border-white/30;
+  }
+  
+  .btn-wildlife {
+    @apply px-6 py-3 bg-gradient-to-r from-wildlife to-wildlife-deep text-white font-medium rounded-full
+           transition-all duration-300 hover:shadow-glow-wildlife hover:scale-105 active:scale-95;
+  }
+  
+  .btn-plant {
+    @apply px-6 py-3 bg-gradient-to-r from-plant to-plant-deep text-white font-medium rounded-full
+           transition-all duration-300 hover:shadow-glow-plant hover:scale-105 active:scale-95;
+  }
+  
+  .eco-gradient-text {
+    @apply bg-gradient-to-r from-brand-primary via-brand-primaryLight to-plant bg-clip-text text-transparent;
+  }
+  
+  .tech-gradient-text {
+    @apply bg-gradient-to-r from-tech to-tech-light bg-clip-text text-transparent;
+  }
+  
+  .wildlife-gradient-text {
+    @apply bg-gradient-to-r from-wildlife to-conservation bg-clip-text text-transparent;
+  }
+  
+  .plant-gradient-text {
+    @apply bg-gradient-to-r from-plant to-plant-light bg-clip-text text-transparent;
   }
 }
 
@@ -131,5 +187,21 @@
   
   .bg-noise {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+  
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animate-delay-500 {
+    animation-delay: 500ms;
   }
 }

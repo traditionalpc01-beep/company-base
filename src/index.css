@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-brand: 45 134 89;
+  --c-brand-deep: 26 77 51;
+  --c-accent: 34 211 238;
+  --c-accent-deep: 14 165 233;
+
+  --c-bg: 5 8 16;
+  --c-surface: 10 15 26;
+  --c-surface-2: 15 22 36;
+  --c-ink: 245 247 246;
+  --c-muted: 170 180 176;
+  --c-warm: 227 200 154;
+  --c-border: 255 255 255;
+
+  --brand-primary: var(--c-brand);
+  --brand-primary-dark: var(--c-brand-deep);
+  --brand-accent: var(--c-accent);
+  --brand-accent-dark: var(--c-accent-deep);
+  --brand-surface: var(--c-surface);
+  --brand-surface2: var(--c-bg);
+
+  --radius-card: 18px;
+  --radius-control: 999px;
+
+  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-2: 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 70px rgba(0, 0, 0, 0.55);
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+  --font-sans: 'Poppins', 'Source Han Sans', system-ui, sans-serif;
+  --font-display: 'Lora', 'Poppins', 'Source Han Sans', ui-serif, serif;
+
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-cyber-dark text-ink;
+  }
+
+  .view-transition-page {
+    view-transition-name: page;
+  }
+
+  ::view-transition-old(page) {
+    animation: vt-fade-out 260ms ease both;
+  }
+
+  ::view-transition-new(page) {
+    animation: vt-fade-in 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(page),
+    ::view-transition-new(page) {
+      animation-duration: 1ms;
+    }
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+    filter: blur(2px);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface/60 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+  
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-brand-primary/30 hover:shadow-glow;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-brand-primary to-brand-primaryDark text-white font-medium rounded-full
+           transition-all duration-300 hover:shadow-glow hover:scale-105 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 border border-white/20 text-white font-medium rounded-full
+           transition-all duration-300 hover:bg-white/10 hover:border-white/30;
+  }
+}
+
+@layer utilities {
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+}

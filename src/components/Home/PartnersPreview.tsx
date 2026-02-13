@@ -13,12 +13,12 @@ const PartnersPreview: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-24 overflow-hidden bg-surface">
+    <section className="relative py-16 overflow-hidden bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-25" />
       <div className="absolute -bottom-24 left-1/2 h-80 w-[900px] -translate-x-1/2 rounded-full bg-warm/10 blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="mb-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
           <div className="md:col-span-7">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
               <Handshake size={16} className="text-brand-primary" />
@@ -41,14 +41,14 @@ const PartnersPreview: React.FC = () => {
           {partners.map((name) => (
             <div
               key={name}
-              className="px-4 py-2 rounded-full border border-border bg-surface-2 text-sm text-muted/80 hover:border-brand-primary/30 hover:text-ink transition-colors"
+              className="px-4 py-2 rounded-full border border-border bg-surface-2 text-sm text-muted/80 hover:border-brand-primary/30 hover:text-ink transition-colors motion-fade-up"
             >
               {name}
             </div>
           ))}
         </div>
 
-        <div className="mt-10">
+        <div className="mt-8">
           <VTLink to="/partners" className="btn-outline inline-flex items-center gap-2">
             <span>查看合作伙伴</span>
             <ArrowRight size={18} />

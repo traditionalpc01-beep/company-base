@@ -46,14 +46,15 @@ const ProductsGrid: React.FC = () => {
       image: toolsImg,
     },
   ];
+  const scrollItems = items.length > 6 ? items : [...items, ...items];
 
   return (
-    <section className="relative py-24 overflow-hidden bg-surface">
+    <section className="relative py-16 overflow-hidden bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-25" />
       <div className="absolute inset-0 bg-noise opacity-[0.025]" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="mb-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
           <div className="md:col-span-7">
             <h2 className="section-title text-ink">
               <span className="eco-gradient-text">产品档案</span>
@@ -70,22 +71,22 @@ const ProductsGrid: React.FC = () => {
 
         <ScrollCarousel
           itemWidth={320}
-          gap={24}
+          gap={18}
           autoPlayMode="continuous"
           autoPlaySpeed={20}
           showIndicators={false}
           showArrows={false}
           showProgress={false}
         >
-          {items.map((item) => (
+          {scrollItems.map((item, index) => (
             <div 
-              key={item.title}
+              key={`${item.title}-${index}`}
               className="flex-shrink-0"
               style={{ width: '320px' }}
             >
               <VTLink
                 to={item.to}
-                className={`group feature-card block ${item.ring} h-full`}
+                className={`group feature-card block ${item.ring} h-full motion-sheen`}
               >
                 <div className="relative mb-5 overflow-hidden rounded-2xl border border-ink/10">
                   <img src={item.image} alt="" className="h-36 w-full object-cover" loading="lazy" />
@@ -96,7 +97,7 @@ const ProductsGrid: React.FC = () => {
                     <div className="text-xl font-semibold text-ink/90">{item.title}</div>
                     <div className="text-sm text-muted/70 mt-2 leading-relaxed">{item.desc}</div>
                   </div>
-                  <div className={`shrink-0 w-12 h-12 rounded-2xl border border-border flex items-center justify-center ${item.tone}`}>
+                  <div className={`shrink-0 w-12 h-12 rounded-2xl border border-border flex items-center justify-center ${item.tone} motion-float`}>
                     {item.icon}
                   </div>
                 </div>

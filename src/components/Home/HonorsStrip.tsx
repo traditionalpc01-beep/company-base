@@ -40,13 +40,13 @@ const HonorsStrip: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-24 overflow-hidden bg-surface">
+    <section className="relative py-16 overflow-hidden bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-25" />
       <div className="absolute -top-24 left-1/2 h-80 w-[900px] -translate-x-1/2 rounded-full bg-brand-primary/12 blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* 标题区域 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-8">
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-warm/25 mb-6">
               <Award size={16} className="text-warm" />
@@ -70,15 +70,15 @@ const HonorsStrip: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* 左侧荣誉列表 */}
           <div className="lg:col-span-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full staggered-grid">
               {highlights.map((item) => (
                 <VTLink 
                   key={item.title} 
                   to={`/archives/honor#${item.certId}`}
-                  className="feature-card h-full group cursor-pointer"
+                  className="feature-card h-full group cursor-pointer motion-sheen"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="icon-box text-brand-primary flex-shrink-0 group-hover:shadow-glow transition-shadow">
+                    <div className="icon-box text-brand-primary flex-shrink-0 group-hover:shadow-glow transition-shadow motion-float">
                       {item.icon}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -95,7 +95,7 @@ const HonorsStrip: React.FC = () => {
 
           {/* 右侧知识产权概览 - 修复亮色模式配色 */}
           <div className="lg:col-span-4">
-            <div className="feature-card h-full flex flex-col">
+            <div className="feature-card h-full flex flex-col motion-sheen">
               <div className="flex items-center gap-2 mb-5">
                 <TrendingUp size={18} className="text-brand-accent" />
                 <span className="text-sm font-medium text-ink/85">知识产权概览</span>
@@ -106,10 +106,10 @@ const HonorsStrip: React.FC = () => {
                   {stats.map((x) => (
                     <div 
                       key={x.v} 
-                      className="rounded-xl border border-border bg-surface-2/80 px-4 py-4 hover:border-brand-primary/30 hover:shadow-glow-sm transition-all group"
+                      className="rounded-xl border border-border bg-surface-2/80 px-4 py-4 hover:border-brand-primary/30 hover:shadow-glow-sm transition-all group motion-fade-up"
                     >
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-6 h-6 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary">
+                        <div className="w-6 h-6 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary motion-float">
                           <x.icon size={14} />
                         </div>
                         <div className="text-xl font-bold tech-gradient-text">{x.k}</div>
@@ -132,7 +132,7 @@ const HonorsStrip: React.FC = () => {
         </div>
 
         {/* 底部快速统计 - 与Honor页面保持一致 */}
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 staggered-grid">
           {[
             { label: '累计申请专利', value: '33', unit: '项' },
             { label: '获得软件著作权', value: '12', unit: '项' },
@@ -141,7 +141,7 @@ const HonorsStrip: React.FC = () => {
           ].map((stat, index) => (
             <div 
               key={index} 
-              className="glass-card p-4 text-center hover:border-brand-primary/30 transition-all group"
+              className="glass-card p-4 text-center hover:border-brand-primary/30 transition-all group motion-fade-up"
             >
               <div className="text-2xl font-bold text-ink mb-1 group-hover:text-brand-primary transition-colors">
                 {stat.value}

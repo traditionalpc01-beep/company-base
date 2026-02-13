@@ -7,6 +7,8 @@ interface ScrollCarouselProps {
   autoPlayMode?: 'step' | 'continuous';
   autoPlayInterval?: number;
   autoPlaySpeed?: number;
+  pauseOnHover?: boolean;
+  draggable?: boolean;
   showIndicators?: boolean;
   showArrows?: boolean;
   showProgress?: boolean;
@@ -21,6 +23,8 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
   autoPlayMode = 'step',
   autoPlayInterval = 4000,
   autoPlaySpeed = 26,
+  pauseOnHover,
+  draggable = true,
   showIndicators = true,
   showArrows = true,
   showProgress = true,
@@ -33,11 +37,17 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
   const [totalItems, setTotalItems] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [progress, setProgress] = useState(0);
   const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
   const progressTimerRef = useRef<NodeJS.Timeout | null>(null);
   const rafRef = useRef<number | null>(null);
   const lastTsRef = useRef<number | null>(null);
+  const pointerIdRef = useRef<number | null>(null);
+  const startXRef = useRef<number>(0);
+  const startScrollLeftRef = useRef<number>(0);
+
+  const effectivePauseOnHover = pauseOnHover ?? autoPlayMode !== 'continuous';
 
   const scrollToIndex = useCallback((index: number) => {
     if (!scrollContainerRef.current || totalItems === 0) return;
@@ -105,7 +115,7 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
   }, [children, handleScroll]);
 
   useEffect(() => {
-    if (!autoPlay || isHovered || isPaused || totalItems <= 1) {
+    if (!autoPlay || isHovered || isPaused || isDragging || totalItems <= 1) {
       if (autoPlayTimerRef.current) {
         clearInterval(autoPlayTimerRef.current);
         autoPlayTimerRef.current = null;
@@ -143,6 +153,11 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
 
         const delta = (autoPlaySpeed * dt) / 1000;
         const maxScrollLeft = el.scrollWidth - el.clientWidth;
+        if (maxScrollLeft <= 0) {
+          el.scrollLeft = 0;
+          rafRef.current = requestAnimationFrame(tick);
+          return;
+        }
         const nextLeft = el.scrollLeft + delta;
         el.scrollLeft = nextLeft >= maxScrollLeft - 1 ? 0 : nextLeft;
 
@@ -179,17 +194,59 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
         clearInterval(progressTimerRef.current);
       }
     };
-  }, [autoPlay, autoPlayInterval, autoPlayMode, autoPlaySpeed, isHovered, isPaused, totalItems, goToNext]);
+  }, [autoPlay, autoPlayInterval, autoPlayMode, autoPlaySpeed, isHovered, isPaused, isDragging, totalItems, goToNext]);
 
   const togglePause = () => {
     setIsPaused(prev => !prev);
   };
 
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggable) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    pointerIdRef.current = e.pointerId;
+    startXRef.current = e.clientX;
+    startScrollLeftRef.current = el.scrollLeft;
+    lastTsRef.current = null;
+    setIsDragging(true);
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      return;
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggable) return;
+    if (!isDragging) return;
+    if (pointerIdRef.current !== e.pointerId) return;
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    const dx = e.clientX - startXRef.current;
+    el.scrollLeft = startScrollLeftRef.current - dx;
+    setProgress(0);
+  };
+
+  const handlePointerEnd = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggable) return;
+    if (pointerIdRef.current !== e.pointerId) return;
+    pointerIdRef.current = null;
+    setIsDragging(false);
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      return;
+    }
+  };
+
   return (
     <div 
       className={`relative group/carousel ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => effectivePauseOnHover && setIsHovered(true)}
+      onMouseLeave={() => effectivePauseOnHover && setIsHovered(false)}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="region"
@@ -198,12 +255,18 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
     >
       <div
         ref={scrollContainerRef}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerEnd}
+        onPointerCancel={handlePointerEnd}
         className={`flex overflow-x-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] ${
-          autoPlayMode === 'continuous'
-            ? ''
-            : 'snap-x snap-mandatory cursor-grab active:cursor-grabbing'
-        }`}
-        style={{ gap: `${gap}px`, scrollBehavior: autoPlayMode === 'continuous' ? 'auto' : 'smooth' }}
+          draggable ? 'cursor-grab active:cursor-grabbing select-none' : ''
+        } ${autoPlayMode === 'continuous' ? '' : 'snap-x snap-mandatory'}`}
+        style={{
+          gap: `${gap}px`,
+          scrollBehavior: autoPlayMode === 'continuous' ? 'auto' : 'smooth',
+          touchAction: 'pan-y',
+        }}
       >
         {children}
       </div>

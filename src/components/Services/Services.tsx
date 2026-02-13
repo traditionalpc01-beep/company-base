@@ -61,11 +61,11 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-cyber-darker">
+    <section id="services" className="py-16 relative overflow-hidden bg-cyber-darker">
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="mb-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+        <div className="mb-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
           <div className="md:col-span-7">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
               <Sparkles size={16} className="text-brand-primary" />
@@ -86,13 +86,13 @@ const Services: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 staggered-grid">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative"
+              className="group relative motion-fade-up"
             >
-              <VTLink to={service.link} className="feature-card h-full relative overflow-hidden block">
+              <VTLink to={service.link} className="feature-card h-full relative overflow-hidden block motion-sheen">
                 <div className={`absolute top-0 left-0 right-0 h-1 ${service.line}`}></div>
 
                 <div className="relative z-10">
@@ -101,7 +101,7 @@ const Services: React.FC = () => {
                     <div className="absolute inset-x-0 top-0 h-40 bg-cyber-darker/15" />
                   </div>
 
-                  <div className={`inline-flex p-4 rounded-2xl ${service.badge} mb-6`}>
+                  <div className={`inline-flex p-4 rounded-2xl ${service.badge} mb-6 motion-float`}>
                     <span className={service.accent}>{service.icon}</span>
                   </div>
 

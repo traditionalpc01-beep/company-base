@@ -267,6 +267,38 @@
   }
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-soft {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes shine-sweep {
+  from {
+    transform: translateX(-40%) rotate(12deg);
+  }
+  to {
+    transform: translateX(40%) rotate(12deg);
+  }
+}
+
 /* ========================================
    组件样式
    ======================================== */
@@ -277,7 +309,26 @@
     box-shadow: var(--shadow-1);
     transition: background-color var(--transition-theme), 
                 border-color var(--transition-theme), 
-                box-shadow var(--transition-base);
+                box-shadow var(--transition-base),
+                transform var(--transition-base);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    inset: -40% -20%;
+    background: radial-gradient(closest-side, rgba(var(--brand-primary), 0.12), transparent 70%);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 500ms ease, transform 500ms ease;
+    pointer-events: none;
+  }
+
+  .glass-card:hover::after {
+    opacity: 0.35;
+    transform: translateY(0);
   }
   
   .glass-card-hover {
@@ -410,6 +461,46 @@
     border: 1px solid rgb(var(--c-border));
     color: rgb(var(--c-ink));
   }
+
+  .motion-fade-up {
+    animation: fade-up 700ms ease both;
+  }
+
+  .motion-float {
+    animation: float-soft 6s ease-in-out infinite;
+  }
+
+  .motion-sheen {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .motion-sheen::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -50%;
+    width: 40%;
+    height: 220%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    opacity: 0;
+    transform: translateX(-40%) rotate(12deg);
+  }
+
+  .motion-sheen:hover::before {
+    opacity: 1;
+    animation: shine-sweep 1.2s ease;
+  }
+
+  .staggered-grid > *:nth-child(odd) {
+    transform: translateY(6px);
+  }
+
+  @media (min-width: 768px) {
+    .staggered-grid > *:nth-child(3n) {
+      transform: translateY(-6px);
+    }
+  }
   
   /* 输入框样式 */
   .input-field {
@@ -455,6 +546,20 @@
       linear-gradient(90deg, rgb(var(--c-ink) / 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
     transition: background-image var(--transition-theme);
+  }
+
+  .reduced-py {
+    @apply py-12 md:py-16;
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
   
   [data-theme="dark"] .grid-pattern {

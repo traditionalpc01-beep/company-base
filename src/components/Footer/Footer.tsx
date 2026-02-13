@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Plane, Send, Settings2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Plane, MessageSquare, AtSign, Music, Settings2 } from 'lucide-react';
 import VTLink from '../VTLink';
 import { siteContent } from '../../content';
 
@@ -17,6 +17,26 @@ const Footer: React.FC<FooterProps> = ({ onOpenThemePanel }) => {
     { name: '低空经济解决方案', href: '/drone_service' },
     { name: '自然教育体系', href: '/archives/sheng-wu-quan' },
     { name: '智慧保护地建设', href: '/drone_service' },
+  ];
+  const socialLinks = [
+    {
+      name: '微信',
+      href: '/contact',
+      icon: <MessageSquare size={18} />,
+      tone: 'text-brand-primary bg-brand-primary/10 border-brand-primary/30',
+    },
+    {
+      name: '微博',
+      href: '/contact',
+      icon: <AtSign size={18} />,
+      tone: 'text-warm bg-warm/10 border-warm/30',
+    },
+    {
+      name: '抖音',
+      href: '/contact',
+      icon: <Music size={18} />,
+      tone: 'text-wildlife bg-wildlife/10 border-wildlife/30',
+    },
   ];
 
   return (
@@ -59,19 +79,14 @@ const Footer: React.FC<FooterProps> = ({ onOpenThemePanel }) => {
               依托科技创新与跨领域合作，提供自然保护地创新性和精细化管理解决方案，让自然生态更美好，让自然保护成为最酷的工作。
             </p>
             <div className="flex gap-3">
-              {['微信', '微博', '抖音'].map((social) => (
+              {socialLinks.map((social) => (
                 <VTLink
-                  key={social}
-                  to="/contact"
-                  className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105"
-                  style={{
-                    backgroundColor: 'rgb(var(--c-surface-2))',
-                    border: '1px solid rgb(var(--c-border))',
-                    color: 'rgb(var(--c-muted))',
-                  }}
-                  title={social}
+                  key={social.name}
+                  to={social.href}
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 motion-sheen ${social.tone}`}
+                  title={social.name}
                 >
-                  <Send size={18} />
+                  <span className="motion-float">{social.icon}</span>
                 </VTLink>
               ))}
             </div>

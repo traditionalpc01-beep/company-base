@@ -58,7 +58,7 @@ const StatItem: React.FC<StatItemProps> = ({ value, label, suffix = '', icon, de
   return (
     <div 
       ref={elementRef}
-      className="stat-card relative group"
+      className="stat-card relative group motion-sheen"
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/6 to-brand-accent/6 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -110,14 +110,14 @@ const Statistics: React.FC = () => {
   ];
 
   return (
-    <section id="stats" className="py-24 relative overflow-hidden">
+    <section id="stats" className="reduced-py relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-cyber-dark via-cyber-darker to-cyber-dark"></div>
       
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-primary/25 to-transparent"></div>
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-primary/25 to-transparent"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="mb-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+        <div className="mb-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">
             <h2 className="section-title text-ink">
               <span className="eco-gradient-text">数据驱动</span>

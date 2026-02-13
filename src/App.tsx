@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import ScrollManager from './components/ScrollManager';
@@ -25,6 +25,13 @@ import Terms from './pages/Terms/index';
 import Sitemap from './pages/Sitemap/index';
 import NotFound from './pages/NotFound/index';
 import { useThemeStore } from './store/themeStore';
+
+function LegacyArchiveRedirect() {
+  const { legacy } = useParams();
+  const value = String(legacy ?? '');
+  if (/^\d+$/.test(value)) return <Navigate to="/news" replace />;
+  return <Navigate to="/archives" replace />;
+}
 
 function AppContent() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
@@ -77,7 +84,16 @@ function AppContent() {
             <Route path="/cases" element={<Navigate to="/solutions#cases" replace />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/about" element={<About />} />
+            <Route path="/aboutus" element={<Navigate to="/about" replace />} />
+            <Route path="/categories/about" element={<Navigate to="/about" replace />} />
+            <Route path="/about/about" element={<Navigate to="/about#intro" replace />} />
+            <Route path="/about/team" element={<Navigate to="/about#team" replace />} />
+            <Route path="/about/culture" element={<Navigate to="/about#values" replace />} />
+            <Route path="/about/strategy" element={<Navigate to="/about#vision" replace />} />
+            <Route path="/about/contact" element={<Navigate to="/about#locations" replace />} />
+            <Route path="/about/position" element={<Navigate to="/about#locations" replace />} />
             <Route path="/developing" element={<Developing />} />
+            <Route path="/categories/zhao-pin-gang-wei" element={<Navigate to="/developing" replace />} />
             <Route path="/news" element={<News />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/archives" element={<Archives />} />
@@ -87,10 +103,33 @@ function AppContent() {
             <Route path="/archives/grid" element={<GridInspection />} />
             <Route path="/archives/dikuaibao" element={<DikuaiBao />} />
             <Route path="/archives/certification" element={<Certification />} />
+            <Route path="/archives/home" element={<Navigate to="/" replace />} />
+            <Route path="/archives/dkbao" element={<Navigate to="/archives/dikuaibao" replace />} />
+            <Route path="/archives/qi-ye-ren-zheng" element={<Navigate to="/archives/certification" replace />} />
+            <Route path="/archives/rong-yu-zi-zhi" element={<Navigate to="/archives/honor" replace />} />
+            <Route path="/archives/wu-ren-ji-xun-jian-xi-tong" element={<Navigate to="/archives/grid" replace />} />
+            <Route path="/archives/si-feng-shu-ju-hui-shou-guan-li-xi-tong-caupKCq0" element={<Navigate to="/archives/sifeng" replace />} />
+            <Route path="/archives/:legacy" element={<LegacyArchiveRedirect />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/contactus" element={<Navigate to="/contact" replace />} />
+            <Route path="/categories/contact" element={<Navigate to="/contact" replace />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/categories/drone" element={<Navigate to="/drone_service" replace />} />
+            <Route path="/categories/service" element={<Navigate to="/drone_service" replace />} />
+            <Route path="/categories/apply-scen" element={<Navigate to="/solutions" replace />} />
+            <Route path="/categories/product" element={<Navigate to="/archives" replace />} />
+            <Route path="/categories/honor" element={<Navigate to="/archives/honor" replace />} />
+            <Route path="/categories/ims" element={<Navigate to="/archives" replace />} />
+            <Route path="/categories/nature" element={<Navigate to="/solutions" replace />} />
+            <Route path="/categories/explain" element={<Navigate to="/solutions" replace />} />
+            <Route path="/categories/field" element={<Navigate to="/solutions" replace />} />
+            <Route path="/categories/platform" element={<Navigate to="/solutions" replace />} />
+            <Route path="/nature-education" element={<Navigate to="/solutions" replace />} />
+            <Route path="/ne-place" element={<Navigate to="/solutions" replace />} />
+            <Route path="/ne-platform" element={<Navigate to="/solutions" replace />} />
+            <Route path="/ne-research" element={<Navigate to="/solutions" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

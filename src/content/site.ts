@@ -1,26 +1,42 @@
 import type { SiteContent } from './types';
-import { Plane, Database, BookOpen, Building2, Calendar, Handshake, Phone } from 'lucide-react';
+import { Plane, Database, BookOpen, Building2, Calendar, Handshake, Phone, Award, FileCheck, Newspaper, HelpCircle } from 'lucide-react';
 
 export const siteContent: SiteContent = {
   nav: [
     { label: '首页', to: '/' },
     { 
-      label: '产品服务', 
+      label: '产品与服务', 
       to: '/solutions',
       children: [
         { label: '解决方案', to: '/solutions', icon: BookOpen },
         { label: '无人机服务', to: '/drone_service', icon: Plane },
-        { label: '产品档案', to: '/archives', icon: Database },
-      ]
+      ],
     },
     { 
-      label: '关于我们', 
+      label: '档案中心', 
+      to: '/archives',
+      children: [
+        { label: '产品与系统', to: '/archives', icon: Database },
+        { label: '荣誉资质', to: '/archives/honor', icon: Award },
+        { label: '企业认证', to: '/archives/certification', icon: FileCheck },
+      ],
+    },
+    { 
+      label: '资讯与帮助', 
+      to: '/news',
+      children: [
+        { label: '资讯案例', to: '/news', icon: Newspaper },
+        { label: '常见问题', to: '/faq', icon: HelpCircle },
+      ],
+    },
+    { 
+      label: '关于翼界', 
       to: '/about',
       children: [
         { label: '公司介绍', to: '/about', icon: Building2 },
         { label: '发展历程', to: '/developing', icon: Calendar },
         { label: '合作伙伴', to: '/partners', icon: Handshake },
-      ]
+      ],
     },
     { label: '联系我们', to: '/contact', icon: Phone },
   ],

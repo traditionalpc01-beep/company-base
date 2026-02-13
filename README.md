@@ -1,7 +1,7 @@
 # 翼界科技官方网站 (EJDrone Official Website)
 
 <p align="center">
-  <img src="./src/assets/brand/logo_27.png" alt="翼界科技 Logo" width="120">
+  <img src="./src/resource/翼界LOGO（透明）-24.png" alt="翼界科技 Logo" width="120">
 </p>
 
 <p align="center">

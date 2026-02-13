@@ -135,7 +135,7 @@ const Developing: React.FC = () => {
   }, {} as Record<string, typeof timeline>);
 
   const stats = [
-    { value: '7', label: '发展年限', suffix: '年' },
+    { value: '8', label: '发展年限', suffix: '年' },
     { value: '100+', label: '服务保护地', suffix: '' },
     { value: '14', label: '覆盖省份', suffix: '' },
     { value: '61', label: '知识产权', suffix: '项' },
@@ -207,60 +207,73 @@ const Developing: React.FC = () => {
         </div>
       </section>
 
-      {/* 紧凑时间线布局 */}
+      {/* 横向年份时间线 */}
       <section className="relative py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-3">
               发展时间线
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto" />
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto" />
           </div>
 
           <div className="relative">
-            {/* 中央时间线 */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-primary via-brand-accent to-wildlife md:-translate-x-1/2" />
-            
-            {Object.entries(yearGroups).map(([year, events]) => (
-              <div key={year} className="relative mb-8 last:mb-0">
-                {/* 年份标记 */}
-                <div className="flex items-center justify-center mb-4">
-                  <div className="relative z-10 px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-primary to-brand-accent text-white font-bold text-base shadow-glow">
-                    {year}
-                  </div>
-                </div>
-                
-                {/* 该年份的事件 - 使用更紧凑的网格布局 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                  {events.map((event, eventIndex) => (
-                    <div
-                      key={`${year}-${eventIndex}`}
-                      className={`relative ${eventIndex % 2 === 1 ? 'md:mt-4' : ''}`}
-                    >
-                      {/* 时间点 */}
-                      <div className={`absolute left-6 md:left-1/2 w-2.5 h-2.5 rounded-full bg-brand-primary md:-translate-x-1/2 mt-4 shadow-glow-sm z-10`} />
-                      
-                      <div className={`ml-12 md:ml-0 ${eventIndex % 2 === 0 ? 'md:pr-8 md:text-right md:mr-[50%]' : 'md:pl-8 md:ml-[50%]'}`}>
-                        <div className="glass-card p-4 group hover:border-brand-primary/30 transition-all">
-                          <div className={`flex items-center gap-2 mb-2 ${eventIndex % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${getTypeColor(event.type)} flex items-center justify-center text-ink shadow-glow-sm flex-shrink-0`}>
-                              {event.icon}
-                            </div>
-                            <div className={eventIndex % 2 === 0 ? 'md:text-right' : ''}>
-                              <div className="text-xs text-muted/60">{event.quarter} · {getTypeLabel(event.type)}</div>
-                              <h3 className="text-sm font-semibold text-ink">{event.title}</h3>
-                            </div>
-                          </div>
-                          <p className="text-xs text-muted/75 leading-relaxed">
-                            {event.description}
-                          </p>
-                        </div>
+            <div className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none]">
+              {Object.entries(yearGroups).map(([year, events]) => (
+                <div 
+                  key={year}
+                  className="flex-shrink-0 w-80 snap-start"
+                >
+                  <div className="glass-card p-5 h-full relative overflow-hidden">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-primary via-brand-accent to-wildlife" />
+                    
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white font-bold text-xl shadow-glow-sm">
+                        {year}
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-xs text-muted/60">{events.length} 个事件</div>
+                        <div className="text-sm font-medium text-ink/80">年度里程碑</div>
                       </div>
                     </div>
-                  ))}
+                    
+                    <div className="space-y-3">
+                      {events.map((event, eventIndex) => (
+                        <div
+                          key={`${year}-${eventIndex}`}
+                          className="p-3 rounded-lg bg-surface-2/50 border border-border/50 group hover:border-brand-primary/30 hover:bg-surface-2 transition-all"
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${getTypeColor(event.type)} flex items-center justify-center text-ink flex-shrink-0 shadow-sm`}>
+                              {event.icon}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="text-xs font-medium text-muted/70">{event.quarter}</span>
+                                <span className={`text-xs px-2 py-0.5 rounded-full bg-gradient-to-r ${getTypeColor(event.type)} bg-opacity-10 text-ink/80`}>
+                                  {getTypeLabel(event.type)}
+                                </span>
+                              </div>
+                              <h3 className="text-sm font-semibold text-ink truncate">{event.title}</h3>
+                              <p className="text-xs text-muted/70 mt-1 line-clamp-2 leading-relaxed">
+                                {event.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            
+            <div className="absolute left-0 top-0 bottom-8 w-16 bg-gradient-to-r from-surface to-transparent pointer-events-none z-10" />
+            <div className="absolute right-0 top-0 bottom-8 w-16 bg-gradient-to-l from-surface to-transparent pointer-events-none z-10" />
+          </div>
+          
+          <div className="text-center mt-4">
+            <p className="text-sm text-muted/60">← 左右滑动查看更多年份 →</p>
           </div>
         </div>
       </section>

@@ -18,36 +18,51 @@ const Solutions: React.FC = () => {
       ],
       gradient: 'from-brand-primary to-brand-accent',
       bgGradient: 'from-brand-primary/10 to-brand-accent/5',
+      buttonText: '咨询无人机巡检',
+      buttonLink: '/drone_service',
+      highlight: '无人机巡检',
+      stat: '60km²/日',
+      statLabel: '日处理能力',
     },
     {
       id: 'education',
       icon: <BookOpen size={40} />,
       title: '自然保护地宣教体系建设解决方案',
       subtitle: 'Nature Education System',
-      description: '以在地服务为目标，以当地自然资源为依托，以开展实地调查为支撑，推动保护地自然教育基地建设，提升保护地影响力。',
+      description: '以在地服务为目标，以当地自然资源为依托，以开展实地调查为支撑，推动保护地自然教育基地建设，提升保护地影响力。标识标牌系统是自然保护地开展宣教工作最基本也是最重要的设施，反映和体现自然保护地的宣教特色、管理水平、服务水平和专业水平。',
       features: [
         '标识标牌系统设计与建设',
-        '解说体系构建与内容策划',
-        '活动策划与公众参与',
-        '平台支撑与社区联动',
+        '解说体系：科学性、互动性、易懂性',
+        '解说形式：印刷品、展板、数字媒体',
+        '平台支撑：社区资源与社会经济调研',
       ],
       gradient: 'from-warm to-brand-primary',
       bgGradient: 'from-warm/10 to-brand-primary/5',
+      buttonText: '咨询宣教建设',
+      buttonLink: '/contact',
+      highlight: '宣教体系',
+      stat: '100+',
+      statLabel: '服务案例',
     },
     {
       id: 'information',
       icon: <Database size={40} />,
       title: '信息化建设解决方案',
       subtitle: 'Digital Infrastructure',
-      description: '自然保护地信息化系统建设解决方案，综合管理系统实现保护地管理智慧化，支撑保护地开展各项业务工作。',
+      description: '自然保护地信息化系统建设解决方案，综合管理系统实现保护地管理智慧化，支撑保护地开展各项业务工作。构建保护地生物多样性、空间数据和社区数据等多源数据中心，有效利用红外相机、无人机等监测设备。',
       features: [
-        '翼查记：科研监测、综合考察平台',
-        '翼地巡：巡护监测、网格管理系统',
+        '翼查记：科研监测、综合考察，地图类型丰富、定制性强',
+        '翼地巡：巡护监测、网格管理、自动分析、事件回报',
         '自然脉搏：线上导览、自然教育平台',
-        '定制开发：面向自然保护从业者',
+        '综合管理：实现保护地管理智慧化',
       ],
       gradient: 'from-brand-accent to-tech-blue',
       bgGradient: 'from-brand-accent/10 to-tech-blue/5',
+      buttonText: '咨询信息化建设',
+      buttonLink: '/archives',
+      highlight: '信息化平台',
+      stat: '14',
+      statLabel: '覆盖省份',
     },
   ];
 
@@ -149,35 +164,48 @@ const Solutions: React.FC = () => {
                 <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${solution.bgGradient} rounded-full blur-3xl`} />
                 
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${solution.gradient} mb-6 shadow-glow w-fit`}>
+                  <div className="inline-flex items-center gap-2 mb-3">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${solution.gradient} text-white`}>
+                      {solution.highlight}
+                    </span>
+                  </div>
+                  
+                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${solution.gradient} mb-4 shadow-glow w-fit`}>
                     <span className="text-ink">{solution.icon}</span>
                   </div>
                   
-                  <h3 className="text-xl md:text-2xl font-bold text-ink mb-2">
+                  <h3 className="text-xl md:text-2xl font-bold text-ink mb-1">
                     {solution.title}
                   </h3>
                   <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">
                     {solution.subtitle}
                   </p>
                   
-                  <p className="text-muted/75 leading-relaxed mb-6 flex-grow">
+                  <p className="text-muted/75 leading-relaxed mb-4 flex-grow">
                     {solution.description}
                   </p>
                   
-                  <ul className="space-y-3 mb-6">
-                    {solution.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle size={18} className="text-brand-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-ink/85 text-sm">{feature}</span>
+                  <ul className="space-y-2 mb-4">
+                    {solution.features.slice(0, 2).map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-brand-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-ink/85 text-xs">{feature}</span>
                       </li>
                     ))}
                   </ul>
+
+                  <div className={`mb-4 p-3 rounded-lg bg-gradient-to-r ${solution.bgGradient} border border-border/50`}>
+                    <div className={`text-2xl font-bold bg-gradient-to-r ${solution.gradient} bg-clip-text text-transparent`}>
+                      {solution.stat}
+                    </div>
+                    <div className="text-xs text-muted/70">{solution.statLabel}</div>
+                  </div>
                   
                   <VTLink
-                    to="/contact"
+                    to={solution.buttonLink}
                     className="btn-primary inline-flex items-center justify-center gap-2 group/btn w-full md:w-auto mt-auto"
                   >
-                    <span>咨询方案</span>
+                    <span>{solution.buttonText}</span>
                     <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                   </VTLink>
                 </div>

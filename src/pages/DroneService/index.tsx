@@ -1,6 +1,10 @@
 import React from 'react';
-import { Plane, Video, Radio, Database, Users, Award, FileCheck, Wrench, ArrowRight, CheckCircle, MapPin, Clock, Shield, Camera, Satellite, BarChart3, Phone } from 'lucide-react';
+import { Plane, Video, Radio, Database, Users, Award, FileCheck, Wrench, ArrowRight, CheckCircle, MapPin, Clock, Shield, Camera, Satellite, BarChart3, Phone, Mountain, Map, Image, Activity, Wind, FileText, Globe, Server, Cpu, HardDrive, Eye, Leaf, Flame, Scan } from 'lucide-react';
 import VTLink from '../../components/VTLink';
+import heroBg from '../../assets/ejdrone/uav-service/hero-bg.jpg';
+import videoInspectionImg from '../../assets/ejdrone/uav-service/video-inspection.jpg';
+import remoteSensingImg from '../../assets/ejdrone/uav-service/remote-sensing.jpg';
+import dataCenterImg from '../../assets/ejdrone/uav-service/data-center.jpg';
 
 const DroneService: React.FC = () => {
   const serviceTypes = [
@@ -9,7 +13,7 @@ const DroneService: React.FC = () => {
       icon: <Video size={36} />,
       title: '视频巡检',
       subtitle: 'Video Inspection',
-      description: '高清视频实时传输，支持4K画质录制，实现远程监控与指挥调度，大幅提升巡检效率。适用于日常巡护、应急指挥、活动记录等场景。',
+      description: '高清视频实时传输，支持4K画质录制，实现远程监控与指挥调度，大幅提升巡检效率。无人机从空中俯视的视角，具有大纵深、宽视角的特点，解决了低视角的视线阻挡问题，并且无人机可以快速飞达目的地。无人机搭载吊舱设备、结合合理的飞行路线设置，可以监看到自然保护地的每个角落。无人机拍摄到的视频和照片，可以回传到地面端，实时查看现场视频信息，并通过直播系统实现远程直播。',
       features: ['4K高清录制', '实时图传', '远程指挥', '智能追踪', '夜视功能'],
       gradient: 'from-brand-primary to-brand-accent',
     },
@@ -30,6 +34,15 @@ const DroneService: React.FC = () => {
       description: '无人机作为空中数据中继节点，扩展监测设备通信范围，实现偏远区域数据实时回传，构建空天地一体化监测网络。',
       features: ['信号中继', '数据回传', '通信扩展', '组网能力', '远程覆盖'],
       gradient: 'from-warm to-brand-primary',
+    },
+    {
+      id: 'auto-gateway',
+      icon: <Cpu size={36} />,
+      title: '智能网关与自动起降',
+      subtitle: 'Smart Gateway & Auto Takeoff',
+      description: '免维护的智能网关设备，实现无人机自动起降、数据自动上传、远程监控管理。适用于偏远保护地，无需专业人员值守即可完成日常巡检任务，大幅降低运营成本。',
+      features: ['无人机自动起降', '免维护智能网关', '数据自动上传', '远程监控管理', '无人值守运行'],
+      gradient: 'from-tech-blue to-brand-primary',
     },
   ];
 
@@ -70,6 +83,13 @@ const DroneService: React.FC = () => {
       description: '专业维修团队提供定期保养、故障维修、配件更换等售后服务，延长设备使用寿命。',
       items: ['定期保养服务', '故障诊断维修', '原厂配件供应', '设备升级服务'],
     },
+    {
+      id: 'cooperation',
+      icon: <Globe size={32} />,
+      title: '厂商合作',
+      description: '与大疆等行业领先厂商建立战略合作，为客户提供优质的设备供应和技术支持服务。',
+      items: ['原厂设备供应', '技术授权支持', '行业解决方案', '售后服务保障'],
+    },
   ];
 
   const scenarios = [
@@ -95,11 +115,105 @@ const DroneService: React.FC = () => {
     },
   ];
 
+  const comparisonData = {
+    headers: ['对比项', '无人机视频巡检', '视频监控', '人力巡护'],
+    rows: [
+      { label: '覆盖能力', drone: '广泛覆盖保护地全域', video: '覆盖少数关键点位', manual: '覆盖少数关键路线' },
+      { label: '即时能力', drone: '强', video: '一般', manual: '非常迟滞' },
+      { label: '布点要求', drone: '广泛路口或者针对性点位', video: '需要高宽带的有线和无线网络', manual: '几乎无要求' },
+      { label: '网络要求', drone: '几乎无要求', video: '需要高宽带的有线和无线网络', manual: '几乎无要求' },
+      { label: '人力要求', drone: '2名飞手(或者服务外包)', video: '2名视频检查人员', manual: '20-30人的巡护队伍' },
+      { label: '设备成本', drone: '100万(无人机)', video: '200-300万（视频卡口、监控塔基、基站）', manual: '30万(巡护终端、相机、望远镜)' },
+      { label: '执行成本', drone: '30-50万/年', video: '基本自动化', manual: '30-50万/年(人员工资)' },
+      { label: '维护成本', drone: '0/年(设备定期保养)', video: '30-50万/年', manual: '10万/年' },
+    ],
+  };
+
+  const achievements = [
+    {
+      icon: <Image size={32} />,
+      title: '720全景影像',
+      description: '沉浸式全景展示保护地风貌，支持720度浏览，带来身临其境的体验',
+    },
+    {
+      icon: <Map size={32} />,
+      title: '正射模型制作',
+      description: '数字正射模型（DOM），消除地形起伏影响的标准化影像',
+    },
+    {
+      icon: <Mountain size={32} />,
+      title: '三维实境建模',
+      description: '高精度实景三维模型，真实还原保护地地表形态',
+    },
+    {
+      icon: <Scan size={32} />,
+      title: '贴近摄影测量',
+      description: '超高分率影像采集，精细展现地表纹理和结构',
+    },
+    {
+      icon: <Activity size={32} />,
+      title: '多光谱监测',
+      description: '多光谱数据采集，支持植被指数分析和生态变化监测',
+    },
+    {
+      icon: <Flame size={32} />,
+      title: '火情巡检',
+      description: '红外热成像快速识别火点，实现早发现、早预警、早处置',
+    },
+  ];
+
+  const workflowDetails = [
+    { title: '布设控制点', description: '按照规范要求布设像控点，确保测量精度' },
+    { title: '现场地形查勘', description: '实地踏勘了解地形地貌，确定最佳起飞点' },
+    { title: '起降作业', description: '专业飞手操控无人机安全起降' },
+    { title: '巡飞作业', description: '按照预定航线执行航摄任务' },
+    { title: '执飞团队', description: '持证飞手操作，遵守航空规范' },
+  ];
+
+  const indoorWork = [
+    { title: '影像和模型制作', description: '原始航摄影像处理，生成高质量数字产品' },
+    { title: '地物识别和解译', description: '目视解译提取关键信息，识别变化区域' },
+    { title: '模型叠加效果图件', description: '多源数据融合，生成复合分析图件' },
+    { title: '视频生成', description: '视频巡检报告制作，动态展示巡检成果' },
+  ];
+
+  const dataCenterFeatures = [
+    { icon: <Server size={24} />, title: '9台服务器', description: '虚拟化80个数据处理节点' },
+    { icon: <HardDrive size={24} />, title: '海量存储', description: '2台存储服务器，1000TB存储容量' },
+    { icon: <Cpu size={24} />, title: '高效处理', description: '日处理能力60平方公里' },
+  ];
+
+  const reportTypes = [
+    {
+      icon: <Video size={32} />,
+      title: '视频报告制作',
+      description: '依据重点区域巡查路线，采用垂直起降无人机和多旋翼无人机相结合的方式，开展定期视频巡检，最终制作巡检视频报告',
+      details: ['定期巡检（每周/每月）', '垂直起降+多旋翼配合', '汇报型/展示型视频'],
+    },
+    {
+      icon: <FileText size={32} />,
+      title: '空间分析报告制作',
+      description: '划分重点监测区域，对重点监测区域开展航摄，制作重点监测区域航拍正射影像图',
+      details: ['正射影像图制作', '人类活动干扰信息提取', 'SHP格式矢量图层', '图文报告输出', 'AI变化检测'],
+    },
+  ];
+
+  const serviceAreas = [
+    '高山森林', '喀斯特', '草原', '河流湖泊', '滨海湿地', '海洋岛屿',
+  ];
+
+  const inspectionTargets = [
+    '项目违建', '非法盗猎', '船舶监测', '植被变化', '野生动植物调查', 
+    '矿山修复测量', '外来入侵植物调查', '风电场', '林场林地变化',
+  ];
+
   const stats = [
     { value: '10000+', label: '飞行架次' },
     { value: '5000+', label: '巡检小时' },
     { value: '80+', label: '服务保护地' },
     { value: '99.5%', label: '任务成功率' },
+    { value: '20-40', label: '日覆盖(km²)' },
+    { value: '1000', label: 'TB存储容量' },
   ];
 
   return (
@@ -108,8 +222,16 @@ const DroneService: React.FC = () => {
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={heroBg} 
+            alt="无人机服务" 
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-surface/70" />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-7">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
@@ -170,7 +292,7 @@ const DroneService: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {serviceTypes.map((service) => (
               <div
                 key={service.id}
@@ -207,6 +329,242 @@ const DroneService: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 无人机巡检优势对比 */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              无人机巡检优势对比
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto mb-4" />
+            <p className="text-muted/75 max-w-2xl mx-auto">
+              相比传统视频监控和人力巡护，无人机巡检具有显著优势
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full glass-card">
+              <thead>
+                <tr className="border-b border-border">
+                  {comparisonData.headers.map((header, idx) => (
+                    <th key={idx} className="px-6 py-4 text-left text-sm font-semibold text-ink">
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonData.rows.map((row, idx) => (
+                  <tr key={idx} className="border-b border-border/50 hover:bg-surface/50 transition-colors">
+                    <td className="px-6 py-4 text-sm font-medium text-ink">{row.label}</td>
+                    <td className="px-6 py-4 text-sm text-brand-primary font-medium">{row.drone}</td>
+                    <td className="px-6 py-4 text-sm text-muted/70">{row.video}</td>
+                    <td className="px-6 py-4 text-sm text-muted/70">{row.manual}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 多种类的成果产出 */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              多种类的成果产出
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto mb-4" />
+            <p className="text-muted/75 max-w-2xl mx-auto">
+              丰富的成果产出形式，满足不同场景的应用需求
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {achievements.map((item, index) => (
+              <div
+                key={index}
+                className="glass-card-hover p-6 group hover:border-brand-accent/30 transition-all"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-4 group-hover:shadow-glow transition-shadow">
+                  {item.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-ink mb-2">{item.title}</h3>
+                <p className="text-sm text-muted/70 leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 标准化作业流程 */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              标准化的作业流程
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto mb-4" />
+            <p className="text-muted/75 max-w-2xl mx-auto">
+              无人机服务的标准制作流程分为外场作业和内业处理
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-5 gap-4 mb-12">
+            {workflowDetails.map((item, index) => (
+              <div key={index} className="glass-card p-4 text-center">
+                <div className="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center mx-auto mb-3 text-brand-primary font-bold">
+                  {index + 1}
+                </div>
+                <h3 className="text-base font-semibold text-ink mb-1">{item.title}</h3>
+                <p className="text-xs text-muted/70">{item.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-t border-border pt-10">
+            <h3 className="text-xl font-bold text-ink mb-8 text-center">内业处理</h3>
+            <div className="grid md:grid-cols-4 gap-4">
+              {indoorWork.map((item, index) => (
+                <div key={index} className="glass-card p-4">
+                  <div className="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center mb-3 text-brand-accent">
+                    <CheckCircle size={20} />
+                  </div>
+                  <h4 className="text-base font-semibold text-ink mb-1">{item.title}</h4>
+                  <p className="text-xs text-muted/70">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 无人机数据处理中心 */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={dataCenterImg} 
+            alt="数据处理中心" 
+            className="w-full h-full object-cover opacity-15"
+          />
+          <div className="absolute inset-0 bg-surface" />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              无人机数据处理中心
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-warm to-transparent mx-auto mb-4" />
+            <p className="text-muted/75 max-w-2xl mx-auto">
+              保护地和生物多样性需要海量的无人机数据处理和存储能力
+            </p>
+          </div>
+
+          <div className="glass-card p-8 mb-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {dataCenterFeatures.map((feature, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-ink mb-2">{feature.title}</h3>
+                  <p className="text-sm text-muted/70">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center text-muted/60 text-sm">
+            <p>基于9台服务器虚拟化80个数据处理节点 · 搭配2台存储服务器，满足1000 TB全套数据的存储 · 满足60平方公里日处理能力</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 报告制作规范完善 */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              报告制作规范完善
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto mb-4" />
+            <p className="text-muted/75 max-w-2xl mx-auto">
+              专业的报告制作服务，为管理决策提供可靠支撑
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {reportTypes.map((report, index) => (
+              <div key={index} className="glass-card p-6 md:p-8">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary flex-shrink-0">
+                    {report.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-ink mb-2">{report.title}</h3>
+                    <p className="text-sm text-muted/70">{report.description}</p>
+                  </div>
+                </div>
+                <ul className="grid grid-cols-2 gap-2 mt-4">
+                  {report.details.map((detail, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm text-muted/80">
+                      <CheckCircle size={14} className="text-brand-primary flex-shrink-0" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 服务地域广泛 */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              服务地域广泛
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto mb-4" />
+          </div>
+
+          <div className="glass-card p-8 mb-8">
+            <div className="text-center mb-8">
+              <h3 className="text-lg font-semibold text-ink mb-4">地形类型</h3>
+              <div className="flex flex-wrap justify-center gap-3">
+                {serviceAreas.map((area, index) => (
+                  <span key={index} className="px-4 py-2 rounded-full bg-brand-primary/10 text-brand-primary border border-brand-primary/20">
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-ink mb-4">巡检目标</h3>
+              <div className="flex flex-wrap justify-center gap-3">
+                {inspectionTargets.map((target, index) => (
+                  <span key={index} className="px-4 py-2 rounded-full bg-surface-2 text-muted/80 border border-border">
+                    {target}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <p className="text-center text-muted/70 text-sm">
+            在过去的五年我们积累了丰富的巡检经验，覆盖各个生物多样性热点的地区
+          </p>
         </div>
       </section>
 
@@ -320,7 +678,7 @@ const DroneService: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {supportingServices.map((service) => (
               <div
                 key={service.id}

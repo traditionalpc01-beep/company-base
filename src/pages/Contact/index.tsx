@@ -1,10 +1,29 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Send, Clock, MessageSquare, ArrowRight, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, Clock, MessageSquare, ArrowRight, CheckCircle, AlertCircle, Loader2, XCircle } from 'lucide-react';
 import VTLink from '../../components/VTLink';
 import { siteContent } from '../../content';
 
+interface FormData {
+  name: string;
+  company: string;
+  phone: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  phone?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     company: '',
     phone: '',
@@ -12,18 +31,131 @@ const Contact: React.FC = () => {
     subject: '',
     message: '',
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const validateField = (name: string, value: string): string | undefined => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) return '请输入您的姓名';
+        if (value.trim().length < 2) return '姓名至少2个字符';
+        if (value.trim().length > 50) return '姓名不能超过50个字符';
+        return undefined;
+      case 'phone':
+        if (!value.trim()) return '请输入联系电话';
+        {
+          const phoneRegex = /^1[3-9]\d{9}$/;
+          const phoneClean = value.replace(/[\s-]/g, '');
+          if (!phoneRegex.test(phoneClean)) return '请输入有效的手机号码';
+        }
+        return undefined;
+      case 'email':
+        {
+          if (!value.trim()) return undefined;
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value.trim())) return '请输入有效的邮箱地址';
+        }
+        return undefined;
+      case 'subject':
+        if (!value) return '请选择咨询主题';
+        return undefined;
+      case 'message':
+        if (!value.trim()) return '请输入留言内容';
+        if (value.trim().length < 10) return '留言内容至少10个字符';
+        if (value.trim().length > 1000) return '留言内容不能超过1000个字符';
+        return undefined;
+      default:
+        return undefined;
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+    let isValid = true;
+
+    const fieldsToValidate: (keyof FormData)[] = ['name', 'phone', 'subject', 'message'];
+    
+    fieldsToValidate.forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) {
+        newErrors[field] = error;
+        isValid = false;
+      }
+    });
+
+    if (formData.email.trim()) {
+      const emailError = validateField('email', formData.email);
+      if (emailError) {
+        newErrors.email = emailError;
+        isValid = false;
+      }
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    if (touched[name]) {
+      const error = validateField(name, value);
+      setErrors((prev) => ({
+        ...prev,
+        [name]: error,
+      }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({
+      ...prev,
+      [name]: true,
+    }));
+    const error = validateField(name, value);
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+
+    const allFields = ['name', 'phone', 'subject', 'message'];
+    setTouched(allFields.reduce((acc, field) => ({ ...acc, [field]: true }), {}));
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setStatus('submitting');
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      
+      setStatus('success');
+      setFormData({
+        name: '',
+        company: '',
+        phone: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      setTouched({});
+      setErrors({});
+    } catch {
+      setStatus('error');
+      setErrorMessage('提交失败，请稍后重试或直接电话联系我们');
+    }
   };
 
   const contactMethods = [
@@ -32,18 +164,21 @@ const Contact: React.FC = () => {
       title: '电话咨询',
       value: siteContent.contact.phone,
       description: '工作日 9:00-18:00',
+      action: `tel:${siteContent.contact.phone}`,
     },
     {
       icon: <Mail size={24} />,
       title: '邮箱联系',
       value: siteContent.contact.email,
       description: '24小时内回复',
+      action: `mailto:${siteContent.contact.email}`,
     },
     {
       icon: <MessageSquare size={24} />,
       title: '在线留言',
       value: '填写表单',
       description: '我们会尽快联系您',
+      action: '#contact-form',
     },
   ];
 
@@ -55,6 +190,14 @@ const Contact: React.FC = () => {
     '商务合作',
     '其他',
   ];
+
+  const getFieldClasses = (fieldName: string) => {
+    const baseClasses = "w-full px-4 py-3 rounded-xl bg-surface border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 transition-all";
+    if (errors[fieldName] && touched[fieldName]) {
+      return `${baseClasses} border-red-500/50 focus:border-red-500/50 focus:ring-red-500/20`;
+    }
+    return `${baseClasses} border-border focus:ring-brand-primary/30`;
+  };
 
   return (
     <div className="min-h-screen bg-surface">
@@ -79,9 +222,10 @@ const Contact: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-6 mb-16">
             {contactMethods.map((method, index) => (
-              <div
+              <a
                 key={index}
-                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all"
+                href={method.action}
+                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all cursor-pointer"
               >
                 <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4 text-brand-primary group-hover:shadow-glow transition-shadow">
                   {method.icon}
@@ -89,13 +233,13 @@ const Contact: React.FC = () => {
                 <h3 className="text-lg font-semibold text-ink mb-1">{method.title}</h3>
                 <p className="text-brand-primary font-medium mb-1">{method.value}</p>
                 <p className="text-sm text-muted/60">{method.description}</p>
-              </div>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2" id="contact-form">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -106,7 +250,7 @@ const Contact: React.FC = () => {
               </h2>
               <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full mb-8" />
               
-              {isSubmitted ? (
+              {status === 'success' ? (
                 <div className="glass-card p-8 text-center">
                   <div className="w-16 h-16 rounded-full bg-brand-primary/20 flex items-center justify-center mx-auto mb-4">
                     <CheckCircle size={32} className="text-brand-primary" />
@@ -117,7 +261,7 @@ const Contact: React.FC = () => {
                   </p>
                   <button
                     onClick={() => {
-                      setIsSubmitted(false);
+                      setStatus('idle');
                       setFormData({
                         name: '',
                         company: '',
@@ -126,14 +270,40 @@ const Contact: React.FC = () => {
                         subject: '',
                         message: '',
                       });
+                      setTouched({});
+                      setErrors({});
                     }}
                     className="btn-secondary"
                   >
                     继续留言
                   </button>
                 </div>
+              ) : status === 'error' ? (
+                <div className="glass-card p-8 text-center border-red-500/30">
+                  <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-4">
+                    <XCircle size={32} className="text-red-500" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-ink mb-2">提交失败</h3>
+                  <p className="text-muted/75 mb-6">
+                    {errorMessage}
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <button
+                      onClick={() => {
+                        setStatus('idle');
+                      }}
+                      className="btn-secondary"
+                    >
+                      重新提交
+                    </button>
+                    <a href={`tel:${siteContent.contact.phone}`} className="btn-primary inline-flex items-center gap-2">
+                      <Phone size={18} />
+                      <span>电话咨询</span>
+                    </a>
+                  </div>
+                </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                   <div className="grid md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm text-muted/80 mb-2">姓名 *</label>
@@ -142,10 +312,20 @@ const Contact: React.FC = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         required
-                        className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                        className={getFieldClasses('name')}
                         placeholder="您的姓名"
+                        disabled={status === 'submitting'}
+                        aria-invalid={errors.name && touched.name ? 'true' : 'false'}
+                        aria-describedby={errors.name && touched.name ? 'name-error' : undefined}
                       />
+                      {errors.name && touched.name && (
+                        <p id="name-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                          <AlertCircle size={12} />
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label className="block text-sm text-muted/80 mb-2">公司/单位</label>
@@ -154,8 +334,9 @@ const Contact: React.FC = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                        className={getFieldClasses('company')}
                         placeholder="您的公司或单位"
+                        disabled={status === 'submitting'}
                       />
                     </div>
                   </div>
@@ -168,10 +349,20 @@ const Contact: React.FC = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         required
-                        className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                        className={getFieldClasses('phone')}
                         placeholder="您的联系电话"
+                        disabled={status === 'submitting'}
+                        aria-invalid={errors.phone && touched.phone ? 'true' : 'false'}
+                        aria-describedby={errors.phone && touched.phone ? 'phone-error' : undefined}
                       />
+                      {errors.phone && touched.phone && (
+                        <p id="phone-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                          <AlertCircle size={12} />
+                          {errors.phone}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label className="block text-sm text-muted/80 mb-2">邮箱</label>
@@ -180,9 +371,19 @@ const Contact: React.FC = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                        onBlur={handleBlur}
+                        className={getFieldClasses('email')}
                         placeholder="您的邮箱地址"
+                        disabled={status === 'submitting'}
+                        aria-invalid={errors.email && touched.email ? 'true' : 'false'}
+                        aria-describedby={errors.email && touched.email ? 'email-error' : undefined}
                       />
+                      {errors.email && touched.email && (
+                        <p id="email-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                          <AlertCircle size={12} />
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
                   </div>
                   
@@ -192,8 +393,12 @@ const Contact: React.FC = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all appearance-none cursor-pointer"
+                      className={`${getFieldClasses('subject')} appearance-none cursor-pointer`}
+                      disabled={status === 'submitting'}
+                      aria-invalid={errors.subject && touched.subject ? 'true' : 'false'}
+                      aria-describedby={errors.subject && touched.subject ? 'subject-error' : undefined}
                     >
                       <option value="" className="bg-surface">请选择咨询主题</option>
                       {subjects.map((subject) => (
@@ -202,6 +407,12 @@ const Contact: React.FC = () => {
                         </option>
                       ))}
                     </select>
+                    {errors.subject && touched.subject && (
+                      <p id="subject-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle size={12} />
+                        {errors.subject}
+                      </p>
+                    )}
                   </div>
                   
                   <div>
@@ -210,16 +421,42 @@ const Contact: React.FC = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-ink placeholder-muted/50 focus:border-brand-primary/50 focus:outline-none focus:ring-1 focus:ring-brand-primary/30 transition-all resize-none"
+                      className={`${getFieldClasses('message')} resize-none`}
                       placeholder="请详细描述您的需求或问题..."
+                      disabled={status === 'submitting'}
+                      aria-invalid={errors.message && touched.message ? 'true' : 'false'}
+                      aria-describedby={errors.message && touched.message ? 'message-error' : undefined}
                     />
+                    {errors.message && touched.message && (
+                      <p id="message-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle size={12} />
+                        {errors.message}
+                      </p>
+                    )}
+                    <p className="mt-1.5 text-xs text-muted/50 text-right">
+                      {formData.message.length}/1000
+                    </p>
                   </div>
                   
-                  <button type="submit" className="btn-primary w-full md:w-auto">
-                    <span>提交留言</span>
-                    <ArrowRight size={18} />
+                  <button 
+                    type="submit" 
+                    className="btn-primary w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={status === 'submitting'}
+                  >
+                    {status === 'submitting' ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin" />
+                        <span>提交中...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>提交留言</span>
+                        <ArrowRight size={18} />
+                      </>
+                    )}
                   </button>
                 </form>
               )}

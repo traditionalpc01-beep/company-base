@@ -1,6 +1,7 @@
 import React from 'react';
 import { Plane, Database, MapPin, Smartphone, Award, FileCheck, ArrowRight, Cpu, Leaf, Radio } from 'lucide-react';
 import VTLink from '../../components/VTLink';
+import ScrollCarousel from '../../components/ui/ScrollCarousel';
 
 const Archives: React.FC = () => {
   const products = [
@@ -87,6 +88,97 @@ const Archives: React.FC = () => {
     { title: '大疆行业合作伙伴', icon: <Cpu size={24} /> },
     { title: 'ISO质量管理体系认证', icon: <FileCheck size={24} /> },
     { title: '信息安全管理体系认证', icon: <Award size={24} /> },
+  ];
+
+  const certificates = [
+    {
+      title: '国家高新技术企业',
+      description: '国家级科技企业认证，证明企业具备核心自主知识产权',
+      icon: Award,
+      badge: '企业荣誉',
+      badgeIcon: Award,
+      badgeColor: 'text-brand-primary',
+      gradient: 'from-brand-primary to-brand-accent',
+      year: '2019',
+      image: null,
+    },
+    {
+      title: '双软企业',
+      description: '软件企业和软件产品认证，技术实力获得权威认可',
+      icon: Award,
+      badge: '企业荣誉',
+      badgeIcon: Award,
+      badgeColor: 'text-brand-primary',
+      gradient: 'from-brand-accent to-tech-blue',
+      year: '2020',
+      image: null,
+    },
+    {
+      title: '守合同重信用企业',
+      description: '诚信经营典范，企业信用评级优秀',
+      icon: Award,
+      badge: '企业荣誉',
+      badgeIcon: Award,
+      badgeColor: 'text-warm',
+      gradient: 'from-warm to-brand-primary',
+      year: '2020',
+      image: null,
+    },
+    {
+      title: '民用无人机驾驶员训练机构',
+      description: '官方认证的无人机驾驶员培训机构',
+      icon: Plane,
+      badge: '资质认证',
+      badgeIcon: FileCheck,
+      badgeColor: 'text-brand-accent',
+      gradient: 'from-brand-primary to-wildlife',
+      year: null,
+      image: null,
+    },
+    {
+      title: '大疆行业合作伙伴',
+      description: 'DJI行业生态合作伙伴，共同推动无人机技术应用',
+      icon: Cpu,
+      badge: '合作伙伴',
+      badgeIcon: Award,
+      badgeColor: 'text-tech-blue',
+      gradient: 'from-tech-blue to-brand-accent',
+      year: null,
+      image: null,
+    },
+    {
+      title: 'ISO质量管理体系认证',
+      description: '国际标准化组织认证，管理体系达到国际标准',
+      icon: FileCheck,
+      badge: '资质认证',
+      badgeIcon: FileCheck,
+      badgeColor: 'text-brand-accent',
+      gradient: 'from-brand-accent to-brand-primary',
+      year: null,
+      image: null,
+    },
+    {
+      title: '信息安全管理体系认证',
+      description: '信息安全管理体系认证，保障客户数据安全',
+      icon: FileCheck,
+      badge: '资质认证',
+      badgeIcon: Award,
+      badgeColor: 'text-wildlife',
+      gradient: 'from-wildlife to-brand-primary',
+      year: null,
+      image: null,
+    },
+    {
+      title: '自治区知识产权优势企业',
+      description: '区域知识产权培育重点单位，创新能力获得认可',
+      icon: Award,
+      badge: '企业荣誉',
+      badgeIcon: Award,
+      badgeColor: 'text-brand-primary',
+      gradient: 'from-brand-primary to-warm',
+      year: '2021',
+      image: null,
+    },
   ];
 
   const ipStats = [
@@ -221,7 +313,7 @@ const Archives: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
@@ -231,7 +323,49 @@ const Archives: React.FC = () => {
             <div className="w-24 h-px bg-gradient-to-r from-warm via-brand-primary to-transparent rounded-full" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <ScrollCarousel itemWidth={288} gap={24} showIndicators={true}>
+            {certificates.map((cert, index) => (
+              <div 
+                key={index}
+                className="flex-shrink-0 snap-center"
+                style={{ width: '288px' }}
+              >
+                <div className="glass-card p-4 group cursor-pointer relative overflow-hidden h-full">
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${cert.gradient}`} />
+                  <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${cert.gradient} opacity-10 rounded-full blur-xl group-hover:opacity-20 transition-opacity duration-500`} />
+                  
+                  <div className="relative z-10">
+                    <div className="h-40 rounded-lg bg-gradient-to-br from-surface-2 to-surface-3 flex items-center justify-center mb-4 overflow-hidden border border-border group-hover:border-warm/30 transition-colors">
+                      {cert.image ? (
+                        <img src={cert.image} alt={cert.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <cert.icon size={48} className="text-warm/50" />
+                      )}
+                    </div>
+                    
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <cert.badgeIcon size={14} className={cert.badgeColor} />
+                          <span className="text-xs text-muted/60">{cert.badge}</span>
+                        </div>
+                        <h3 className="text-base font-semibold text-ink/90 truncate">{cert.title}</h3>
+                        <p className="text-xs text-muted/70 mt-1 line-clamp-2">{cert.description}</p>
+                      </div>
+                    </div>
+                    
+                    {cert.year && (
+                      <div className="mt-3 pt-3 border-t border-border/50">
+                        <span className="text-xs text-muted/60">{cert.year}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </ScrollCarousel>
+
+          <div className="mt-12 grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-lg font-semibold text-ink mb-6 flex items-center gap-2">
                 <Award size={20} className="text-brand-primary" />

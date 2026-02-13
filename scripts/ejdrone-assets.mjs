@@ -82,9 +82,9 @@ async function ensureDir(p) {
   await fs.mkdir(p, { recursive: true });
 }
 
-async function crawlUrls(urls, max) {
+async function crawlUrls(urls, max, insecure) {
   const browser = await chromium.launch();
-  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, ignoreHTTPSErrors: insecure });
 
   const found = new Map();
 
@@ -287,7 +287,7 @@ async function main() {
   await ensureDir(rawDir);
   await ensureDir(optDir);
 
-  const crawled = await crawlUrls(args.urls, args.max);
+  const crawled = await crawlUrls(args.urls, args.max, args.insecure);
   const includeRe = args.include ? new RegExp(args.include) : null;
   const filtered = includeRe ? crawled.filter((x) => includeRe.test(x.url)) : crawled;
 

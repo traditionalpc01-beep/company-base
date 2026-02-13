@@ -1,7 +1,11 @@
 import React from 'react';
-import { Radio, ArrowRight, WifiOff, Database, ShieldCheck, Brain, Cpu, Eye, Lock, Cloud, Server, Layers, Activity, Radio as RadioIcon, Bell, Box, Camera, FileText, Key, Users, Target, TrendingUp, Globe, ChevronRight } from 'lucide-react';
+import { ArrowRight, WifiOff, Database, ShieldCheck, Brain, Eye, Lock, Cloud, Server, Layers, Activity, Bell, Camera, FileText, Key, Target, TrendingUp, Globe, ChevronRight } from 'lucide-react';
 import VTLink from '../../../components/VTLink';
 import hero1400 from '../../../assets/ejdrone/optimized/ejdrone_98629acd31cb_1400w.webp';
+import fieldKit900 from '../../../assets/ejdrone/optimized/ejdrone_4ff8bfda3ad1_900w.webp';
+import fieldKit1400 from '../../../assets/ejdrone/optimized/ejdrone_4ff8bfda3ad1_1400w.webp';
+import coverageMap900 from '../../../assets/ejdrone/optimized/ejdrone_3fb59cf96c29_900w.webp';
+import coverageMap1400 from '../../../assets/ejdrone/optimized/ejdrone_3fb59cf96c29_1400w.webp';
 
 const Sifeng = () => {
   const systemArchitecture = [
@@ -75,7 +79,7 @@ const Sifeng = () => {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
-            <RadioIcon size={16} className="text-brand-primary" />
+            <Database size={16} className="text-brand-primary" />
             <span className="text-sm text-muted/80">档案中心 · 系统</span>
           </div>
 
@@ -110,6 +114,44 @@ const Sifeng = () => {
               <span>咨询部署与试用</span>
               <ArrowRight size={18} />
             </VTLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative -mt-10 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {[
+              {
+                title: '外业设备与回收组件',
+                src: fieldKit1400,
+                srcSet: `${fieldKit900} 900w, ${fieldKit1400} 1400w`,
+                span: 'md:col-span-7',
+              },
+              {
+                title: '多区域部署与服务覆盖',
+                src: coverageMap1400,
+                srcSet: `${coverageMap900} 900w, ${coverageMap1400} 1400w`,
+                span: 'md:col-span-5',
+              },
+            ].map((x) => (
+              <div key={x.title} className={`${x.span} glass-card overflow-hidden`}>
+                <div className="relative">
+                  <img
+                    src={x.src}
+                    srcSet={x.srcSet}
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    alt={x.title}
+                    loading="lazy"
+                    className="w-full h-56 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-surface/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <div className="text-sm font-semibold text-ink/95">{x.title}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

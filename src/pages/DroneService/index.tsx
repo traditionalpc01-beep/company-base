@@ -1,10 +1,18 @@
 import React from 'react';
-import { Plane, Video, Radio, Database, Users, Award, FileCheck, Wrench, ArrowRight, CheckCircle, MapPin, Clock, Shield, Camera, Satellite, BarChart3, Phone, Mountain, Map, Image, Activity, Wind, FileText, Globe, Server, Cpu, HardDrive, Eye, Leaf, Flame, Scan } from 'lucide-react';
+import { Plane, Video, Radio, Database, Users, Award, FileCheck, Wrench, ArrowRight, CheckCircle, MapPin, Clock, Shield, Camera, Satellite, BarChart3, Phone, Mountain, Map, Image, Activity, FileText, Globe, Server, Cpu, HardDrive, Flame, Scan } from 'lucide-react';
 import VTLink from '../../components/VTLink';
 import heroBg from '../../assets/ejdrone/uav-service/hero-bg.jpg';
 import videoInspectionImg from '../../assets/ejdrone/uav-service/video-inspection.jpg';
 import remoteSensingImg from '../../assets/ejdrone/uav-service/remote-sensing.jpg';
 import dataCenterImg from '../../assets/ejdrone/uav-service/data-center.jpg';
+import droneFlight900 from '../../assets/ejdrone/optimized/ejdrone_98629acd31cb_900w.webp';
+import droneFlight1400 from '../../assets/ejdrone/optimized/ejdrone_98629acd31cb_1400w.webp';
+import fieldKit900 from '../../assets/ejdrone/optimized/ejdrone_4ff8bfda3ad1_900w.webp';
+import fieldKit1400 from '../../assets/ejdrone/optimized/ejdrone_4ff8bfda3ad1_1400w.webp';
+import reportSample900 from '../../assets/ejdrone/optimized/ejdrone_53a0ba36b6d8_900w.webp';
+import reportSample1400 from '../../assets/ejdrone/optimized/ejdrone_53a0ba36b6d8_1400w.webp';
+import coverageMap900 from '../../assets/ejdrone/optimized/ejdrone_3fb59cf96c29_900w.webp';
+import coverageMap1400 from '../../assets/ejdrone/optimized/ejdrone_3fb59cf96c29_1400w.webp';
 
 const DroneService: React.FC = () => {
   const serviceTypes = [
@@ -16,6 +24,7 @@ const DroneService: React.FC = () => {
       description: '高清视频实时传输，支持4K画质录制，实现远程监控与指挥调度，大幅提升巡检效率。无人机从空中俯视的视角，具有大纵深、宽视角的特点，解决了低视角的视线阻挡问题，并且无人机可以快速飞达目的地。无人机搭载吊舱设备、结合合理的飞行路线设置，可以监看到自然保护地的每个角落。无人机拍摄到的视频和照片，可以回传到地面端，实时查看现场视频信息，并通过直播系统实现远程直播。',
       features: ['4K高清录制', '实时图传', '远程指挥', '智能追踪', '夜视功能'],
       gradient: 'from-brand-primary to-brand-accent',
+      image: { src: videoInspectionImg, alt: '无人机视频巡检' },
     },
     {
       id: 'remote',
@@ -25,6 +34,7 @@ const DroneService: React.FC = () => {
       description: '多光谱、红外、激光雷达等多类型传感器，精准获取地表信息，支持植被分析、地形测绘、野生动物监测等应用。',
       features: ['多光谱成像', '红外热成像', '激光雷达', '地形测绘', '植被分析'],
       gradient: 'from-brand-accent to-tech-blue',
+      image: { src: remoteSensingImg, alt: '无人机遥感监测' },
     },
     {
       id: 'relay',
@@ -34,6 +44,12 @@ const DroneService: React.FC = () => {
       description: '无人机作为空中数据中继节点，扩展监测设备通信范围，实现偏远区域数据实时回传，构建空天地一体化监测网络。',
       features: ['信号中继', '数据回传', '通信扩展', '组网能力', '远程覆盖'],
       gradient: 'from-warm to-brand-primary',
+      image: {
+        src: droneFlight1400,
+        srcSet: `${droneFlight900} 900w, ${droneFlight1400} 1400w`,
+        sizes: '(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw',
+        alt: '无人机飞行作业',
+      },
     },
     {
       id: 'auto-gateway',
@@ -43,6 +59,12 @@ const DroneService: React.FC = () => {
       description: '免维护的智能网关设备，实现无人机自动起降、数据自动上传、远程监控管理。适用于偏远保护地，无需专业人员值守即可完成日常巡检任务，大幅降低运营成本。',
       features: ['无人机自动起降', '免维护智能网关', '数据自动上传', '远程监控管理', '无人值守运行'],
       gradient: 'from-tech-blue to-brand-primary',
+      image: {
+        src: fieldKit1400,
+        srcSet: `${fieldKit900} 900w, ${fieldKit1400} 1400w`,
+        sizes: '(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw',
+        alt: '外业设备与载机平台',
+      },
     },
   ];
 
@@ -299,9 +321,19 @@ const DroneService: React.FC = () => {
                 className="glass-card-hover p-6 md:p-8 relative group"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${service.gradient}`} />
-                <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity`} />
                 
                 <div className="relative z-10">
+                  <div className="relative mb-6 overflow-hidden rounded-2xl border border-ink/10">
+                    <img
+                      src={service.image.src}
+                      srcSet={service.image.srcSet}
+                      sizes={service.image.sizes}
+                      alt={service.image.alt}
+                      loading="lazy"
+                      className="h-36 w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-surface/10" />
+                  </div>
                   <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} mb-6 shadow-glow-sm`}>
                     <span className="text-ink">{service.icon}</span>
                   </div>
@@ -397,6 +429,72 @@ const DroneService: React.FC = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-ink mb-2">{item.title}</h3>
                 <p className="text-sm text-muted/70 leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">现场与成果样例</h2>
+            <div className="w-24 h-px bg-brand-primary/40 mx-auto mb-4" />
+            <p className="text-muted/75 max-w-2xl mx-auto">把巡检、航测与数据处理的结果，以可交付成果沉淀下来。</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {[
+              {
+                title: '外业装备与载机平台',
+                desc: '携行设备、载机平台与作业组件一体化出勤。',
+                src: fieldKit1400,
+                srcSet: `${fieldKit900} 900w, ${fieldKit1400} 1400w`,
+                sizes: '(min-width: 1280px) 50vw, 100vw',
+                span: 'md:col-span-7',
+              },
+              {
+                title: '服务覆盖与落地案例',
+                desc: '面向多省份多场景的巡检与监测任务。',
+                src: coverageMap1400,
+                srcSet: `${coverageMap900} 900w, ${coverageMap1400} 1400w`,
+                sizes: '(min-width: 1280px) 33vw, 100vw',
+                span: 'md:col-span-5',
+              },
+              {
+                title: '成果报告与数据产品',
+                desc: '图件、统计表与报告样例，便于管理决策使用。',
+                src: reportSample1400,
+                srcSet: `${reportSample900} 900w, ${reportSample1400} 1400w`,
+                sizes: '(min-width: 1280px) 50vw, 100vw',
+                span: 'md:col-span-6',
+              },
+              {
+                title: '飞行作业与任务执行',
+                desc: '按航线执行巡检任务，支持复杂地形与多类型载荷。',
+                src: droneFlight1400,
+                srcSet: `${droneFlight900} 900w, ${droneFlight1400} 1400w`,
+                sizes: '(min-width: 1280px) 50vw, 100vw',
+                span: 'md:col-span-6',
+              },
+            ].map((x) => (
+              <div key={x.title} className={`${x.span} glass-card overflow-hidden group hover:border-brand-primary/30 transition-all`}>
+                <div className="relative">
+                  <img
+                    src={x.src}
+                    srcSet={x.srcSet}
+                    sizes={x.sizes}
+                    alt={x.title}
+                    loading="lazy"
+                    className="w-full h-60 md:h-64 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-surface/15 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <div className="text-base font-semibold text-ink/95">{x.title}</div>
+                    <div className="text-sm text-muted/80 mt-1">{x.desc}</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

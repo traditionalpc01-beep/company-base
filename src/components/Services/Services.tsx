@@ -1,6 +1,9 @@
 import React from 'react';
-import { Plane, TrendingUp, Leaf, Cpu, Database, Brain, ArrowRight, Sparkles } from 'lucide-react';
+import { Plane, TrendingUp, Leaf, Cpu, Database, Brain, Sparkles } from 'lucide-react';
 import VTLink from '../VTLink';
+import airGroundImg from '../../assets/ejdrone/optimized/ejdrone_9eabfef6736b_900w.webp';
+import economyImg from '../../assets/ejdrone/optimized/ejdrone_93bbce147373_900w.webp';
+import educationImg from '../../assets/ejdrone/optimized/ejdrone_ceb789288bb8_900w.webp';
 
 const Services: React.FC = () => {
   const services = [
@@ -14,8 +17,12 @@ const Services: React.FC = () => {
         { text: '无人值守感知', icon: <Cpu size={16} /> },
         { text: '实时数据传输', icon: <Database size={16} /> },
       ],
-      gradient: 'from-brand-primary via-brand-accent to-warm',
+      image: airGroundImg,
+      accent: 'text-brand-primary',
+      badge: 'bg-brand-primary/12',
+      line: 'bg-brand-primary/40',
       link: '/drone_service',
+      cta: '查看无人机服务',
     },
     {
       title: '低空经济服务',
@@ -27,8 +34,12 @@ const Services: React.FC = () => {
         { text: '全天候支持', icon: <Database size={16} /> },
         { text: '定制化方案', icon: <Cpu size={16} /> },
       ],
-      gradient: 'from-brand-accent via-warm to-brand-primary',
+      image: economyImg,
+      accent: 'text-brand-accent',
+      badge: 'bg-brand-accent/12',
+      line: 'bg-brand-accent/40',
       link: '/drone_service',
+      cta: '了解低空经济服务',
     },
     {
       title: '自然教育',
@@ -40,17 +51,18 @@ const Services: React.FC = () => {
         { text: '场域打造', icon: <Database size={16} /> },
         { text: '平台支撑', icon: <Cpu size={16} /> },
       ],
-      gradient: 'from-warm via-brand-primary to-brand-accent',
+      image: educationImg,
+      accent: 'text-warm',
+      badge: 'bg-warm/12',
+      line: 'bg-warm/40',
       link: '/archives/sheng-wu-quan',
+      cta: '进入自然教育体系',
     },
   ];
 
   return (
     <section id="services" className="py-24 relative overflow-hidden bg-cyber-darker">
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
-      
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-brand-primary/6 rounded-full blur-3xl -translate-x-1/2"></div>
-      <div className="absolute top-1/3 right-0 w-80 h-80 bg-brand-accent/6 rounded-full blur-3xl translate-x-1/2"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="mb-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
@@ -65,7 +77,7 @@ const Services: React.FC = () => {
               <span className="tech-gradient-text">赋能</span>
               <span className="text-ink/80">自然保护</span>
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full mb-4"></div>
+            <div className="w-24 h-px bg-brand-primary/40 rounded-full mb-4"></div>
           </div>
           <div className="md:col-span-5 md:pb-2">
             <p className="text-muted/75 leading-relaxed">
@@ -80,14 +92,17 @@ const Services: React.FC = () => {
               key={index}
               className="group relative"
             >
-              <div className="feature-card h-full relative overflow-hidden">
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${service.gradient}`}></div>
-                
-                <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500`}></div>
+              <VTLink to={service.link} className="feature-card h-full relative overflow-hidden block">
+                <div className={`absolute top-0 left-0 right-0 h-1 ${service.line}`}></div>
 
                 <div className="relative z-10">
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} mb-6 group-hover:shadow-glow transition-shadow duration-300`}>
-                    <span className="text-ink">{service.icon}</span>
+                  <div className="relative mb-6 overflow-hidden rounded-2xl border border-ink/10">
+                    <img src={service.image} alt="" className="h-40 w-full object-cover" loading="lazy" />
+                    <div className="absolute inset-x-0 top-0 h-40 bg-cyber-darker/15" />
+                  </div>
+
+                  <div className={`inline-flex p-4 rounded-2xl ${service.badge} mb-6`}>
+                    <span className={service.accent}>{service.icon}</span>
                   </div>
 
                   <h3 className="text-2xl font-bold text-ink mb-1 transition-colors">
@@ -102,23 +117,20 @@ const Services: React.FC = () => {
                   <div className="space-y-3 mb-8">
                     {service.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-3 text-ink/80">
-                        <span className="text-brand-primary">{feature.icon}</span>
+                        <span className={service.accent}>{feature.icon}</span>
                         <span className="text-sm">{feature.text}</span>
                       </div>
                     ))}
                   </div>
-
-                  <VTLink
-                    to={service.link}
-                    className="inline-flex items-center gap-2 text-ink/85 hover:text-ink transition-colors group/btn"
-                  >
-                    <span className="text-sm font-medium">了解更多</span>
-                    <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </VTLink>
+                  
+                  <div className="inline-flex items-center gap-2 text-sm font-medium text-ink/85">
+                    <span>{service.cta}</span>
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-primary/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </div>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-ink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </VTLink>
             </div>
           ))}
         </div>

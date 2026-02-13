@@ -47,6 +47,13 @@ const Honor = () => {
   const active = activeIndex >= 0 ? honorCertificates[activeIndex] : null;
 
   useEffect(() => {
+    const hash = window.location.hash ? window.location.hash.slice(1) : '';
+    if (!hash) return;
+    const exists = honorCertificates.some((x) => x.id === hash);
+    if (exists) setActiveId(hash);
+  }, []);
+
+  useEffect(() => {
     if (!active) return;
 
     const onKeyDown = (e: KeyboardEvent) => {

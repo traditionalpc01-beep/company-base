@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, ArrowRight, LayoutDashboard, Layers, FileSpreadsheet, MapPin, Upload, Download, Search, Filter, BarChart3, FileText, CheckCircle, Target, Globe, ChevronRight, Users, Calendar, TrendingUp } from 'lucide-react';
+import { Map, ArrowRight, LayoutDashboard, Layers, FileSpreadsheet, MapPin, Upload, Search, Filter, BarChart3, FileText, CheckCircle, Target, Globe, Users, TrendingUp } from 'lucide-react';
 import VTLink from '../../../components/VTLink';
 import hero1400 from '../../../assets/ejdrone/optimized/ejdrone_6f3d473b8444_1400w.webp';
 

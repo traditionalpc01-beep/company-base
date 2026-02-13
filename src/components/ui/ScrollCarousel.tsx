@@ -4,7 +4,9 @@ import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 interface ScrollCarouselProps {
   children: React.ReactNode;
   autoPlay?: boolean;
+  autoPlayMode?: 'step' | 'continuous';
   autoPlayInterval?: number;
+  autoPlaySpeed?: number;
   showIndicators?: boolean;
   showArrows?: boolean;
   showProgress?: boolean;
@@ -16,7 +18,9 @@ interface ScrollCarouselProps {
 const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
   children,
   autoPlay = true,
+  autoPlayMode = 'step',
   autoPlayInterval = 4000,
+  autoPlaySpeed = 26,
   showIndicators = true,
   showArrows = true,
   showProgress = true,
@@ -32,6 +36,8 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
   const [progress, setProgress] = useState(0);
   const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
   const progressTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const lastTsRef = useRef<number | null>(null);
 
   const scrollToIndex = useCallback((index: number) => {
     if (!scrollContainerRef.current || totalItems === 0) return;
@@ -108,7 +114,47 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
         clearInterval(progressTimerRef.current);
         progressTimerRef.current = null;
       }
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      lastTsRef.current = null;
       return;
+    }
+
+    if (autoPlayMode === 'continuous') {
+      if (autoPlayTimerRef.current) {
+        clearInterval(autoPlayTimerRef.current);
+        autoPlayTimerRef.current = null;
+      }
+      if (progressTimerRef.current) {
+        clearInterval(progressTimerRef.current);
+        progressTimerRef.current = null;
+      }
+      setProgress(0);
+
+      const tick = (ts: number) => {
+        const el = scrollContainerRef.current;
+        if (!el) return;
+
+        const last = lastTsRef.current ?? ts;
+        const dt = Math.min(64, Math.max(0, ts - last));
+        lastTsRef.current = ts;
+
+        const delta = (autoPlaySpeed * dt) / 1000;
+        const maxScrollLeft = el.scrollWidth - el.clientWidth;
+        const nextLeft = el.scrollLeft + delta;
+        el.scrollLeft = nextLeft >= maxScrollLeft - 1 ? 0 : nextLeft;
+
+        rafRef.current = requestAnimationFrame(tick);
+      };
+
+      rafRef.current = requestAnimationFrame(tick);
+      return () => {
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+        lastTsRef.current = null;
+      };
     }
 
     const progressInterval = 50;
@@ -133,7 +179,7 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
         clearInterval(progressTimerRef.current);
       }
     };
-  }, [autoPlay, autoPlayInterval, isHovered, isPaused, totalItems, goToNext]);
+  }, [autoPlay, autoPlayInterval, autoPlayMode, autoPlaySpeed, isHovered, isPaused, totalItems, goToNext]);
 
   const togglePause = () => {
     setIsPaused(prev => !prev);
@@ -152,8 +198,12 @@ const ScrollCarousel: React.FC<ScrollCarouselProps> = ({
     >
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] cursor-grab active:cursor-grabbing"
-        style={{ gap: `${gap}px`, scrollBehavior: 'smooth' }}
+        className={`flex overflow-x-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] ${
+          autoPlayMode === 'continuous'
+            ? ''
+            : 'snap-x snap-mandatory cursor-grab active:cursor-grabbing'
+        }`}
+        style={{ gap: `${gap}px`, scrollBehavior: autoPlayMode === 'continuous' ? 'auto' : 'smooth' }}
       >
         {children}
       </div>

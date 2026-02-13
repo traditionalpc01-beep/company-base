@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { HelpCircle, Mail, Phone, ShieldCheck, Plane, GraduationCap, Wrench, ArrowRight, Search, ChevronDown, ChevronUp, MapPin, Cpu, Users, FileCheck, Globe, Clock, CheckCircle, AlertCircle } from 'lucide-react';
+import { HelpCircle, Mail, Phone, ShieldCheck, GraduationCap, Wrench, ArrowRight, Search, ChevronDown, Cpu, Users, FileCheck, Clock, CheckCircle } from 'lucide-react';
 import VTLink from '../../components/VTLink';
 import { siteContent } from '../../content';
 
@@ -230,7 +230,13 @@ const Faq = () => {
                       className="glass-card group open:border-brand-primary/30 transition-colors"
                       open={isExpanded}
                     >
-                      <summary className="cursor-pointer list-none flex items-start gap-3 p-5">
+                      <summary
+                        className="cursor-pointer list-none flex items-start gap-3 p-5"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setExpandedId(isExpanded ? null : item.id);
+                        }}
+                      >
                         <div className="icon-box text-brand-primary shrink-0 mt-0.5">
                           {isExpanded ? <CheckCircle size={18} /> : <HelpCircle size={18} />}
                         </div>

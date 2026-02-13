@@ -2,6 +2,9 @@ import React from 'react';
 import { Leaf, Target, Eye, Heart, Users, Award, MapPin, ArrowRight, Plane, Cpu, Shield, BookOpen, Database } from 'lucide-react';
 import VTLink from '../../components/VTLink';
 import { siteContent } from '../../content';
+import { honorCertificates } from '../../assets/ejdrone/honors';
+import aboutHero900 from '../../assets/ejdrone/optimized/ejdrone_adfce8869caf_900w.webp';
+import aboutHero1400 from '../../assets/ejdrone/optimized/ejdrone_adfce8869caf_1400w.webp';
 
 const About: React.FC = () => {
   const values = [
@@ -44,32 +47,32 @@ const About: React.FC = () => {
 
   const team = [
     {
-      title: '研发团队',
-      count: '60+',
-      icon: <Cpu size={24} />,
-      description: '无人机、软件、AI算法研发',
+      title: '员工规模',
+      count: '35',
+      icon: <Users size={24} />,
+      description: '多学科背景的研发与服务团队',
       color: 'tech',
     },
     {
-      title: '外业团队',
-      count: '30+',
-      icon: <Plane size={24} />,
-      description: '持证飞手，专业巡检服务',
+      title: '中级职称',
+      count: '7',
+      icon: <Cpu size={24} />,
+      description: '软件开发、数据与科研管理等方向',
       color: 'wildlife',
     },
     {
-      title: '服务团队',
-      count: '20+',
-      icon: <Users size={24} />,
-      description: '客户服务、技术支持',
+      title: '高级职称',
+      count: '1',
+      icon: <Plane size={24} />,
+      description: '深耕自然保护与技术应用交叉领域',
       color: 'plant',
     },
   ];
 
   const stats = [
-    { value: '80+', label: '服务保护地', icon: <Shield size={20} />, toneText: 'text-brand-primary' },
-    { value: '12', label: '足迹遍布', icon: <MapPin size={20} />, toneText: 'text-brand-accent' },
-    { value: '60+', label: '研发团队', icon: <Cpu size={20} />, toneText: 'text-warm' },
+    { value: '2017', label: '成立年份', icon: <Shield size={20} />, toneText: 'text-brand-primary' },
+    { value: '1000㎡', label: '研发中心', icon: <MapPin size={20} />, toneText: 'text-brand-accent' },
+    { value: '30+', label: '合作机构', icon: <Users size={20} />, toneText: 'text-warm' },
     { value: '100+', label: '知识产权', icon: <Award size={20} />, toneText: 'text-brand-primary' },
   ];
 
@@ -155,9 +158,9 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-surface">
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
-      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-96 bg-brand-primary/5 pointer-events-none" />
       
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section id="intro" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-7">
@@ -171,17 +174,25 @@ const About: React.FC = () => {
                 <span className="tech-gradient-text">境无界</span>
               </h1>
               <p className="text-lg md:text-xl text-muted/75 max-w-2xl leading-relaxed mb-8">
-                依托科技创新与跨领域合作，提供自然保护地创新性和精细化管理解决方案，
-                让自然生态更美好，做客户最值得信赖的保护地精细化管理服务提供商。
+                广西翼界科技有限公司成立于2017年，总部位于南宁。依托科技创新与跨领域合作，为自然保护地提供创新型与精细化管理解决方案。
               </p>
               <p className="text-base text-muted/70 max-w-2xl leading-relaxed">
-                让自然保护成为最酷的工作。
+                已认定为国家高新技术企业（证书编号：GR202145001224），获民航局颁发《民用无人驾驶航空器经营许可证》（编号：民航通（无）企字第001755号），并取得 ISO 质量、环境与职业健康安全管理体系认证。
               </p>
             </div>
             
             <div className="md:col-span-5">
               <div className="glass-card p-6 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-brand-primary/10 rounded-full blur-3xl" />
+                <div className="absolute inset-0">
+                  <img
+                    src={aboutHero1400}
+                    srcSet={`${aboutHero900} 900w, ${aboutHero1400} 1400w`}
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    alt=""
+                    className="w-full h-full object-cover opacity-20"
+                  />
+                  <div className="absolute inset-0 bg-surface/70" />
+                </div>
                 <div className="relative z-10">
                   <div className="text-sm text-muted/70 mb-4">公司数据</div>
                   <div className="grid grid-cols-2 gap-4">
@@ -204,7 +215,7 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section id="solutions" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -212,7 +223,7 @@ const About: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               解决方案
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto mb-4" />
+            <div className="w-24 h-px bg-brand-primary/40 mx-auto mb-4" />
             <p className="text-muted/75 max-w-2xl mx-auto">
               基于科技创新与跨领域合作，提供自然保护地创新性和精细化管理解决方案
             </p>
@@ -246,7 +257,7 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section id="vision" className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -310,7 +321,7 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section id="values" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -318,7 +329,7 @@ const About: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心价值观
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto" />
+            <div className="w-24 h-px bg-brand-primary/40 mx-auto" />
           </div>
 
           <div className="grid md:grid-cols-4 gap-6">
@@ -341,13 +352,13 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section id="team" className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心团队
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto mb-4" />
+            <div className="w-24 h-px bg-brand-accent/40 mx-auto mb-4" />
             <p className="text-muted/75 max-w-2xl mx-auto">
               专业、敬业、创新的团队，是翼界科技最宝贵的资产
             </p>
@@ -374,7 +385,60 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section id="honors" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end mb-12">
+            <div className="md:col-span-7">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-warm/25 mb-6">
+                <Award size={16} className="text-warm" />
+                <span className="text-sm text-muted/80">荣誉资质</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">权威认证与可信合规</h2>
+              <div className="w-24 h-px bg-warm/40 rounded-full" />
+            </div>
+            <div className="md:col-span-5">
+              <p className="text-muted/75 leading-relaxed">
+                我们持续投入科研与产品化，获得多项权威认证与资质，形成可验证、可复用的自然保护地技术服务能力。
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+            {honorCertificates.slice(0, 6).map((cert) => (
+              <VTLink
+                key={cert.id}
+                to={`/archives/honor#${cert.id}`}
+                className="glass-card overflow-hidden group hover:border-brand-primary/30 transition-all"
+              >
+                <div className="relative aspect-[3/4] bg-ink/5">
+                  <img
+                    src={cert.image900}
+                    srcSet={`${cert.image900} 900w, ${cert.image1400} 1400w`}
+                    sizes="(min-width: 1280px) 16vw, (min-width: 768px) 24vw, 48vw"
+                    alt={cert.title}
+                    loading="lazy"
+                    className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                  />
+                </div>
+                <div className="p-4">
+                  <div className="text-sm font-semibold text-ink/90 line-clamp-2">{cert.title}</div>
+                  <div className="text-xs text-muted/70 mt-1 line-clamp-2">{cert.description}</div>
+                </div>
+              </VTLink>
+            ))}
+          </div>
+
+          <div className="mt-10 flex justify-center">
+            <VTLink to="/archives/honor" className="btn-primary inline-flex items-center gap-2">
+              <span>查看全部荣誉资质</span>
+              <ArrowRight size={18} />
+            </VTLink>
+          </div>
+        </div>
+      </section>
+
+      <section id="milestones" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -382,7 +446,7 @@ const About: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               发展历程
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-warm to-transparent mx-auto" />
+            <div className="w-24 h-px bg-warm/40 mx-auto" />
           </div>
 
           <div className="relative">
@@ -403,13 +467,13 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section id="locations" className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               办公地点
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent mx-auto" />
+            <div className="w-24 h-px bg-brand-primary/40 mx-auto" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">

@@ -34,7 +34,7 @@ const NewsTeaser: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {items.map((x) => (
-            <VTLink key={x.title} to="/news" className="feature-card block hover:border-brand-accent/35">
+            <VTLink key={x.title} to="/news" className="feature-card block hover:border-brand-accent/35 group">
               <div className="flex items-center justify-between gap-4">
                 <div className="text-xs text-muted/60 px-3 py-1 rounded-full bg-surface-2 border border-border">
                   {x.tag}
@@ -46,10 +46,6 @@ const NewsTeaser: React.FC = () => {
               </div>
               <div className="mt-4 text-lg font-semibold text-ink/90 leading-snug">
                 {x.title}
-              </div>
-              <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-ink/80">
-                <span>阅读详情</span>
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </div>
             </VTLink>
           ))}

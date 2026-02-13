@@ -1,7 +1,11 @@
 import React from 'react';
-import { ArrowRight, Mic2, Radio, LayoutGrid, MapPinned } from 'lucide-react';
+import { Mic2, Radio, LayoutGrid, MapPinned } from 'lucide-react';
 import VTLink from '../VTLink';
 import ScrollCarousel from '../ui/ScrollCarousel';
+import shengwuImg from '../../assets/ejdrone/optimized/ejdrone_6e1b9064cc60_900w.webp';
+import sifengImg from '../../assets/ejdrone/optimized/ejdrone_7e4dc17efac3_900w.webp';
+import gridImg from '../../assets/ejdrone/optimized/ejdrone_027a307929de_900w.webp';
+import toolsImg from '../../assets/ejdrone/optimized/ejdrone_3b8ff1f9c436_900w.webp';
 
 const ProductsGrid: React.FC = () => {
   const items = [
@@ -12,6 +16,7 @@ const ProductsGrid: React.FC = () => {
       to: '/archives/sheng-wu-quan',
       tone: 'bg-warm/14 text-warm',
       ring: 'hover:border-warm/35',
+      image: shengwuImg,
     },
     {
       title: '司风数据回收管理系统',
@@ -20,6 +25,7 @@ const ProductsGrid: React.FC = () => {
       to: '/archives/sifeng',
       tone: 'bg-brand-primary/14 text-brand-primary',
       ring: 'hover:border-brand-primary/35',
+      image: sifengImg,
     },
     {
       title: '网格化无人机巡检系统',
@@ -28,6 +34,7 @@ const ProductsGrid: React.FC = () => {
       to: '/archives/grid',
       tone: 'bg-brand-accent/14 text-brand-accent',
       ring: 'hover:border-brand-accent/35',
+      image: gridImg,
     },
     {
       title: '翼查记与翼地巡',
@@ -36,6 +43,7 @@ const ProductsGrid: React.FC = () => {
       to: '/archives',
       tone: 'bg-surface-3 text-ink/80',
       ring: 'hover:border-border/50',
+      image: toolsImg,
     },
   ];
 
@@ -51,7 +59,7 @@ const ProductsGrid: React.FC = () => {
               <span className="eco-gradient-text">产品档案</span>
               <span className="text-ink/80">与系统能力</span>
             </h2>
-            <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full mt-4" />
+            <div className="w-24 h-px bg-brand-primary/40 rounded-full mt-4" />
           </div>
           <div className="md:col-span-5">
             <p className="text-muted/75 leading-relaxed">
@@ -60,17 +68,29 @@ const ProductsGrid: React.FC = () => {
           </div>
         </div>
 
-        <ScrollCarousel itemWidth={320} gap={24} showIndicators={true}>
+        <ScrollCarousel
+          itemWidth={320}
+          gap={24}
+          autoPlayMode="continuous"
+          autoPlaySpeed={20}
+          showIndicators={false}
+          showArrows={false}
+          showProgress={false}
+        >
           {items.map((item) => (
             <div 
               key={item.title}
-              className="flex-shrink-0 snap-center"
+              className="flex-shrink-0"
               style={{ width: '320px' }}
             >
               <VTLink
                 to={item.to}
                 className={`group feature-card block ${item.ring} h-full`}
               >
+                <div className="relative mb-5 overflow-hidden rounded-2xl border border-ink/10">
+                  <img src={item.image} alt="" className="h-36 w-full object-cover" loading="lazy" />
+                  <div className="absolute inset-0 bg-surface/10" />
+                </div>
                 <div className="flex items-start justify-between gap-6 mb-4">
                   <div className="min-w-0">
                     <div className="text-xl font-semibold text-ink/90">{item.title}</div>
@@ -79,11 +99,6 @@ const ProductsGrid: React.FC = () => {
                   <div className={`shrink-0 w-12 h-12 rounded-2xl border border-border flex items-center justify-center ${item.tone}`}>
                     {item.icon}
                   </div>
-                </div>
-
-                <div className="inline-flex items-center gap-2 text-sm font-medium text-ink/80">
-                  <span>了解更多</span>
-                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </div>
               </VTLink>
             </div>

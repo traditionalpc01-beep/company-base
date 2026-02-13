@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mic2, ArrowRight, Waves, MapPinned, Users, Globe, Award, BookOpen, Radio, Headphones, Map, Calendar, BarChart3, Play, Star, CheckCircle, Sparkles, Target, Leaf, Camera, MessageCircle, ChevronRight, Database, Building2, Share2 } from 'lucide-react';
+import { Mic2, ArrowRight, Waves, MapPinned, Users, Globe, BookOpen, Headphones, Calendar, Sparkles, Target, Leaf, ChevronRight, Database, Building2, Share2 } from 'lucide-react';
 import VTLink from '../../../components/VTLink';
 import hero1400 from '../../../assets/ejdrone/optimized/ejdrone_713c50d88180_1400w.webp';
 

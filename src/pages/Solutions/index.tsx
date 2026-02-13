@@ -18,8 +18,8 @@ const Solutions: React.FC = () => {
       ],
       gradient: 'from-brand-primary to-brand-accent',
       bgGradient: 'from-brand-primary/10 to-brand-accent/5',
-      buttonText: '咨询无人机巡检',
-      buttonLink: '/drone_service',
+      ctaText: '进入无人机服务页',
+      ctaLink: '/drone_service',
       highlight: '无人机巡检',
       stat: '60km²/日',
       statLabel: '日处理能力',
@@ -38,8 +38,8 @@ const Solutions: React.FC = () => {
       ],
       gradient: 'from-warm to-brand-primary',
       bgGradient: 'from-warm/10 to-brand-primary/5',
-      buttonText: '咨询宣教建设',
-      buttonLink: '/contact',
+      ctaText: '咨询宣教建设需求',
+      ctaLink: '/contact',
       highlight: '宣教体系',
       stat: '100+',
       statLabel: '服务案例',
@@ -58,8 +58,8 @@ const Solutions: React.FC = () => {
       ],
       gradient: 'from-brand-accent to-tech-blue',
       bgGradient: 'from-brand-accent/10 to-tech-blue/5',
-      buttonText: '咨询信息化建设',
-      buttonLink: '/archives',
+      ctaText: '查看产品与档案',
+      ctaLink: '/archives',
       highlight: '信息化平台',
       stat: '14',
       statLabel: '覆盖省份',
@@ -156,9 +156,10 @@ const Solutions: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {solutions.map((solution) => (
-              <div
+              <VTLink
                 key={solution.id}
-                className="relative glass-card-hover p-6 md:p-8 overflow-hidden h-full flex flex-col"
+                to={solution.ctaLink}
+                className="relative glass-card-hover p-6 md:p-8 overflow-hidden h-full flex flex-col group"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${solution.gradient}`} />
                 <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${solution.bgGradient} rounded-full blur-3xl`} />
@@ -201,15 +202,12 @@ const Solutions: React.FC = () => {
                     <div className="text-xs text-muted/70">{solution.statLabel}</div>
                   </div>
                   
-                  <VTLink
-                    to={solution.buttonLink}
-                    className="btn-primary inline-flex items-center justify-center gap-2 group/btn w-full md:w-auto mt-auto"
-                  >
-                    <span>{solution.buttonText}</span>
-                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </VTLink>
+                  <div className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-ink/85">
+                    <span>{solution.ctaText}</span>
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
                 </div>
-              </div>
+              </VTLink>
             ))}
           </div>
         </div>
@@ -236,8 +234,9 @@ const Solutions: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {wildlifeCases.map((caseItem, index) => (
-              <div
+              <VTLink
                 key={index}
+                to="/news"
                 className={`glass-card p-6 md:p-8 relative group hover:${caseItem.borderColor} transition-all duration-300 h-full flex flex-col`}
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${caseItem.color}" 
@@ -258,7 +257,7 @@ const Solutions: React.FC = () => {
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </div>
+              </VTLink>
             ))}
           </div>
         </div>

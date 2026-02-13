@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, Plane, Cpu, ArrowRight, Radio, Database, GraduationCap } from 'lucide-react';
 import VTLink from '../VTLink';
+import heroBg900 from '../../assets/ejdrone/optimized/ejdrone_98629acd31cb_900w.webp';
+import heroBg1400 from '../../assets/ejdrone/optimized/ejdrone_98629acd31cb_1400w.webp';
 
 const Hero: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -18,7 +20,17 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-cyber-darker">
-      <div className="absolute inset-0 grid-pattern opacity-50"></div>
+      <div className="absolute inset-0">
+        <img
+          src={heroBg1400}
+          srcSet={`${heroBg900} 900w, ${heroBg1400} 1400w`}
+          sizes="100vw"
+          alt=""
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-cyber-darker/75" />
+      </div>
+      <div className="absolute inset-0 grid-pattern opacity-35"></div>
       
       <div 
         className="absolute inset-0 opacity-30"

@@ -1,7 +1,11 @@
 import React from 'react';
-import { LayoutGrid, ArrowRight, Video, Satellite, Repeat, ShieldCheck, Layers, Users, Calendar, Folder, AlertTriangle, Brain, Database, Monitor, Smartphone, Globe, ChevronRight, MapPin, Plane, Building2, Wind, Leaf, Zap, Cpu, Wifi, Radio, Cloud, Server, Compass } from 'lucide-react';
+import { LayoutGrid, ArrowRight, Video, Satellite, Repeat, ShieldCheck, Layers, Users, Calendar, Folder, AlertTriangle, Brain, Database, Monitor, Smartphone, MapPin, Building2, Leaf, Zap, Server } from 'lucide-react';
 import VTLink from '../../../components/VTLink';
 import hero1400 from '../../../assets/ejdrone/optimized/ejdrone_f3662cfd1dfc_1400w.webp';
+import droneFlight900 from '../../../assets/ejdrone/optimized/ejdrone_98629acd31cb_900w.webp';
+import droneFlight1400 from '../../../assets/ejdrone/optimized/ejdrone_98629acd31cb_1400w.webp';
+import reportSample900 from '../../../assets/ejdrone/optimized/ejdrone_53a0ba36b6d8_900w.webp';
+import reportSample1400 from '../../../assets/ejdrone/optimized/ejdrone_53a0ba36b6d8_1400w.webp';
 
 const GridInspection = () => {
   const systemComponents = [
@@ -158,6 +162,44 @@ const GridInspection = () => {
         </div>
       </section>
 
+      <section className="relative -mt-10 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {[
+              {
+                title: '巡检作业与任务执行',
+                src: droneFlight1400,
+                srcSet: `${droneFlight900} 900w, ${droneFlight1400} 1400w`,
+                span: 'md:col-span-7',
+              },
+              {
+                title: '成果样例与交付物',
+                src: reportSample1400,
+                srcSet: `${reportSample900} 900w, ${reportSample1400} 1400w`,
+                span: 'md:col-span-5',
+              },
+            ].map((x) => (
+              <div key={x.title} className={`${x.span} glass-card overflow-hidden`}>
+                <div className="relative">
+                  <img
+                    src={x.src}
+                    srcSet={x.srcSet}
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    alt={x.title}
+                    loading="lazy"
+                    className="w-full h-56 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-surface/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <div className="text-sm font-semibold text-ink/95">{x.title}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 系统组成 */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
@@ -209,7 +251,7 @@ const GridInspection = () => {
           </div>
 
           <div className="space-y-4">
-            {systemArchitecture.map((layer, index) => (
+            {systemArchitecture.map((layer) => (
               <div key={layer.layer} className="glass-card p-6 group hover:border-brand-primary/30 transition-all">
                 <div className="flex items-center gap-4">
                   <div className={`w-24 h-12 rounded-lg bg-gradient-to-br ${layer.color} flex items-center justify-center text-ink font-bold text-sm flex-shrink-0`}>

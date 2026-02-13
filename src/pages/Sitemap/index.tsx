@@ -33,9 +33,9 @@ const Sitemap = () => {
   return (
     <div className="min-h-screen bg-surface">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
               <Map size={16} className="text-brand-primary" />
               <span className="text-sm text-muted/80">网站地图</span>
@@ -49,9 +49,9 @@ const Sitemap = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 staggered-grid">
             {sections.map((s) => (
-              <div key={s.title} className="feature-card">
+              <div key={s.title} className="feature-card motion-sheen">
                 <div className="text-lg font-semibold text-ink/90">{s.title}</div>
                 <div className="mt-4 space-y-2">
                   {s.items.map((it) => (

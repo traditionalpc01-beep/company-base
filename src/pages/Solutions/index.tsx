@@ -109,9 +109,9 @@ const Solutions: React.FC = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
       
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
               <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
               <span className="text-sm text-muted/80">解决方案</span>
@@ -126,13 +126,13 @@ const Solutions: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-14 staggered-grid">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all duration-300"
+                className="glass-card p-5 text-center group hover:border-brand-primary/30 transition-all duration-300 motion-fade-up"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-primary/10 text-brand-primary mb-3 group-hover:shadow-glow transition-shadow">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-primary/10 text-brand-primary mb-3 group-hover:shadow-glow transition-shadow motion-float">
                   {stat.icon}
                 </div>
                 <div className="text-3xl md:text-4xl font-bold tech-gradient-text mb-1">
@@ -145,21 +145,21 @@ const Solutions: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
+          <div className="mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心解决方案
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5 staggered-grid">
             {solutions.map((solution) => (
               <VTLink
                 key={solution.id}
                 to={solution.ctaLink}
-                className="relative glass-card-hover p-6 md:p-8 overflow-hidden h-full flex flex-col group"
+                className="relative glass-card-hover p-6 md:p-7 overflow-hidden h-full flex flex-col group motion-sheen"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${solution.gradient}`} />
                 <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${solution.bgGradient} rounded-full blur-3xl`} />
@@ -171,7 +171,7 @@ const Solutions: React.FC = () => {
                     </span>
                   </div>
                   
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${solution.gradient} mb-4 shadow-glow w-fit`}>
+                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${solution.gradient} mb-4 shadow-glow w-fit motion-float`}>
                     <span className="text-ink">{solution.icon}</span>
                   </div>
                   
@@ -214,11 +214,11 @@ const Solutions: React.FC = () => {
       </section>
 
       {/* 动保植保案例 - 使用自然绿色系配色 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-wildlife/25 mb-6">
               <Sprout size={16} className="text-wildlife" />
               <span className="text-sm text-muted/80">动保植保</span>
@@ -232,12 +232,12 @@ const Solutions: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5 staggered-grid">
             {wildlifeCases.map((caseItem, index) => (
               <VTLink
                 key={index}
                 to="/news"
-                className={`glass-card p-6 md:p-8 relative group hover:${caseItem.borderColor} transition-all duration-300 h-full flex flex-col`}
+                className={`glass-card p-6 md:p-7 relative group hover:${caseItem.borderColor} transition-all duration-300 h-full flex flex-col motion-sheen`}
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${caseItem.color}" 
                   style={{background: `linear-gradient(to right, var(--tw-gradient-stops))`}} 
@@ -245,7 +245,7 @@ const Solutions: React.FC = () => {
                 <div className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${caseItem.color} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity`} />
                 
                 <div className="pt-4 flex flex-col h-full">
-                  <div className={`w-12 h-12 rounded-xl ${caseItem.bgColor} flex items-center justify-center ${caseItem.textColor} mb-4`}>
+                  <div className={`w-12 h-12 rounded-xl ${caseItem.bgColor} flex items-center justify-center ${caseItem.textColor} mb-4 motion-float`}>
                     {caseItem.icon}
                   </div>
                   <h3 className="text-lg font-bold text-ink mb-3">{caseItem.title}</h3>
@@ -263,7 +263,7 @@ const Solutions: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             让自然保护成为最酷的工作

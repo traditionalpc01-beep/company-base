@@ -6,9 +6,9 @@ const Privacy = () => {
   return (
     <div className="min-h-screen bg-surface">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-accent/25 mb-6">
               <Shield size={16} className="text-brand-accent" />
               <span className="text-sm text-muted/80">隐私政策</span>
@@ -22,7 +22,7 @@ const Privacy = () => {
             </p>
           </div>
 
-          <div className="feature-card space-y-8 leading-relaxed text-muted/75">
+          <div className="feature-card space-y-8 leading-relaxed text-muted/75 motion-sheen">
             <div>
               <div className="text-lg font-semibold text-ink/90 mb-2">一、我们可能收集的信息</div>
               <ul className="list-disc pl-5 space-y-2">

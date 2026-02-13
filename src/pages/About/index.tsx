@@ -1,6 +1,7 @@
 import React from 'react';
 import { Leaf, Target, Eye, Heart, Users, Award, MapPin, ArrowRight, Plane, Cpu, Shield, BookOpen, Database } from 'lucide-react';
 import VTLink from '../../components/VTLink';
+import ScrollCarousel from '../../components/ui/ScrollCarousel';
 import { siteContent } from '../../content';
 import { honorCertificates } from '../../assets/ejdrone/honors';
 import aboutHero900 from '../../assets/ejdrone/optimized/ejdrone_adfce8869caf_900w.webp';
@@ -44,6 +45,9 @@ const About: React.FC = () => {
     { year: '2024', title: '资质升级', description: '获得测绘资质乙级认证，服务突破100个保护地' },
     { year: '2025', title: 'AI创新', description: '无人机AI识别专利获授权，知识产权达61项' },
   ];
+  const honorPreview = honorCertificates.slice(0, 6);
+  const honorCarousel = honorPreview.length > 6 ? honorPreview : [...honorPreview, ...honorPreview];
+  const milestoneCarousel = milestones.length > 8 ? milestones : [...milestones, ...milestones];
 
   const team = [
     {
@@ -160,20 +164,20 @@ const About: React.FC = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-brand-primary/5 pointer-events-none" />
       
-      <section id="intro" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section id="intro" className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-12 gap-8 items-center">
+          <div className="grid md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-7">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
                 <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
                 <span className="text-sm text-muted/80">关于我们</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5">
                 <span className="eco-gradient-text">心有翼</span>
                 <span className="text-ink">，</span>
                 <span className="tech-gradient-text">境无界</span>
               </h1>
-              <p className="text-lg md:text-xl text-muted/75 max-w-2xl leading-relaxed mb-8">
+              <p className="text-lg md:text-xl text-muted/75 max-w-2xl leading-relaxed mb-6">
                 广西翼界科技有限公司成立于2017年，总部位于南宁。依托科技创新与跨领域合作，为自然保护地提供创新型与精细化管理解决方案。
               </p>
               <p className="text-base text-muted/70 max-w-2xl leading-relaxed">
@@ -182,7 +186,7 @@ const About: React.FC = () => {
             </div>
             
             <div className="md:col-span-5">
-              <div className="glass-card p-6 relative overflow-hidden">
+              <div className="glass-card p-6 relative overflow-hidden motion-sheen">
                 <div className="absolute inset-0">
                   <img
                     src={aboutHero1400}
@@ -195,10 +199,10 @@ const About: React.FC = () => {
                 </div>
                 <div className="relative z-10">
                   <div className="text-sm text-muted/70 mb-4">公司数据</div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4 staggered-grid">
                     {stats.map((stat, index) => (
-                      <div key={index} className="text-center p-3 rounded-xl bg-surface-2">
-                        <div className={`${stat.toneText} mb-2 flex justify-center`}>
+                      <div key={index} className="text-center p-3 rounded-xl bg-surface-2 motion-fade-up">
+                        <div className={`${stat.toneText} mb-2 flex justify-center motion-float`}>
                           {stat.icon}
                         </div>
                         <div className="text-2xl md:text-3xl font-bold text-gradient">
@@ -215,11 +219,11 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section id="solutions" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section id="solutions" className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               解决方案
             </h2>
@@ -229,12 +233,12 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5 staggered-grid">
             {solutionAreas.map((area) => {
               const tone = toneStyles[area.tone];
               return (
-                <div key={area.title} className={`glass-card p-6 md:p-8 group ${tone.hoverBorder} transition-all`}>
-                  <div className={`w-16 h-16 rounded-2xl ${tone.badgeBg} flex items-center justify-center mb-6 ${tone.badgeText}`}>
+                <div key={area.title} className={`glass-card p-6 md:p-7 group ${tone.hoverBorder} transition-all motion-sheen`}>
+                  <div className={`w-16 h-16 rounded-2xl ${tone.badgeBg} flex items-center justify-center mb-6 ${tone.badgeText} motion-float`}>
                     {area.icon}
                   </div>
                   <div className="text-xs text-muted/60 mb-1">{area.subtitle}</div>
@@ -257,16 +261,16 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section id="vision" className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section id="vision" className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
                 企业愿景
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary flex-shrink-0 motion-float">
                     <Eye size={24} />
                   </div>
                   <div>
@@ -278,7 +282,7 @@ const About: React.FC = () => {
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent flex-shrink-0 motion-float">
                     <Target size={24} />
                   </div>
                   <div>
@@ -290,7 +294,7 @@ const About: React.FC = () => {
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center text-warm flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center text-warm flex-shrink-0 motion-float">
                     <Shield size={24} />
                   </div>
                   <div>
@@ -304,10 +308,10 @@ const About: React.FC = () => {
             </div>
             
             <div>
-              <div className="glass-card p-8 relative overflow-hidden">
+              <div className="glass-card p-7 relative overflow-hidden motion-sheen">
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-accent/10 rounded-full blur-2xl" />
                 <div className="relative z-10">
-                  <Leaf size={48} className="text-brand-primary mb-6 opacity-60" />
+                  <Leaf size={48} className="text-brand-primary mb-6 opacity-60 motion-float" />
                   <blockquote className="text-xl md:text-2xl text-ink font-light leading-relaxed mb-4">
                     "心有翼，境无界"
                   </blockquote>
@@ -321,26 +325,26 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section id="values" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section id="values" className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心价值观
             </h2>
             <div className="w-24 h-px bg-brand-primary/40 mx-auto" />
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-5 staggered-grid">
             {values.map((value, index) => {
               const colors = colorStyles[value.color as keyof typeof colorStyles] ?? colorStyles.brand;
               return (
                 <div
                   key={index}
-                  className={`glass-card p-6 text-center group ${colors.hoverBorder} transition-all`}
+                  className={`glass-card p-6 text-center group ${colors.hoverBorder} transition-all motion-sheen`}
                 >
-                  <div className={`w-14 h-14 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4 ${colors.text} ${colors.hoverShadow} transition-shadow`}>
+                  <div className={`w-14 h-14 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4 ${colors.text} ${colors.hoverShadow} transition-shadow motion-float`}>
                     {value.icon}
                   </div>
                   <h3 className="text-lg font-semibold text-ink mb-2">{value.title}</h3>
@@ -352,9 +356,9 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section id="team" className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section id="team" className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心团队
             </h2>
@@ -364,15 +368,15 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5 staggered-grid">
             {team.map((item, index) => {
               const colors = colorStyles[item.color as keyof typeof colorStyles] ?? colorStyles.brand;
               return (
                 <div
                   key={index}
-                  className={`glass-card p-6 md:p-8 text-center group ${colors.hoverBorder} transition-all`}
+                  className={`glass-card p-6 md:p-7 text-center group ${colors.hoverBorder} transition-all motion-sheen`}
                 >
-                  <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4 ${colors.text} ${colors.hoverShadow} transition-shadow`}>
+                  <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center mx-auto mb-4 ${colors.text} ${colors.hoverShadow} transition-shadow motion-float`}>
                     {item.icon}
                   </div>
                   <div className={`text-4xl font-bold ${colors.text} mb-2`}>{item.count}</div>
@@ -385,10 +389,10 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section id="honors" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section id="honors" className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end mb-8">
             <div className="md:col-span-7">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-warm/25 mb-6">
                 <Award size={16} className="text-warm" />
@@ -404,32 +408,41 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
-            {honorCertificates.slice(0, 6).map((cert) => (
-              <VTLink
-                key={cert.id}
-                to={`/archives/honor#${cert.id}`}
-                className="glass-card overflow-hidden group hover:border-brand-primary/30 transition-all"
-              >
-                <div className="relative aspect-[3/4] bg-ink/5">
-                  <img
-                    src={cert.image900}
-                    srcSet={`${cert.image900} 900w, ${cert.image1400} 1400w`}
-                    sizes="(min-width: 1280px) 16vw, (min-width: 768px) 24vw, 48vw"
-                    alt={cert.title}
-                    loading="lazy"
-                    className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="text-sm font-semibold text-ink/90 line-clamp-2">{cert.title}</div>
-                  <div className="text-xs text-muted/70 mt-1 line-clamp-2">{cert.description}</div>
-                </div>
-              </VTLink>
+          <ScrollCarousel
+            itemWidth={220}
+            gap={16}
+            autoPlayMode="continuous"
+            autoPlaySpeed={18}
+            showIndicators={false}
+            showArrows={false}
+            showProgress={false}
+          >
+            {honorCarousel.map((cert, index) => (
+              <div key={`${cert.id}-${index}`} className="flex-shrink-0" style={{ width: '220px' }}>
+                <VTLink
+                  to={`/archives/honor#${cert.id}`}
+                  className="glass-card overflow-hidden group hover:border-brand-primary/30 transition-all motion-sheen"
+                >
+                  <div className="relative aspect-[3/4] bg-ink/5">
+                    <img
+                      src={cert.image900}
+                      srcSet={`${cert.image900} 900w, ${cert.image1400} 1400w`}
+                      sizes="220px"
+                      alt={cert.title}
+                      loading="lazy"
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <div className="text-sm font-semibold text-ink/90 line-clamp-2">{cert.title}</div>
+                    <div className="text-xs text-muted/70 mt-1 line-clamp-2">{cert.description}</div>
+                  </div>
+                </VTLink>
+              </div>
             ))}
-          </div>
+          </ScrollCarousel>
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <VTLink to="/archives/honor" className="btn-primary inline-flex items-center gap-2">
               <span>查看全部荣誉资质</span>
               <ArrowRight size={18} />
@@ -438,11 +451,11 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section id="milestones" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section id="milestones" className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               发展历程
             </h2>
@@ -452,38 +465,46 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-brand-primary/30 via-brand-accent/30 to-wildlife/30 -translate-y-1/2" />
             
-            <div className="grid grid-cols-2 md:grid-cols-8 gap-4">
-              {milestones.map((milestone, index) => (
-                <div key={index} className="relative">
-                  <div className="glass-card p-4 md:p-6 text-center relative z-10 group hover:border-warm/30 transition-all h-full">
+            <ScrollCarousel
+              itemWidth={180}
+              gap={16}
+              autoPlayMode="continuous"
+              autoPlaySpeed={16}
+              showIndicators={false}
+              showArrows={false}
+              showProgress={false}
+            >
+              {milestoneCarousel.map((milestone, index) => (
+                <div key={`${milestone.year}-${index}`} className="flex-shrink-0" style={{ width: '180px' }}>
+                  <div className="glass-card p-4 md:p-6 text-center relative z-10 group hover:border-warm/30 transition-all h-full motion-sheen">
                     <div className="text-2xl font-bold text-warm mb-2">{milestone.year}</div>
                     <h3 className="text-sm font-semibold text-ink mb-1">{milestone.title}</h3>
                     <p className="text-xs text-muted/60 hidden md:block">{milestone.description}</p>
                   </div>
                 </div>
               ))}
-            </div>
+            </ScrollCarousel>
           </div>
         </div>
       </section>
 
-      <section id="locations" className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section id="locations" className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               办公地点
             </h2>
             <div className="w-24 h-px bg-brand-primary/40 mx-auto" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5 staggered-grid">
             {siteContent.contact.addresses.map((address, index) => (
               <div
                 key={index}
-                className="glass-card p-6 group hover:border-brand-primary/30 transition-all"
+                className="glass-card p-6 group hover:border-brand-primary/30 transition-all motion-sheen"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
+                  <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary motion-float">
                     <MapPin size={20} />
                   </div>
                   <span className="text-lg font-semibold text-ink">{address.label}</span>
@@ -495,9 +516,9 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="max-w-4xl mx-auto text-center">
-          <Award size={48} className="text-warm mx-auto mb-6 opacity-60" />
+          <Award size={48} className="text-warm mx-auto mb-6 opacity-60 motion-float" />
           <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             加入我们
           </h2>

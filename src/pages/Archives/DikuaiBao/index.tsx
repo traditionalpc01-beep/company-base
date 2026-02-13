@@ -64,7 +64,7 @@ const DikuaiBao = () => {
     <div className="min-h-screen bg-surface">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
 
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0">
           <img src={hero1400} alt="" className="w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-surface via-surface/90 to-surface" />
@@ -83,15 +83,15 @@ const DikuaiBao = () => {
             智能农地管理工具，面向地块与空间数据的快速记录、汇总与管理，支持外业协作与数据沉淀。
           </p>
 
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 staggered-grid">
             {[
               { icon: <Layers size={20} />, title: '地块管理', desc: '面向地块边界、属性与状态的统一管理。' },
               { icon: <LayoutDashboard size={20} />, title: '协同作业', desc: '支持外业记录与团队协作的作业流程。' },
               { icon: <FileSpreadsheet size={20} />, title: '成果汇总', desc: '产出标准化表格与可用数据资产。' },
             ].map((x) => (
-              <div key={x.title} className="feature-card">
+              <div key={x.title} className="feature-card motion-sheen">
                 <div className="flex items-start gap-4">
-                  <div className="icon-box text-brand-accent">{x.icon}</div>
+                  <div className="icon-box text-brand-accent motion-float">{x.icon}</div>
                   <div>
                     <div className="text-base font-semibold text-ink/90">{x.title}</div>
                     <div className="text-sm text-muted/70 mt-2 leading-relaxed">{x.desc}</div>
@@ -101,7 +101,7 @@ const DikuaiBao = () => {
             ))}
           </div>
 
-          <div className="mt-12">
+          <div className="mt-8">
             <VTLink to="/contact" className="btn-primary inline-flex items-center gap-2">
               <span>咨询与试用</span>
               <ArrowRight size={18} />
@@ -111,11 +111,11 @@ const DikuaiBao = () => {
       </section>
 
       {/* 核心功能 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心功能
             </h2>
@@ -125,10 +125,10 @@ const DikuaiBao = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 staggered-grid">
             {coreFunctions.map((func, index) => (
-              <div key={index} className="glass-card p-5 text-center group hover:border-brand-accent/30 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mx-auto mb-3 text-brand-accent group-hover:shadow-glow transition-shadow">
+              <div key={index} className="glass-card p-5 text-center group hover:border-brand-accent/30 transition-all motion-fade-up">
+                <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mx-auto mb-3 text-brand-accent group-hover:shadow-glow transition-shadow motion-float">
                   {func.icon}
                 </div>
                 <h3 className="text-sm font-semibold text-ink mb-1">{func.title}</h3>
@@ -140,9 +140,9 @@ const DikuaiBao = () => {
       </section>
 
       {/* 功能特点 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               功能特点
             </h2>
@@ -152,11 +152,11 @@ const DikuaiBao = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5 staggered-grid">
             {features.map((feature) => (
-              <div key={feature.id} className="glass-card-hover p-6 md:p-8 relative group">
+              <div key={feature.id} className="glass-card-hover p-6 md:p-7 relative group motion-sheen">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent flex-shrink-0 group-hover:shadow-glow transition-shadow">
+                  <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent flex-shrink-0 group-hover:shadow-glow transition-shadow motion-float">
                     {feature.icon}
                   </div>
                   <div>
@@ -178,11 +178,11 @@ const DikuaiBao = () => {
       </section>
 
       {/* 应用场景 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               应用场景
             </h2>
@@ -192,10 +192,10 @@ const DikuaiBao = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 staggered-grid">
             {usageScenarios.map((scenario, index) => (
-              <div key={index} className="glass-card p-5 flex items-start gap-3 group hover:border-brand-accent/30 transition-all">
-                <CheckCircle size={18} className="text-brand-accent flex-shrink-0 mt-0.5" />
+              <div key={index} className="glass-card p-5 flex items-start gap-3 group hover:border-brand-accent/30 transition-all motion-fade-up">
+                <CheckCircle size={18} className="text-brand-accent flex-shrink-0 mt-0.5 motion-float" />
                 <div>
                   <h3 className="text-base font-semibold text-ink mb-1">{scenario.title}</h3>
                   <p className="text-sm text-muted/70">{scenario.description}</p>
@@ -207,23 +207,23 @@ const DikuaiBao = () => {
       </section>
 
       {/* 数据统计 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/5 rounded-full blur-3xl" />
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               应用数据
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-warm to-transparent mx-auto mb-4" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 staggered-grid">
             {stats.map((stat, index) => (
-              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow">
+              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all motion-fade-up">
+                <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow motion-float">
                   {stat.icon}
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-warm mb-2">{stat.value}</div>
@@ -235,7 +235,7 @@ const DikuaiBao = () => {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             开启智慧农业管理

@@ -162,9 +162,9 @@ const Archives: React.FC = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-accent/5 to-transparent pointer-events-none" />
       
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-accent/25 mb-6">
               <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
               <span className="text-sm text-muted/80">档案中心</span>
@@ -180,9 +180,9 @@ const Archives: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
+          <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
               <Plane size={28} className="text-brand-primary" />
               产品档案
@@ -190,17 +190,17 @@ const Archives: React.FC = () => {
             <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 staggered-grid">
             {products.map((product) => (
               <VTLink
                 key={product.id}
                 to={product.link}
-                className="glass-card-hover p-6 md:p-8 relative group block"
+                className="glass-card-hover p-6 md:p-8 relative group block motion-sheen"
               >
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${product.gradient}`} />
                 
                 <div className="relative z-10">
-                  <div className="relative mb-5 overflow-hidden rounded-2xl border border-ink/10">
+                  <div className="relative mb-4 overflow-hidden rounded-2xl border border-ink/10">
                     <img
                       src={product.image.src}
                       srcSet={product.image.srcSet}
@@ -220,11 +220,11 @@ const Archives: React.FC = () => {
                   </h3>
                   <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">{product.subtitle}</p>
                   
-                  <p className="text-muted/75 text-sm leading-relaxed mb-5">
+                  <p className="text-muted/75 text-sm leading-relaxed mb-4">
                     {product.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-3">
                     {product.features.map((feature, idx) => (
                       <span
                         key={idx}
@@ -256,11 +256,11 @@ const Archives: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-12">
+          <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
               <Database size={28} className="text-brand-accent" />
               软件产品
@@ -268,14 +268,14 @@ const Archives: React.FC = () => {
             <div className="w-24 h-px bg-gradient-to-r from-brand-accent via-warm to-transparent rounded-full" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 staggered-grid">
             {software.map((sw) => (
               <VTLink
                 key={sw.id}
                 to={sw.link}
-                className="glass-card p-6 md:p-8 relative group hover:border-brand-primary/30 transition-all duration-300 block"
+                className="glass-card p-6 md:p-8 relative group hover:border-brand-primary/30 transition-all duration-300 block motion-sheen"
               >
-                <div className="relative mb-5 overflow-hidden rounded-2xl border border-ink/10">
+                <div className="relative mb-4 overflow-hidden rounded-2xl border border-ink/10">
                   <img
                     src={sw.image.src}
                     srcSet={sw.image.srcSet}
@@ -286,7 +286,7 @@ const Archives: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-surface/10" />
                 </div>
-                <div className={`inline-flex p-3 rounded-xl ${sw.toneBg} ${sw.toneText} mb-5`}>
+                <div className={`inline-flex p-3 rounded-xl ${sw.toneBg} ${sw.toneText} mb-4`}>
                   {sw.icon}
                 </div>
                 
@@ -295,7 +295,7 @@ const Archives: React.FC = () => {
                 </h3>
                 <p className="text-xs text-muted/60 mb-4 font-english tracking-wider">{sw.subtitle}</p>
                 
-                <p className="text-muted/75 text-sm leading-relaxed mb-5">
+                <p className="text-muted/75 text-sm leading-relaxed mb-4">
                   {sw.description}
                 </p>
                 
@@ -308,7 +308,7 @@ const Archives: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="mt-6 grid grid-cols-2 gap-3">
+                <div className="mt-5 grid grid-cols-2 gap-3">
                   <div className="rounded-xl border border-border bg-surface-2/80 px-4 py-3">
                     <div className="text-[11px] text-muted/60">适用</div>
                     <div className="text-sm font-medium text-ink/90 mt-1">
@@ -328,9 +328,9 @@ const Archives: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
+          <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
               <Award size={28} className="text-warm" />
               荣誉资质
@@ -338,8 +338,8 @@ const Archives: React.FC = () => {
             <div className="w-24 h-px bg-gradient-to-r from-warm via-brand-primary to-transparent rounded-full" />
           </div>
 
-          <div className="rounded-2xl glass-card overflow-hidden border border-border">
-            <div className="p-6 md:p-8 border-b border-border/60">
+          <div className="rounded-2xl glass-card overflow-hidden border border-border motion-sheen">
+            <div className="p-6 md:p-7 border-b border-border/60">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
                 <div className="md:col-span-7">
                   <div className="text-lg md:text-xl font-semibold text-ink/95">权威认证 · 可核验背书</div>
@@ -356,7 +356,7 @@ const Archives: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-4 md:p-6 bg-surface-2/40">
+            <div className="p-4 md:p-5 bg-surface-2/40">
               <div className="marquee">
                 <div className="marquee-track">
                   {[...honorCertificates, ...honorCertificates].map((cert, idx) => (
@@ -411,9 +411,9 @@ const Archives: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-12 grid md:grid-cols-2 gap-8">
+          <div className="mt-10 grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-ink mb-6 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-ink mb-4 flex items-center gap-2">
                 <Award size={20} className="text-brand-primary" />
                 企业荣誉
               </h3>
@@ -421,7 +421,7 @@ const Archives: React.FC = () => {
                 {honors.map((honor, index) => (
                   <div
                     key={index}
-                    className="glass-card p-4 flex items-center justify-between group hover:border-brand-primary/30 transition-all"
+                    className="glass-card p-4 flex items-center justify-between group hover:border-brand-primary/30 transition-all motion-sheen"
                   >
                     <span className="text-ink/90 font-medium">{honor.title}</span>
                     <span className="text-sm text-muted/60">{honor.year}</span>
@@ -431,7 +431,7 @@ const Archives: React.FC = () => {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-ink mb-6 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-ink mb-4 flex items-center gap-2">
                 <FileCheck size={20} className="text-brand-accent" />
                 资质认证
               </h3>
@@ -439,7 +439,7 @@ const Archives: React.FC = () => {
                 {certifications.map((cert, index) => (
                   <div
                     key={index}
-                    className="glass-card p-4 flex items-center gap-3 group hover:border-brand-accent/30 transition-all"
+                    className="glass-card p-4 flex items-center gap-3 group hover:border-brand-accent/30 transition-all motion-sheen"
                   >
                     <div className="text-brand-accent">{cert.icon}</div>
                     <span className="text-ink/90 font-medium">{cert.title}</span>
@@ -451,11 +451,11 @@ const Archives: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-12">
+          <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4 flex items-center gap-3">
               <Leaf size={28} className="text-brand-primary" />
               知识产权
@@ -463,11 +463,11 @@ const Archives: React.FC = () => {
             <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 staggered-grid">
             {ipStats.map((stat, index) => (
               <div
                 key={index}
-                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all"
+                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all motion-sheen"
               >
                 <div className="text-3xl md:text-4xl font-bold text-brand-primary mb-2">
                   {stat.value}
@@ -480,12 +480,12 @@ const Archives: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-5">
             探索更多
           </h2>
-          <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-muted/75 text-lg mb-6 max-w-2xl mx-auto">
             了解翼界科技的完整产品体系与技术能力，发现适合您保护地的解决方案。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

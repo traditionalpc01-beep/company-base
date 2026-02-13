@@ -1,6 +1,7 @@
 import React from 'react';
 import { Plane, Video, Radio, Database, Users, Award, FileCheck, Wrench, ArrowRight, CheckCircle, MapPin, Clock, Shield, Camera, Satellite, BarChart3, Phone, Mountain, Map, Image, Activity, FileText, Globe, Server, Cpu, HardDrive, Flame, Scan } from 'lucide-react';
 import VTLink from '../../components/VTLink';
+import ScrollCarousel from '../../components/ui/ScrollCarousel';
 import heroBg from '../../assets/ejdrone/uav-service/hero-bg.jpg';
 import videoInspectionImg from '../../assets/ejdrone/uav-service/video-inspection.jpg';
 import remoteSensingImg from '../../assets/ejdrone/uav-service/remote-sensing.jpg';
@@ -190,6 +191,8 @@ const DroneService: React.FC = () => {
     { title: '起降作业', description: '专业飞手操控无人机安全起降' },
     { title: '巡飞作业', description: '按照预定航线执行航摄任务' },
     { title: '执飞团队', description: '持证飞手操作，遵守航空规范' },
+    { title: '航线复核', description: '对航线与覆盖范围复核，确保采集完整' },
+    { title: '数据回收', description: '飞行数据实时回传与集中归档，保证安全性' },
   ];
 
   const indoorWork = [
@@ -197,6 +200,8 @@ const DroneService: React.FC = () => {
     { title: '地物识别和解译', description: '目视解译提取关键信息，识别变化区域' },
     { title: '模型叠加效果图件', description: '多源数据融合，生成复合分析图件' },
     { title: '视频生成', description: '视频巡检报告制作，动态展示巡检成果' },
+    { title: '精度校验', description: '成果精度检查，控制误差范围与质量风险' },
+    { title: '成果质检', description: '标准化质检流程，保证交付一致性' },
   ];
 
   const dataCenterFeatures = [
@@ -244,7 +249,7 @@ const DroneService: React.FC = () => {
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src={heroBg} 
@@ -502,11 +507,11 @@ const DroneService: React.FC = () => {
       </section>
 
       {/* 标准化作业流程 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               标准化的作业流程
             </h2>
@@ -516,31 +521,52 @@ const DroneService: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-5 gap-4 mb-12">
+          <ScrollCarousel
+            itemWidth={220}
+            gap={16}
+            autoPlayMode="continuous"
+            autoPlaySpeed={20}
+            showIndicators={false}
+            showArrows={false}
+            showProgress={false}
+            className="mb-8"
+          >
             {workflowDetails.map((item, index) => (
-              <div key={index} className="glass-card p-4 text-center">
-                <div className="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center mx-auto mb-3 text-brand-primary font-bold">
-                  {index + 1}
-                </div>
-                <h3 className="text-base font-semibold text-ink mb-1">{item.title}</h3>
-                <p className="text-xs text-muted/70">{item.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="border-t border-border pt-10">
-            <h3 className="text-xl font-bold text-ink mb-8 text-center">内业处理</h3>
-            <div className="grid md:grid-cols-4 gap-4">
-              {indoorWork.map((item, index) => (
-                <div key={index} className="glass-card p-4">
-                  <div className="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center mb-3 text-brand-accent">
-                    <CheckCircle size={20} />
+              <div key={index} className="flex-shrink-0 w-[220px]">
+                <div className="glass-card p-4 text-center motion-sheen">
+                  <div className="w-10 h-10 rounded-full bg-brand-primary/12 border border-brand-primary/30 flex items-center justify-center mx-auto mb-3 text-brand-primary font-bold motion-float">
+                    {index + 1}
                   </div>
-                  <h4 className="text-base font-semibold text-ink mb-1">{item.title}</h4>
+                  <h3 className="text-base font-semibold text-ink mb-1">{item.title}</h3>
                   <p className="text-xs text-muted/70">{item.description}</p>
                 </div>
+              </div>
+            ))}
+          </ScrollCarousel>
+
+          <div className="border-t border-border pt-8">
+            <h3 className="text-xl font-bold text-ink mb-6 text-center">内业处理</h3>
+            <ScrollCarousel
+              itemWidth={240}
+              gap={16}
+              autoPlayMode="continuous"
+              autoPlaySpeed={18}
+              showIndicators={false}
+              showArrows={false}
+              showProgress={false}
+            >
+              {indoorWork.map((item, index) => (
+                <div key={index} className="flex-shrink-0 w-[240px]">
+                  <div className="glass-card p-4 motion-sheen">
+                    <div className="w-10 h-10 rounded-full bg-brand-accent/12 border border-brand-accent/30 flex items-center justify-center mb-3 text-brand-accent motion-float">
+                      <CheckCircle size={20} />
+                    </div>
+                    <h4 className="text-base font-semibold text-ink mb-1">{item.title}</h4>
+                    <p className="text-xs text-muted/70">{item.description}</p>
+                  </div>
+                </div>
               ))}
-            </div>
+            </ScrollCarousel>
           </div>
         </div>
       </section>

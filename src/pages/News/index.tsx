@@ -206,9 +206,9 @@ const News: React.FC = () => {
     <div className="min-h-screen bg-surface">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
       
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-accent/25 mb-6">
               <Newspaper size={16} className="text-brand-accent" />
               <span className="text-sm text-muted/80">最新动态</span>
@@ -222,7 +222,7 @@ const News: React.FC = () => {
             </p>
           </div>
 
-          <div className="mb-10">
+          <div className="mb-8">
             <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
               <div className="flex flex-wrap gap-2">
                 <button
@@ -266,7 +266,7 @@ const News: React.FC = () => {
 
           {filteredNews.length === 0 ? (
             <div className="text-center py-16">
-              <div className="w-16 h-16 rounded-full bg-surface-2 flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full bg-surface-2 flex items-center justify-center mx-auto mb-4 motion-float">
                 <Search size={24} className="text-muted/50" />
               </div>
               <p className="text-muted/70 text-lg">未找到相关新闻</p>
@@ -274,7 +274,7 @@ const News: React.FC = () => {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 staggered-grid">
                 {displayedNews.map((item) => {
                   const catInfo = getCategoryInfo(item.category);
                   const isExpanded = expandedId === item.id;
@@ -282,7 +282,7 @@ const News: React.FC = () => {
                   return (
                     <article
                       key={item.id}
-                      className={`feature-card group cursor-pointer transition-all duration-300 ${
+                      className={`feature-card group cursor-pointer transition-all duration-300 motion-sheen ${
                         item.featured ? 'ring-1 ring-brand-accent/30' : ''
                       } ${isExpanded ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
                       onClick={() => setExpandedId(isExpanded ? null : item.id)}
@@ -345,7 +345,7 @@ const News: React.FC = () => {
               </div>
 
               {hasMore && (
-                <div className="text-center mt-10">
+                <div className="text-center mt-8">
                   <button
                     onClick={handleLoadMore}
                     className="btn-outline inline-flex items-center gap-2"
@@ -356,7 +356,7 @@ const News: React.FC = () => {
                 </div>
               )}
 
-              <div className="text-center mt-6">
+              <div className="text-center mt-5">
                 <p className="text-sm text-muted/50">
                   共 {filteredNews.length} 条新闻
                   {filteredNews.length !== NEWS_DATA.length && `（已过滤 ${NEWS_DATA.length - filteredNews.length} 条）`}
@@ -365,8 +365,8 @@ const News: React.FC = () => {
             </>
           )}
 
-          <div className="mt-16 border-t border-border pt-10">
-            <div className="glass-card p-8 md:p-10 text-center">
+          <div className="mt-12 border-t border-border pt-8">
+            <div className="glass-card p-8 md:p-10 text-center motion-sheen">
               <h3 className="text-2xl font-bold text-ink mb-4">了解更多关于我们的服务</h3>
               <p className="text-muted/75 max-w-2xl mx-auto mb-6">
                 翼界科技专注于自然保护地信息化建设，提供无人机巡检、信息化系统建设、自然教育等全方位解决方案。

@@ -76,9 +76,9 @@ const Honor = () => {
   }, [active, activeIndex]);
 
   return (
-    <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 min-h-screen bg-cyber-dark text-ink">
+    <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-cyber-dark text-ink">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="text-gradient">荣誉资质</span>
           </h1>
@@ -88,9 +88,9 @@ const Honor = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 staggered-grid">
           {stats.map((stat, index) => (
-            <div key={index} className="glass-card p-6 text-center hover:bg-ink/5 transition-colors duration-300 group">
+            <div key={index} className="glass-card p-6 text-center hover:bg-ink/5 transition-colors duration-300 group motion-sheen">
               <div className="w-12 h-12 mx-auto bg-brand-primary/20 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 <stat.icon className="w-6 h-6 text-brand-primary" />
               </div>
@@ -102,13 +102,13 @@ const Honor = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 staggered-grid">
           {honorCertificates.map((cert) => (
             <button
               key={cert.id}
               type="button"
               onClick={() => setActiveId(cert.id)}
-              className="glass-card overflow-hidden group hover:border-brand-primary/50 transition-all duration-500 text-left"
+              className="glass-card overflow-hidden group hover:border-brand-primary/50 transition-all duration-500 text-left motion-sheen"
               aria-label={`查看证书：${cert.title}`}
             >
               <CertificateThumb cert={cert} />

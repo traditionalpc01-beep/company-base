@@ -151,9 +151,9 @@ const Faq = () => {
     <div className="min-h-screen bg-surface">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
       
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
               <HelpCircle size={16} className="text-brand-primary" />
               <span className="text-sm text-muted/80">常见问题</span>
@@ -167,7 +167,7 @@ const Faq = () => {
             </p>
           </div>
 
-          <div className="mb-8">
+          <div className="mb-6">
             <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
               <div className="flex flex-wrap gap-2">
                 <button
@@ -211,7 +211,7 @@ const Faq = () => {
 
           {filteredFaqs.length === 0 ? (
             <div className="text-center py-16">
-              <div className="w-16 h-16 rounded-full bg-surface-2 flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full bg-surface-2 flex items-center justify-center mx-auto mb-4 motion-float">
                 <Search size={24} className="text-muted/50" />
               </div>
               <p className="text-muted/70 text-lg">未找到相关问题</p>
@@ -227,7 +227,7 @@ const Faq = () => {
                   return (
                     <details
                       key={item.id}
-                      className="glass-card group open:border-brand-primary/30 transition-colors"
+                      className="glass-card group open:border-brand-primary/30 transition-colors motion-sheen"
                       open={isExpanded}
                     >
                       <summary
@@ -270,7 +270,7 @@ const Faq = () => {
                 })}
               </div>
 
-              <div className="text-center mt-6">
+              <div className="text-center mt-5">
                 <p className="text-sm text-muted/50">
                   共 {filteredFaqs.length} 个问题
                   {filteredFaqs.length !== FAQ_DATA.length && `（已过滤 ${FAQ_DATA.length - filteredFaqs.length} 个）`}
@@ -279,8 +279,8 @@ const Faq = () => {
             </>
           )}
 
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <a href={`tel:${siteContent.contact.phone}`} className="feature-card hover:border-brand-accent/30 group">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 staggered-grid">
+            <a href={`tel:${siteContent.contact.phone}`} className="feature-card hover:border-brand-accent/30 group motion-sheen">
               <div className="flex items-center gap-3">
                 <div className="icon-box text-brand-accent group-hover:shadow-glow-accent transition-shadow">
                   <Phone size={18} />
@@ -291,7 +291,7 @@ const Faq = () => {
                 </div>
               </div>
             </a>
-            <a href={`mailto:${siteContent.contact.email}`} className="feature-card hover:border-warm/30 group">
+            <a href={`mailto:${siteContent.contact.email}`} className="feature-card hover:border-warm/30 group motion-sheen">
               <div className="flex items-center gap-3">
                 <div className="icon-box text-warm group-hover:shadow-glow-warm transition-shadow">
                   <Mail size={18} />
@@ -302,7 +302,7 @@ const Faq = () => {
                 </div>
               </div>
             </a>
-            <div className="feature-card border-brand-primary/20 group">
+            <div className="feature-card border-brand-primary/20 group motion-sheen">
               <div className="flex items-center gap-3">
                 <div className="icon-box text-brand-primary group-hover:shadow-glow transition-shadow">
                   <Clock size={18} />
@@ -315,7 +315,7 @@ const Faq = () => {
             </div>
           </div>
 
-          <div className="mt-10 text-center">
+          <div className="mt-8 text-center">
             <VTLink to="/contact" className="btn-primary inline-flex items-center gap-2">
               <Wrench size={18} />
               <span>提交需求</span>
@@ -323,8 +323,8 @@ const Faq = () => {
             </VTLink>
           </div>
 
-          <div className="mt-16 border-t border-border pt-10">
-            <div className="glass-card p-8 md:p-10 text-center">
+          <div className="mt-12 border-t border-border pt-8">
+            <div className="glass-card p-8 md:p-10 text-center motion-sheen">
               <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4 text-brand-primary">
                 <FileCheck size={28} />
               </div>

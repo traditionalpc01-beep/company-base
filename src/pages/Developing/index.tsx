@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Award, Users, Plane, Leaf, Cpu, ArrowRight, Rocket, Target, Trophy, Map, Sprout, Bird } from 'lucide-react';
 import VTLink from '../../components/VTLink';
+import ScrollCarousel from '../../components/ui/ScrollCarousel';
 
 const Developing: React.FC = () => {
   const timeline = [
@@ -133,6 +134,8 @@ const Developing: React.FC = () => {
     acc[item.year].push(item);
     return acc;
   }, {} as Record<string, typeof timeline>);
+  const yearGroupEntries = Object.entries(yearGroups);
+  const yearScrollEntries = yearGroupEntries.length > 4 ? yearGroupEntries : [...yearGroupEntries, ...yearGroupEntries];
 
   const stats = [
     { value: '8', label: '发展年限', suffix: '年' },
@@ -141,18 +144,28 @@ const Developing: React.FC = () => {
     { value: '61', label: '知识产权', suffix: '项' },
   ];
 
-  const getTypeColor = (type: string) => {
-    const colors: Record<string, string> = {
-      founding: 'from-brand-primary to-brand-accent',
-      project: 'from-brand-accent to-tech',
-      honor: 'from-wildlife to-brand-primary',
-      business: 'from-brand-primary to-wildlife',
-      product: 'from-brand-accent to-wildlife',
-      milestone: 'from-wildlife to-tech',
-      partnership: 'from-tech to-brand-primary',
+  const getTypeStyle = (type: string) => {
+    const styles: Record<string, { icon: string; tag: string }> = {
+      founding: { icon: 'bg-brand-primary/10 text-brand-primary border-brand-primary/30', tag: 'bg-brand-primary/10 text-brand-primary border-brand-primary/30' },
+      project: { icon: 'bg-brand-accent/10 text-brand-accent border-brand-accent/30', tag: 'bg-brand-accent/10 text-brand-accent border-brand-accent/30' },
+      honor: { icon: 'bg-wildlife/10 text-wildlife border-wildlife/30', tag: 'bg-wildlife/10 text-wildlife border-wildlife/30' },
+      business: { icon: 'bg-tech/10 text-tech border-tech/30', tag: 'bg-tech/10 text-tech border-tech/30' },
+      product: { icon: 'bg-warm/10 text-warm border-warm/30', tag: 'bg-warm/10 text-warm border-warm/30' },
+      milestone: { icon: 'bg-plant/10 text-plant border-plant/30', tag: 'bg-plant/10 text-plant border-plant/30' },
+      partnership: { icon: 'bg-brand-primary/10 text-brand-primary border-brand-primary/30', tag: 'bg-brand-primary/10 text-brand-primary border-brand-primary/30' },
     };
-    return colors[type] || 'from-brand-primary to-brand-accent';
+    return styles[type] || { icon: 'bg-brand-primary/10 text-brand-primary border-brand-primary/30', tag: 'bg-brand-primary/10 text-brand-primary border-brand-primary/30' };
   };
+
+  const timelineTracks = [
+    { title: '技术演进', desc: '从基础巡检到智能识别与自动化调度', color: 'from-brand-primary/20 to-brand-accent/10' },
+    { title: '行业落地', desc: '覆盖自然保护地、林草、测绘与生态监管', color: 'from-warm/20 to-wildlife/10' },
+    { title: '生态协作', desc: '政产学研协同，形成可复制的管理方法论', color: 'from-plant/20 to-tech/10' },
+    { title: '数据资产', desc: '沉淀多源数据与模型能力，持续迭代产品', color: 'from-tech/20 to-brand-primary/10' },
+    { title: '品牌影响', desc: '行业认可度与服务规模持续提升', color: 'from-wildlife/20 to-brand-accent/10' },
+    { title: '未来布局', desc: '低空经济与自然教育双引擎驱动', color: 'from-brand-accent/20 to-warm/10' },
+  ];
+  const trackScrollItems = timelineTracks.length > 6 ? timelineTracks : [...timelineTracks, ...timelineTracks];
 
   const getTypeLabel = (type: string) => {
     const labels: Record<string, string> = {
@@ -172,9 +185,9 @@ const Developing: React.FC = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-wildlife/5 to-transparent pointer-events-none" />
       
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-wildlife/25 mb-6">
               <Calendar size={16} className="text-wildlife" />
               <span className="text-sm text-muted/80">发展历程</span>
@@ -190,11 +203,11 @@ const Developing: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 staggered-grid">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="glass-card p-6 text-center group hover:border-wildlife/30 transition-all"
+                className="glass-card p-5 text-center group hover:border-wildlife/30 transition-all motion-fade-up"
               >
                 <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">
                   {stat.value}
@@ -208,9 +221,9 @@ const Developing: React.FC = () => {
       </section>
 
       {/* 横向年份时间线 */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-3">
               发展时间线
             </h2>
@@ -218,17 +231,25 @@ const Developing: React.FC = () => {
           </div>
 
           <div className="relative">
-            <div className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none]">
-              {Object.entries(yearGroups).map(([year, events]) => (
+            <ScrollCarousel
+              itemWidth={320}
+              gap={20}
+              autoPlayMode="continuous"
+              autoPlaySpeed={22}
+              showIndicators={false}
+              showArrows={true}
+              showProgress={false}
+            >
+              {yearScrollEntries.map(([year, events], index) => (
                 <div 
-                  key={year}
-                  className="flex-shrink-0 w-80 snap-start"
+                  key={`${year}-${index}`}
+                  className="flex-shrink-0 w-80"
                 >
-                  <div className="glass-card p-5 h-full relative overflow-hidden">
+                  <div className="glass-card p-5 h-full relative overflow-hidden motion-sheen">
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-primary via-brand-accent to-wildlife" />
                     
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white font-bold text-xl shadow-glow-sm">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white font-bold text-xl shadow-glow-sm motion-float">
                         {year}
                       </div>
                       <div className="flex-1">
@@ -238,60 +259,84 @@ const Developing: React.FC = () => {
                     </div>
                     
                     <div className="space-y-3">
-                      {events.map((event, eventIndex) => (
-                        <div
-                          key={`${year}-${eventIndex}`}
-                          className="p-3 rounded-lg bg-surface-2/50 border border-border/50 group hover:border-brand-primary/30 hover:bg-surface-2 transition-all"
-                        >
-                          <div className="flex items-start gap-3">
-                            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${getTypeColor(event.type)} flex items-center justify-center text-ink flex-shrink-0 shadow-sm`}>
-                              {event.icon}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className="text-xs font-medium text-muted/70">{event.quarter}</span>
-                                <span className={`text-xs px-2 py-0.5 rounded-full bg-gradient-to-r ${getTypeColor(event.type)} bg-opacity-10 text-ink/80`}>
-                                  {getTypeLabel(event.type)}
-                                </span>
+                      {events.map((event, eventIndex) => {
+                        const style = getTypeStyle(event.type);
+                        return (
+                          <div
+                            key={`${year}-${eventIndex}`}
+                            className="p-3 rounded-lg bg-surface-2/60 border border-border/50 group hover:border-brand-primary/30 hover:bg-surface-2 transition-all motion-fade-up"
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className={`w-8 h-8 rounded-lg border flex items-center justify-center flex-shrink-0 shadow-sm ${style.icon}`}>
+                                {event.icon}
                               </div>
-                              <h3 className="text-sm font-semibold text-ink truncate">{event.title}</h3>
-                              <p className="text-xs text-muted/70 mt-1 line-clamp-2 leading-relaxed">
-                                {event.description}
-                              </p>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="text-xs font-medium text-muted/70">{event.quarter}</span>
+                                  <span className={`text-xs px-2 py-0.5 rounded-full border ${style.tag}`}>
+                                    {getTypeLabel(event.type)}
+                                  </span>
+                                </div>
+                                <h3 className="text-sm font-semibold text-ink truncate">{event.title}</h3>
+                                <p className="text-xs text-muted/70 mt-1 line-clamp-2 leading-relaxed">
+                                  {event.description}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
+            </ScrollCarousel>
             
             <div className="absolute left-0 top-0 bottom-8 w-16 bg-gradient-to-r from-surface to-transparent pointer-events-none z-10" />
             <div className="absolute right-0 top-0 bottom-8 w-16 bg-gradient-to-l from-surface to-transparent pointer-events-none z-10" />
           </div>
           
+          <div className="mt-8">
+            <ScrollCarousel
+              itemWidth={280}
+              gap={16}
+              autoPlayMode="continuous"
+              autoPlaySpeed={18}
+              showIndicators={false}
+              showArrows={false}
+              showProgress={false}
+            >
+              {trackScrollItems.map((track, index) => (
+                <div key={`${track.title}-${index}`} className="flex-shrink-0 w-[280px]">
+                  <div className={`glass-card p-4 border border-border/60 bg-gradient-to-br ${track.color} motion-sheen`}>
+                    <div className="text-sm font-semibold text-ink mb-2">{track.title}</div>
+                    <p className="text-xs text-muted/70 leading-relaxed">{track.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </ScrollCarousel>
+          </div>
+
           <div className="text-center mt-4">
-            <p className="text-sm text-muted/60">← 左右滑动查看更多年份 →</p>
+            <p className="text-sm text-muted/60">自动滚动，可左右拖动查看更多年份</p>
           </div>
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative py-14 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               发展里程碑
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto mb-4" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="glass-card p-6 md:p-8 group hover:border-wildlife/30 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-wildlife/10 flex items-center justify-center mb-4 text-wildlife group-hover:shadow-glow-wildlife transition-shadow">
+          <div className="grid md:grid-cols-3 gap-5 staggered-grid">
+            <div className="glass-card p-6 md:p-7 group hover:border-wildlife/30 transition-all motion-sheen">
+              <div className="w-14 h-14 rounded-2xl bg-wildlife/10 flex items-center justify-center mb-4 text-wildlife group-hover:shadow-glow-wildlife transition-shadow motion-float">
                 <Award size={28} />
               </div>
               <h3 className="text-xl font-bold text-ink mb-3">荣誉资质</h3>
@@ -304,8 +349,8 @@ const Developing: React.FC = () => {
               </ul>
             </div>
             
-            <div className="glass-card p-6 md:p-8 group hover:border-brand-accent/30 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center mb-4 text-brand-accent group-hover:shadow-glow-accent transition-shadow">
+            <div className="glass-card p-6 md:p-7 group hover:border-brand-accent/30 transition-all motion-sheen">
+              <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center mb-4 text-brand-accent group-hover:shadow-glow-accent transition-shadow motion-float">
                 <Cpu size={28} />
               </div>
               <h3 className="text-xl font-bold text-ink mb-3">产品矩阵</h3>
@@ -318,8 +363,8 @@ const Developing: React.FC = () => {
               </ul>
             </div>
             
-            <div className="glass-card p-6 md:p-8 group hover:border-brand-primary/30 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mb-4 text-brand-primary group-hover:shadow-glow transition-shadow">
+            <div className="glass-card p-6 md:p-7 group hover:border-brand-primary/30 transition-all motion-sheen">
+              <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mb-4 text-brand-primary group-hover:shadow-glow transition-shadow motion-float">
                 <Users size={28} />
               </div>
               <h3 className="text-xl font-bold text-ink mb-3">服务规模</h3>
@@ -335,7 +380,7 @@ const Developing: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <Rocket size={48} className="text-brand-primary mx-auto mb-6 opacity-60" />
           <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">

@@ -89,9 +89,9 @@ const Partners: React.FC = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-warm/5 to-transparent pointer-events-none" />
       
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-warm/25 mb-6">
               <Users size={16} className="text-warm" />
               <span className="text-sm text-muted/80">合作伙伴</span>
@@ -105,13 +105,13 @@ const Partners: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-12 staggered-grid">
             {cooperationTypes.map((type, index) => (
               <div
                 key={index}
-                className="glass-card p-6 text-center group hover:border-warm/30 transition-all"
+                className="glass-card p-5 text-center group hover:border-warm/30 transition-all motion-fade-up"
               >
-                <div className="w-14 h-14 rounded-2xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow">
+                <div className="w-14 h-14 rounded-2xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow motion-float">
                   {type.icon}
                 </div>
                 <h3 className="text-lg font-semibold text-ink mb-2">{type.title}</h3>
@@ -122,11 +122,11 @@ const Partners: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               合作伙伴
             </h2>
@@ -136,14 +136,14 @@ const Partners: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5 staggered-grid">
             {partnerCategories.map((category) => (
               <div
                 key={category.id}
-                className="glass-card p-6 md:p-8 group hover:border-brand-primary/30 transition-all"
+                className="glass-card p-6 md:p-7 group hover:border-brand-primary/30 transition-all motion-sheen"
               >
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary flex-shrink-0 motion-float">
                     {category.icon}
                   </div>
                   <div>
@@ -168,20 +168,20 @@ const Partners: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               客户评价
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5 staggered-grid">
             {testimonials.map((item, index) => (
               <div
                 key={index}
-                className="glass-card p-6 md:p-8 relative group hover:border-brand-accent/30 transition-all"
+                className="glass-card p-6 md:p-7 relative group hover:border-brand-accent/30 transition-all motion-sheen"
               >
                 <div className="absolute top-6 left-6 text-brand-primary/20">
                   <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
@@ -203,11 +203,11 @@ const Partners: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <Handshake size={48} className="text-warm mx-auto mb-6 opacity-60" />
+          <Handshake size={48} className="text-warm mx-auto mb-6 opacity-60 motion-float" />
           <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             期待与您合作
           </h2>

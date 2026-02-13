@@ -114,7 +114,7 @@ const GridInspection = () => {
     <div className="min-h-screen bg-surface">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
 
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0">
           <img src={hero1400} alt="" className="w-full h-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-b from-surface via-surface/90 to-surface" />
@@ -134,16 +134,16 @@ const GridInspection = () => {
             一款综合性的无人机巡检全流程治理管理系统，面向自然保护地巡护监测任务，支持网格化管理、自动分析与事件回报，形成巡护闭环。
           </p>
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-6 staggered-grid">
             {[
               { icon: <Video size={20} />, title: '视频巡检', desc: '高频巡检与现场回传。' },
               { icon: <Satellite size={20} />, title: '遥感监测', desc: '多源遥感与影像成果产出。' },
               { icon: <Repeat size={20} />, title: '数据中继', desc: '任务数据收集、回收与中继。' },
               { icon: <ShieldCheck size={20} />, title: '治理闭环', desc: '事件上报、处置、复盘可追溯。' },
             ].map((x) => (
-              <div key={x.title} className="feature-card">
+              <div key={x.title} className="feature-card motion-sheen">
                 <div className="flex items-start gap-4">
-                  <div className="icon-box text-brand-accent">{x.icon}</div>
+                  <div className="icon-box text-brand-accent motion-float">{x.icon}</div>
                   <div>
                     <div className="text-base font-semibold text-ink/90">{x.title}</div>
                     <div className="text-sm text-muted/70 mt-2 leading-relaxed">{x.desc}</div>
@@ -153,7 +153,7 @@ const GridInspection = () => {
             ))}
           </div>
 
-          <div className="mt-12">
+          <div className="mt-8">
             <VTLink to="/contact" className="btn-primary inline-flex items-center gap-2">
               <span>咨询方案与试用</span>
               <ArrowRight size={18} />
@@ -162,7 +162,7 @@ const GridInspection = () => {
         </div>
       </section>
 
-      <section className="relative -mt-10 px-4 sm:px-6 lg:px-8">
+      <section className="relative -mt-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             {[
@@ -179,7 +179,7 @@ const GridInspection = () => {
                 span: 'md:col-span-5',
               },
             ].map((x) => (
-              <div key={x.title} className={`${x.span} glass-card overflow-hidden`}>
+              <div key={x.title} className={`${x.span} glass-card overflow-hidden motion-sheen`}>
                 <div className="relative">
                   <img
                     src={x.src}
@@ -201,11 +201,11 @@ const GridInspection = () => {
       </section>
 
       {/* 系统组成 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               系统组成
             </h2>
@@ -215,11 +215,11 @@ const GridInspection = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 staggered-grid">
             {systemComponents.map((comp) => (
-              <div key={comp.id} className="glass-card-hover p-6 md:p-8 relative group">
+              <div key={comp.id} className="glass-card-hover p-6 md:p-8 relative group motion-sheen">
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${comp.id === 'web' ? 'from-brand-primary to-brand-accent' : comp.id === 'app' ? 'from-brand-accent to-tech-blue' : 'from-warm to-brand-primary'}`} />
-                <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-5 group-hover:shadow-glow transition-shadow">
+                <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-5 group-hover:shadow-glow transition-shadow motion-float">
                   {comp.icon}
                 </div>
                 <h3 className="text-xl font-bold text-ink mb-3">{comp.title}</h3>
@@ -238,9 +238,9 @@ const GridInspection = () => {
       </section>
 
       {/* 系统架构 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               系统架构
             </h2>
@@ -252,7 +252,7 @@ const GridInspection = () => {
 
           <div className="space-y-4">
             {systemArchitecture.map((layer) => (
-              <div key={layer.layer} className="glass-card p-6 group hover:border-brand-primary/30 transition-all">
+              <div key={layer.layer} className="glass-card p-6 group hover:border-brand-primary/30 transition-all motion-sheen">
                 <div className="flex items-center gap-4">
                   <div className={`w-24 h-12 rounded-lg bg-gradient-to-br ${layer.color} flex items-center justify-center text-ink font-bold text-sm flex-shrink-0`}>
                     {layer.layer}
@@ -277,11 +277,11 @@ const GridInspection = () => {
       </section>
 
       {/* 核心模块 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心模块
             </h2>
@@ -291,10 +291,10 @@ const GridInspection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 staggered-grid">
             {coreModules.map((module, index) => (
-              <div key={index} className="glass-card p-5 group hover:border-brand-accent/30 transition-all">
-                <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-3 group-hover:shadow-glow transition-shadow">
+              <div key={index} className="glass-card p-5 group hover:border-brand-accent/30 transition-all motion-fade-up">
+                <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-3 group-hover:shadow-glow transition-shadow motion-float">
                   {module.icon}
                 </div>
                 <h3 className="text-base font-semibold text-ink mb-1">{module.title}</h3>
@@ -306,9 +306,9 @@ const GridInspection = () => {
       </section>
 
       {/* 业务场景 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               业务场景
             </h2>
@@ -318,11 +318,11 @@ const GridInspection = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5 staggered-grid">
             {businessScenarios.map((scenario, index) => (
-              <div key={index} className="glass-card-hover p-6 md:p-8 relative group">
+              <div key={index} className="glass-card-hover p-6 md:p-7 relative group motion-sheen">
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${index === 0 ? 'from-brand-primary to-brand-accent' : index === 1 ? 'from-warm to-brand-primary' : 'from-brand-accent to-tech-blue'}`} />
-                <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-5 group-hover:shadow-glow transition-shadow">
+                <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-5 group-hover:shadow-glow transition-shadow motion-float">
                   {scenario.icon}
                 </div>
                 <h3 className="text-xl font-bold text-ink mb-3">{scenario.title}</h3>
@@ -341,23 +341,23 @@ const GridInspection = () => {
       </section>
 
       {/* 系统数据 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2 overflow-hidden">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/5 rounded-full blur-3xl" />
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               系统能力
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-warm to-transparent mx-auto mb-4" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 staggered-grid">
             {stats.map((stat, index) => (
-              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow">
+              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all motion-fade-up">
+                <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow motion-float">
                   {stat.icon}
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-warm mb-2">{stat.value}</div>
@@ -369,7 +369,7 @@ const GridInspection = () => {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             开启智慧巡检新模式

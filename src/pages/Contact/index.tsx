@@ -204,9 +204,9 @@ const Contact: React.FC = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
       
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-primary/25 mb-6">
               <Send size={16} className="text-brand-primary" />
               <span className="text-sm text-muted/80">联系我们</span>
@@ -220,14 +220,14 @@ const Contact: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-3 gap-5 mb-12 staggered-grid">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
                 href={method.action}
-                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all cursor-pointer"
+                className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all cursor-pointer motion-sheen"
               >
-                <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4 text-brand-primary group-hover:shadow-glow transition-shadow">
+                <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4 text-brand-primary group-hover:shadow-glow transition-shadow motion-float">
                   {method.icon}
                 </div>
                 <h3 className="text-lg font-semibold text-ink mb-1">{method.title}</h3>
@@ -239,20 +239,20 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2" id="contact-form">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-surface-2" id="contact-form">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
                 在线留言
               </h2>
-              <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full mb-8" />
+              <div className="w-24 h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent rounded-full mb-6" />
               
               {status === 'success' ? (
-                <div className="glass-card p-8 text-center">
-                  <div className="w-16 h-16 rounded-full bg-brand-primary/20 flex items-center justify-center mx-auto mb-4">
+                <div className="glass-card p-7 text-center motion-sheen">
+                  <div className="w-16 h-16 rounded-full bg-brand-primary/20 flex items-center justify-center mx-auto mb-4 motion-float">
                     <CheckCircle size={32} className="text-brand-primary" />
                   </div>
                   <h3 className="text-xl font-semibold text-ink mb-2">提交成功</h3>
@@ -279,8 +279,8 @@ const Contact: React.FC = () => {
                   </button>
                 </div>
               ) : status === 'error' ? (
-                <div className="glass-card p-8 text-center border-red-500/30">
-                  <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-4">
+                <div className="glass-card p-7 text-center border-red-500/30 motion-sheen">
+                  <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-4 motion-float">
                     <XCircle size={32} className="text-red-500" />
                   </div>
                   <h3 className="text-xl font-semibold text-ink mb-2">提交失败</h3>
@@ -466,16 +466,16 @@ const Contact: React.FC = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
                 办公地址
               </h2>
-              <div className="w-24 h-px bg-gradient-to-r from-brand-accent via-warm to-transparent rounded-full mb-8" />
+              <div className="w-24 h-px bg-gradient-to-r from-brand-accent via-warm to-transparent rounded-full mb-6" />
               
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {siteContent.contact.addresses.map((address, index) => (
                   <div
                     key={index}
-                    className="glass-card p-6 group hover:border-brand-accent/30 transition-all"
+                    className="glass-card p-6 group hover:border-brand-accent/30 transition-all motion-sheen"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent flex-shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent flex-shrink-0 motion-float">
                         <MapPin size={24} />
                       </div>
                       <div>
@@ -487,7 +487,7 @@ const Contact: React.FC = () => {
                 ))}
               </div>
               
-              <div className="mt-8 glass-card p-6">
+              <div className="mt-6 glass-card p-6 motion-sheen">
                 <div className="flex items-center gap-3 mb-4">
                   <Clock size={20} className="text-warm" />
                   <h3 className="text-lg font-semibold text-ink">工作时间</h3>
@@ -499,7 +499,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               
-              <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-brand-primary/10 to-brand-accent/10 border border-brand-primary/20">
+              <div className="mt-6 p-6 rounded-2xl bg-gradient-to-br from-brand-primary/10 to-brand-accent/10 border border-brand-primary/20 motion-sheen">
                 <p className="text-muted/80 text-sm leading-relaxed">
                   <span className="text-ink font-medium">温馨提示：</span>
                   如需无人机飞行服务或现场技术支持，请提前预约，我们将安排专业人员为您提供上门服务。
@@ -510,9 +510,9 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <MessageSquare size={48} className="text-brand-primary mx-auto mb-6 opacity-60" />
+          <MessageSquare size={48} className="text-brand-primary mx-auto mb-6 opacity-60 motion-float" />
           <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
             让自然保护成为最酷的工作
           </h2>

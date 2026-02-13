@@ -71,7 +71,7 @@ const Sifeng = () => {
     <div className="min-h-screen bg-surface">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
 
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0">
           <img src={hero1400} alt="" className="w-full h-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-b from-surface via-surface/90 to-surface" />
@@ -91,13 +91,13 @@ const Sifeng = () => {
             面向复杂地形与弱网盲区场景的数据回收系统。在传统生态监测领域，地形复杂、网络覆盖盲区多、基站建设难度大等问题长期存在，数据回收常因网络中断而面临丢失或效率低下的挑战。
           </p>
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 staggered-grid">
             {[
               { icon: <WifiOff size={20} />, title: '弱网可用', desc: '适配弱网/无网环境的数据暂存与回收。' },
               { icon: <Database size={20} />, title: '数据闭环', desc: '回收、校验、归档与可追溯管理。' },
               { icon: <ShieldCheck size={20} />, title: '可靠运行', desc: '提升外业数据回收的稳定性与安全性。' },
             ].map((x) => (
-              <div key={x.title} className="feature-card">
+              <div key={x.title} className="feature-card motion-sheen">
                 <div className="flex items-start gap-4">
                   <div className="icon-box text-brand-primary">{x.icon}</div>
                   <div>
@@ -109,7 +109,7 @@ const Sifeng = () => {
             ))}
           </div>
 
-          <div className="mt-12">
+          <div className="mt-10">
             <VTLink to="/contact" className="btn-primary inline-flex items-center gap-2">
               <span>咨询部署与试用</span>
               <ArrowRight size={18} />
@@ -135,7 +135,7 @@ const Sifeng = () => {
                 span: 'md:col-span-5',
               },
             ].map((x) => (
-              <div key={x.title} className={`${x.span} glass-card overflow-hidden`}>
+              <div key={x.title} className={`${x.span} glass-card overflow-hidden motion-sheen`}>
                 <div className="relative">
                   <img
                     src={x.src}
@@ -157,11 +157,11 @@ const Sifeng = () => {
       </section>
 
       {/* 系统架构 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               系统架构
             </h2>
@@ -171,9 +171,9 @@ const Sifeng = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-4 gap-4 staggered-grid">
             {systemArchitecture.map((item, index) => (
-              <div key={item.step} className="glass-card p-6 relative group hover:border-brand-primary/30 transition-all">
+              <div key={item.step} className="glass-card p-6 relative group hover:border-brand-primary/30 transition-all motion-sheen">
                 <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center text-ink text-sm font-bold">
                   {item.step}
                 </div>
@@ -192,9 +192,9 @@ const Sifeng = () => {
       </section>
 
       {/* 核心功能 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心功能
             </h2>
@@ -204,9 +204,9 @@ const Sifeng = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 staggered-grid">
             {coreFunctions.map((func) => (
-              <div key={func.id} className="glass-card-hover p-6 md:p-8 relative group">
+              <div key={func.id} className="glass-card-hover p-6 md:p-8 relative group motion-sheen">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent flex-shrink-0 group-hover:shadow-glow transition-shadow">
                     {func.icon}
@@ -230,13 +230,13 @@ const Sifeng = () => {
       </section>
 
       {/* AI识别能力 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2 overflow-hidden">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-primary/5 rounded-full blur-3xl" />
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               AI智能识别
             </h2>
@@ -246,9 +246,9 @@ const Sifeng = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 staggered-grid">
             {aiCapabilities.map((cap, index) => (
-              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all">
+              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all motion-sheen">
                 <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow">
                   {cap.icon}
                 </div>
@@ -258,7 +258,7 @@ const Sifeng = () => {
             ))}
           </div>
 
-          <div className="glass-card p-8">
+          <div className="glass-card p-8 motion-sheen">
             <div className="flex items-center gap-3 mb-6">
               <Brain size={24} className="text-warm" />
               <h3 className="text-xl font-bold text-ink">AI识别技术特点</h3>
@@ -298,9 +298,9 @@ const Sifeng = () => {
       </section>
 
       {/* 安全与部署 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               安全与部署
             </h2>
@@ -310,9 +310,9 @@ const Sifeng = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 staggered-grid">
             {securityFeatures.map((feature, index) => (
-              <div key={index} className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all">
+              <div key={index} className="glass-card p-6 text-center group hover:border-brand-primary/30 transition-all motion-sheen">
                 <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4 text-brand-primary group-hover:shadow-glow transition-shadow">
                   {feature.icon}
                 </div>
@@ -325,11 +325,11 @@ const Sifeng = () => {
       </section>
 
       {/* 取得成效 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               取得成效
             </h2>
@@ -339,9 +339,9 @@ const Sifeng = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 staggered-grid">
             {achievements.map((item, index) => (
-              <div key={index} className="glass-card p-6 group hover:border-brand-primary/30 transition-all">
+              <div key={index} className="glass-card p-6 group hover:border-brand-primary/30 transition-all motion-sheen">
                 <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-4 text-brand-primary group-hover:shadow-glow transition-shadow">
                   <Globe size={24} />
                 </div>
@@ -354,12 +354,12 @@ const Sifeng = () => {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-5">
             开启智能监测新体验
           </h2>
-          <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-muted/75 text-lg mb-6 max-w-2xl mx-auto">
             让AI技术赋能生态监测，实现野生动物的自动化、智能化管理。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

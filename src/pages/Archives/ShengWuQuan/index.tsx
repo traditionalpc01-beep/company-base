@@ -62,7 +62,7 @@ const ShengWuQuan = () => {
     <div className="min-h-screen bg-surface">
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-pattern opacity-40" />
 
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-28 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0">
           <img src={hero1400} alt="" className="w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-surface via-surface/90 to-surface" />
@@ -77,17 +77,17 @@ const ShengWuQuan = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-ink mb-5">
             <span className="text-ink/85">声物圈</span>
           </h1>
-          <p className="text-muted/75 text-lg md:text-xl max-w-3xl leading-relaxed mb-8">
+          <p className="text-muted/75 text-lg md:text-xl max-w-3xl leading-relaxed mb-6">
             一个公众参与的全国自然声音数据采集平台
           </p>
 
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 staggered-grid">
             {[
               { icon: <Users size={20} />, title: '公众参与', desc: '面向公众开放参与式采集与共创。' },
               { icon: <Waves size={20} />, title: '声音数据', desc: '结构化采集与管理自然声音数据。' },
               { icon: <MapPinned size={20} />, title: '在地记录', desc: '结合位置与场景，沉淀可复用的样本资产。' },
             ].map((x) => (
-              <div key={x.title} className="feature-card">
+              <div key={x.title} className="feature-card motion-sheen">
                 <div className="flex items-start gap-4">
                   <div className="icon-box text-warm">{x.icon}</div>
                   <div>
@@ -99,7 +99,7 @@ const ShengWuQuan = () => {
             ))}
           </div>
 
-          <div className="mt-12">
+          <div className="mt-10">
             <VTLink to="/contact" className="btn-primary inline-flex items-center gap-2">
               <span>获取演示与资料</span>
               <ArrowRight size={18} />
@@ -109,11 +109,11 @@ const ShengWuQuan = () => {
       </section>
 
       {/* 平台功能 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               平台功能
             </h2>
@@ -123,9 +123,9 @@ const ShengWuQuan = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 staggered-grid">
             {platformFeatures.map((feature) => (
-              <div key={feature.id} className="glass-card-hover p-6 md:p-8 relative group">
+              <div key={feature.id} className="glass-card-hover p-6 md:p-8 relative group motion-sheen">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-14 h-14 rounded-2xl bg-warm/10 flex items-center justify-center text-warm flex-shrink-0 group-hover:shadow-glow transition-shadow">
                     {feature.icon}
@@ -149,9 +149,9 @@ const ShengWuQuan = () => {
       </section>
 
       {/* 核心功能 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               核心能力
             </h2>
@@ -161,9 +161,9 @@ const ShengWuQuan = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 staggered-grid">
             {coreFunctions.map((func, index) => (
-              <div key={index} className="glass-card p-5 text-center group hover:border-warm/30 transition-all">
+              <div key={index} className="glass-card p-5 text-center group hover:border-warm/30 transition-all motion-sheen">
                 <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center mx-auto mb-3 text-warm group-hover:shadow-glow transition-shadow">
                   {func.icon}
                 </div>
@@ -176,13 +176,13 @@ const ShengWuQuan = () => {
       </section>
 
       {/* 生态闭环 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2 overflow-hidden">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-warm/5 rounded-full blur-3xl" />
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               生态闭环
             </h2>
@@ -192,9 +192,9 @@ const ShengWuQuan = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 staggered-grid">
             {ecosystem.map((item, index) => (
-              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all">
+              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all motion-sheen">
                 <div className="w-14 h-14 rounded-2xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow">
                   {item.icon}
                 </div>
@@ -217,18 +217,18 @@ const ShengWuQuan = () => {
       </section>
 
       {/* 数据统计 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               平台数据
             </h2>
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto mb-4" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 staggered-grid">
             {stats.map((stat, index) => (
-              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all">
+              <div key={index} className="glass-card p-6 text-center group hover:border-warm/30 transition-all motion-sheen">
                 <div className="w-12 h-12 rounded-xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow">
                   {stat.icon}
                 </div>
@@ -241,11 +241,11 @@ const ShengWuQuan = () => {
       </section>
 
       {/* 科普价值 */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-surface-2">
+      <section className="relative reduced-py px-4 sm:px-6 lg:px-8 bg-surface-2">
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
               科普价值
             </h2>
@@ -255,22 +255,22 @@ const ShengWuQuan = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="glass-card p-6 text-center group hover:border-warm/30 transition-all">
+          <div className="grid md:grid-cols-3 gap-6 staggered-grid">
+            <div className="glass-card p-6 text-center group hover:border-warm/30 transition-all motion-sheen">
               <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4 text-brand-primary group-hover:shadow-glow transition-shadow">
                 <Leaf size={28} />
               </div>
               <h3 className="text-lg font-semibold text-ink mb-2">物种认知</h3>
               <p className="text-sm text-muted/70">通过声音识别物种，学习野生动物知识</p>
             </div>
-            <div className="glass-card p-6 text-center group hover:border-warm/30 transition-all">
+            <div className="glass-card p-6 text-center group hover:border-warm/30 transition-all motion-sheen">
               <div className="w-14 h-14 rounded-2xl bg-brand-accent/10 flex items-center justify-center mx-auto mb-4 text-brand-accent group-hover:shadow-glow transition-shadow">
                 <Headphones size={28} />
               </div>
               <h3 className="text-lg font-semibold text-ink mb-2">声景体验</h3>
               <p className="text-sm text-muted/70">沉浸式聆听自然声音，感受生态之美</p>
             </div>
-            <div className="glass-card p-6 text-center group hover:border-warm/30 transition-all">
+            <div className="glass-card p-6 text-center group hover:border-warm/30 transition-all motion-sheen">
               <div className="w-14 h-14 rounded-2xl bg-warm/10 flex items-center justify-center mx-auto mb-4 text-warm group-hover:shadow-glow transition-shadow">
                 <Globe size={28} />
               </div>
@@ -282,12 +282,12 @@ const ShengWuQuan = () => {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-5">
             开启声景探索之旅
           </h2>
-          <p className="text-muted/75 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-muted/75 text-lg mb-6 max-w-2xl mx-auto">
             加入声物圈，用声音记录自然，用科技守护生态，共同构建人与自然的和谐未来。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

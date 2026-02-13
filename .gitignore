@@ -45,3 +45,13 @@ comfyui_output/
 midjourney/
 dalle_output/
 
+# Trae AI Documents
+.trae/documents/
+
+# Crawl Scripts
+crawl-*.cjs
+
+# Temp Files
+temp_*.html
+temp_*.json
+

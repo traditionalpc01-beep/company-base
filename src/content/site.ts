@@ -1,26 +1,40 @@
 import type { SiteContent } from './types';
+import { Plane, Database, BookOpen, Building2, Calendar, Handshake, Phone } from 'lucide-react';
 
 export const siteContent: SiteContent = {
   nav: [
     { label: '首页', to: '/' },
-    { label: '解决方案与案例', to: '/solutions' },
-    { label: '档案中心', to: '/archives' },
-    { label: '无人机服务', to: '/drone_service' },
-    { label: '合作伙伴', to: '/partners' },
-    { label: '关于我们', to: '/about' },
-    { label: '发展历程', to: '/developing' },
-    { label: '联系我们', to: '/contact' },
+    { 
+      label: '产品服务', 
+      to: '/solutions',
+      children: [
+        { label: '解决方案', to: '/solutions', icon: BookOpen },
+        { label: '无人机服务', to: '/drone_service', icon: Plane },
+        { label: '产品档案', to: '/archives', icon: Database },
+      ]
+    },
+    { 
+      label: '关于我们', 
+      to: '/about',
+      children: [
+        { label: '公司介绍', to: '/about', icon: Building2 },
+        { label: '发展历程', to: '/developing', icon: Calendar },
+        { label: '合作伙伴', to: '/partners', icon: Handshake },
+      ]
+    },
+    { label: '联系我们', to: '/contact', icon: Phone },
   ],
   footerSections: [
     {
       title: '快速链接',
       items: [
         { label: '首页', to: '/' },
-        { label: '解决方案与案例', to: '/solutions' },
-        { label: '档案中心', to: '/archives' },
+        { label: '解决方案', to: '/solutions' },
         { label: '无人机服务', to: '/drone_service' },
-        { label: '合作伙伴', to: '/partners' },
+        { label: '档案中心', to: '/archives' },
         { label: '关于我们', to: '/about' },
+        { label: '发展历程', to: '/developing' },
+        { label: '合作伙伴', to: '/partners' },
         { label: '联系我们', to: '/contact' },
       ],
     },

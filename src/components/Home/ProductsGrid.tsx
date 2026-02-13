@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Mic2, Radio, LayoutGrid, MapPinned } from 'lucide-react';
 import VTLink from '../VTLink';
+import ScrollCarousel from '../ui/ScrollCarousel';
 
 const ProductsGrid: React.FC = () => {
   const items = [
@@ -59,38 +60,35 @@ const ProductsGrid: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {items.map((item, idx) => (
-            <VTLink
+        <ScrollCarousel itemWidth={320} gap={24} showIndicators={true}>
+          {items.map((item) => (
+            <div 
               key={item.title}
-              to={item.to}
-              className={`group feature-card block ${item.ring} ${
-                idx === 0
-                  ? 'md:col-span-5'
-                  : idx === 1
-                    ? 'md:col-span-4 md:col-start-7'
-                    : idx === 2
-                      ? 'md:col-span-5 md:col-start-3'
-                      : 'md:col-span-4 md:col-start-9'
-              }`}
+              className="flex-shrink-0 snap-center"
+              style={{ width: '320px' }}
             >
-              <div className="flex items-start justify-between gap-6">
-                <div className="min-w-0">
-                  <div className="text-xl font-semibold text-ink/90">{item.title}</div>
-                  <div className="text-sm text-muted/70 mt-2 leading-relaxed">{item.desc}</div>
+              <VTLink
+                to={item.to}
+                className={`group feature-card block ${item.ring} h-full`}
+              >
+                <div className="flex items-start justify-between gap-6 mb-4">
+                  <div className="min-w-0">
+                    <div className="text-xl font-semibold text-ink/90">{item.title}</div>
+                    <div className="text-sm text-muted/70 mt-2 leading-relaxed">{item.desc}</div>
+                  </div>
+                  <div className={`shrink-0 w-12 h-12 rounded-2xl border border-border flex items-center justify-center ${item.tone}`}>
+                    {item.icon}
+                  </div>
                 </div>
-                <div className={`shrink-0 w-12 h-12 rounded-2xl border border-border flex items-center justify-center ${item.tone}`}>
-                  {item.icon}
-                </div>
-              </div>
 
-              <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-ink/80">
-                <span>了解更多</span>
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </div>
-            </VTLink>
+                <div className="inline-flex items-center gap-2 text-sm font-medium text-ink/80">
+                  <span>了解更多</span>
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                </div>
+              </VTLink>
+            </div>
           ))}
-        </div>
+        </ScrollCarousel>
       </div>
     </section>
   );

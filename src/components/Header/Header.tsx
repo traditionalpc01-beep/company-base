@@ -1,5 +1,5 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { ArrowLeft, Menu, X, Settings } from 'lucide-react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
+import { ArrowLeft, Menu, X, Settings, ChevronDown } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { siteContent } from '../../content';
 import VTLink from '../VTLink';
@@ -53,9 +53,20 @@ const Header: React.FC<HeaderProps> = ({ onOpenThemePanel }) => {
   const linkClass = 'text-muted hover:text-ink theme-transition';
   const mobileIconClass = 'text-ink';
 
-  const navLinks = siteContent.nav
-    .filter((x) => x.to !== '/contact')
-    .map((x) => ({ name: x.label, href: x.to }));
+  const navItems = siteContent.nav.filter((x) => x.to !== '/contact');
+
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleBackClick = () => {
     if (typeof window === 'undefined') return;
@@ -106,19 +117,74 @@ const Header: React.FC<HeaderProps> = ({ onOpenThemePanel }) => {
             </div>
           </div>
         ) : (
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navLinks.map((link) => (
-              <VTLink
-                key={link.name}
-                to={link.href}
-                className={`nav-link px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 text-sm xl:text-base whitespace-nowrap ${
-                  location.pathname === link.href 
-                    ? 'text-brand-primary bg-brand-primary/10' 
-                    : linkClass
-                }`}
-              >
-                {link.name}
-              </VTLink>
+          <nav className="hidden lg:flex items-center space-x-1" ref={dropdownRef}>
+            {navItems.map((link) => (
+              <div key={link.label} className="relative">
+                {link.children ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
+                      className={`nav-link px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 text-sm xl:text-base whitespace-nowrap flex items-center gap-1 ${
+                        location.pathname === link.to || link.children?.some(c => c.to === location.pathname)
+                          ? 'text-brand-primary bg-brand-primary/10' 
+                          : linkClass
+                      }`}
+                    >
+                      {link.label}
+                      <ChevronDown 
+                        size={14} 
+                        className={`transition-transform duration-200 ${openDropdown === link.label ? 'rotate-180' : ''}`} 
+                      />
+                    </button>
+                    {openDropdown === link.label && (
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl glass-card border border-border shadow-2xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="p-2">
+                          {link.children.map((child) => {
+                            const IconComponent = child.icon;
+                            return (
+                              <VTLink
+                                key={child.to}
+                                to={child.to}
+                                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
+                                  location.pathname === child.to
+                                    ? 'bg-brand-primary/10 text-brand-primary'
+                                    : 'text-muted hover:text-ink hover:bg-surface-2'
+                                }`}
+                                onClick={() => setOpenDropdown(null)}
+                              >
+                                {IconComponent && (
+                                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
+                                    location.pathname === child.to
+                                      ? 'bg-brand-primary/20 text-brand-primary'
+                                      : 'bg-surface-2 group-hover:bg-brand-primary/10 group-hover:text-brand-primary'
+                                  }`}>
+                                    <IconComponent size={18} />
+                                  </div>
+                                )}
+                                <div>
+                                  <div className="text-sm font-medium">{child.label}</div>
+                                </div>
+                              </VTLink>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <VTLink
+                    to={link.to}
+                    className={`nav-link px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 text-sm xl:text-base whitespace-nowrap ${
+                      location.pathname === link.to
+                        ? 'text-brand-primary bg-brand-primary/10' 
+                        : linkClass
+                    }`}
+                  >
+                    {link.label}
+                  </VTLink>
+                )}
+              </div>
             ))}
             <VTLink
               to="/contact"
@@ -190,19 +256,39 @@ const Header: React.FC<HeaderProps> = ({ onOpenThemePanel }) => {
                   返回
                 </button>
               )}
-              {navLinks.map((link) => (
-                <VTLink
-                  key={link.name}
-                  to={link.href}
-                  className={`px-4 py-3 rounded-lg font-medium transition-all ${
-                    location.pathname === link.href 
-                      ? 'text-brand-primary bg-brand-primary/10' 
-                      : 'text-muted hover:text-ink hover:bg-surface-2'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </VTLink>
+              {navItems.map((link) => (
+                link.children ? (
+                  <div key={link.label} className="mb-2">
+                    <div className="px-4 py-2 text-xs font-semibold text-muted/60 uppercase tracking-wider">{link.label}</div>
+                    {link.children.map((child) => (
+                      <VTLink
+                        key={child.to}
+                        to={child.to}
+                        className={`block px-6 py-3 rounded-lg font-medium transition-all ${
+                          location.pathname === child.to
+                            ? 'text-brand-primary bg-brand-primary/10' 
+                            : 'text-muted hover:text-ink hover:bg-surface-2'
+                        }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {child.label}
+                      </VTLink>
+                    ))}
+                  </div>
+                ) : (
+                  <VTLink
+                    key={link.to}
+                    to={link.to}
+                    className={`px-4 py-3 rounded-lg font-medium transition-all ${
+                      location.pathname === link.to
+                        ? 'text-brand-primary bg-brand-primary/10' 
+                        : 'text-muted hover:text-ink hover:bg-surface-2'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </VTLink>
+                )
               ))}
               
               {/* 移动端主题控制 */}
